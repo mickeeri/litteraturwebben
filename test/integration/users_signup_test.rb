@@ -13,8 +13,12 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
 		end
 		# Checks if failed submission re-renders the new action. 
 		assert_template 'users/new'
+		# Checks if error message is displayed. 
+		assert_select 'div#error_explanation'
+		assert_select 'div.<alert alert-danger>'
 	end
 
+	# Verify that clicking submit button is creating new user.
 	test "valid signup information" do
 		get signup_path
 		# Compares User.count after submission. Should have changed by 1. 
@@ -23,5 +27,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
 			post_via_redirect users_path, user: {name: "Exempelanv", email: "user@exempel.se", password: "password", password_confirmation: "password"}
 		end
 		assert_template 'users/show'
+		# Test if success message is displayed. 
+		assert_not flash.empty?
 	end
 end
