@@ -13,9 +13,9 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
 		end
 		# Checks if failed submission re-renders the new action. 
 		assert_template 'users/new'
-		# Checks if error message is displayed. 
+		# Checks if error message is displayed/selected. 
 		assert_select 'div#error_explanation'
-		assert_select 'div.<alert alert-danger>'
+		assert_select 'div.field_with_errors'
 	end
 
 	# Verify that clicking submit button is creating new user.
@@ -29,5 +29,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
 		assert_template 'users/show'
 		# Test if success message is displayed. 
 		assert_not flash.empty?
+		# See if user is logged-in after submit. 
+		assert is_logged_in?
 	end
 end

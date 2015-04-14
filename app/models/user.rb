@@ -13,6 +13,14 @@ class User < ActiveRecord::Base
 	# Password validation
 	has_secure_password
 	validates :password, length: { minimum: 6 }
+
+	# Method to create bcrypt password digest via has_secure_password.
+	def User.digest(string)
+	    # Uses minimum cost paramter in test and normal (high) cost parameter in production. 
+	    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
+	    # Create password digest. Snippet from secure password source code.
+	    BCrypt::Password.create(string, cost: cost)	
+	end
 end
 
 
