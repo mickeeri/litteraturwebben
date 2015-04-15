@@ -10,6 +10,11 @@
 			<%= f.label :password, "Lösenord" %>
 			<%= f.password_field :password, class: 'form-control' %>
 
+			<%= f.label :remember_me, class: "checkbox inline" do %>
+				<%= f.check_box :remember_me %>
+				<span>Kom ihåg mig på den här datorn</span>
+			<% end %>
+
 			<%= f.submit "Logga in", class: "btn btn-primary" %>
 		<% end %>
 		<p>Ny användare? <%= link_to "Registera dig nu!", signup_path %></p>
