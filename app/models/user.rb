@@ -18,10 +18,10 @@ class User < ActiveRecord::Base
 
 	# Method to create bcrypt password digest via has_secure_password.
 	def User.digest(string)
-	    # Uses minimum cost paramter in test and normal (high) cost parameter in production. 
+	    # Uses minimum cost paramter in test and normal (high) cost parameter in production.
 	    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
 	    # Create password digest. Snippet from secure password source code.
-	    BCrypt::Password.create(string, cost: cost)	
+	    BCrypt::Password.create(string, cost: cost)
 	end
 
 	# Returns random token for remember_digest.
@@ -35,9 +35,9 @@ class User < ActiveRecord::Base
 		update_attribute(:remember_digest, User.digest(remember_token))
 	end
 
-	# Compares given token with digest using is_password? method. Match returns true. 
+	# Compares given token with digest using is_password? method. Match returns true.
 	def authenticated?(remember_token)
-		# Return false immediately if remeber digest is nil. 
+		# Return false immediately if remeber digest is nil.
 		return false if remember_digest.nil?
 		BCrypt::Password.new(remember_digest).is_password?(remember_token)
 	end
