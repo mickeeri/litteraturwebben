@@ -1,0 +1,12 @@
+<% provide(:title, 'Alla användare') %>
+<h1>Alla användare</h1>
+
+<%# Using gems to paginate %>
+<%= will_paginate @posts, :previous_label => 'Föregående', :next_label => 'Nästa' %>
+
+<ul class="users">
+	<%# Iterates trough users with _user.html.erb %>
+	<%= render @users %>
+</ul>
+
+<%= will_paginate @posts, :previous_label => 'Föregående', :next_label => 'Nästa' %>

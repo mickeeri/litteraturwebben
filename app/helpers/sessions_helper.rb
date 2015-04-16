@@ -1,6 +1,6 @@
 module SessionsHelper
 
-	# Log in given user. Places temorary cookie on user's browser containining encrypted version of user's id. 
+	# Log in given user. Places temorary cookie on user's browser containining encrypted version of user's id.
 	def log_in(user)
 		session[:user_id] = user.id
 	end
@@ -10,10 +10,14 @@ module SessionsHelper
 		user.remember
 		# Uses cookies create permanent cookies for user id.
 		cookies.permanent.signed[:user_id] = user.id
-		cookies.permanent[:remember_token] = user.remember_token		
+		cookies.permanent[:remember_token] = user.remember_token
 	end
 
-	# Returns the current logged-in user. Retrieve user from temprary session if session[:user_id] exists, otherwise look for it in 
+	def current_user?(user)
+		user == current_user
+	end
+
+	# Returns the current logged-in user. Retrieve user from temprary session if session[:user_id] exists, otherwise look for it in
 	# cookies[:user_id] to retrieve user from persistent session.
 	def current_user
 		if (user_id = session[:user_id])
@@ -23,11 +27,11 @@ module SessionsHelper
 			if user && user.authenticated?(cookies[:remember_token])
 				log_in user
 				@current_user = user
-			end			
+			end
 		end
 	end
 
-	# Returns true if user is logged-in, i.e. if current_user is not nil. 
+	# Returns true if user is logged-in, i.e. if current_user is not nil.
 	def logged_in?
 		!current_user.nil?
 	end
@@ -47,5 +51,17 @@ module SessionsHelper
 		session.delete(:user_id)
 		# Sets current user to nil.
 		@current_user = nil
+	end
+
+	# Redirects to stored requested url if it exists, otherwise to default url in Sessions controller create method.
+	def redirect_back_or(default)
+		redirect_to(session[:forwarding_url] || default)
+		session.delete(:forwarding_url)
+	end
+
+	# Stores the URL trying to be acessed.
+	def store_location
+		# request.url = get url of requested page. Puts requested url in session variable under key :forwarding_url, but only if request is GET.
+		session[:forwarding_url] = request.url if request.get?
 	end
 end

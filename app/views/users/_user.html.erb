@@ -1,0 +1,8 @@
+<%# Display single user. %>
+<li>
+	<%= link_to user.name, user %><br>
+	<%= user.email %>
+	<% if current_user.admin? && !current_user?(user) %>
+		| <%= link_to "Radera användare", user, method: :delete, data: { confirm: "Är du säker?"} %>
+	<% end %>
+</li>

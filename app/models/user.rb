@@ -14,7 +14,8 @@ class User < ActiveRecord::Base
 
 	# Password validation
 	has_secure_password
-	validates :password, length: { minimum: 6 }
+	# Allow blank so user don't have to change password on update. has_secure_password still makes sure password is not blank on user sign-up.
+	validates :password, length: { minimum: 6 }, allow_blank: true
 
 	# Method to create bcrypt password digest via has_secure_password.
 	def User.digest(string)
