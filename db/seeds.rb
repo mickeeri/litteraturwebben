@@ -7,13 +7,13 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # !create method raises exception for invalid user rather than returning false.
-User.create!(name: "Example User",
-			email: "example@mail.com",
+User.create!(name: "admin",
+			email: "admin@mail.com",
 			password: "foobar",
 			password_confirmation: "foobar",
 			admin: true)
 
-# Using Faker gem to make 99 example users.
+# # Using Faker gem to make 99 example users.
 99.times do |n|
 	name = Faker::Name.name
 	email = "example-#{n+1}@mail.com"
@@ -23,3 +23,9 @@ User.create!(name: "Example User",
 				password: password,
 				password_confirmation: password)
 end
+
+fiction = Genre.create(genre: "Skönlitteratur")
+poetry = Genre.create(genre: "Lyrik")
+drama = Genre.create(genre: "Dramatik")
+facts = Genre.create(genre: "Faktalitteratur")
+essays = Genre.create(genre: "Essäer")

@@ -1,0 +1,16 @@
+<% provide(:title, @book.title) %>
+<div class="row">
+	<aside class="col-md-4">
+		<section class="book_info">
+			<%= image_tag "roda_rummet.jpg" %>
+			<h1><%= @book.title %></h1>
+			<p>Utgivningsår: <%= @book.yearofpub %></p>
+			<p><%= @book.about %></p>
+		</section>
+	</aside>
+</div>
+
+
+
+
+

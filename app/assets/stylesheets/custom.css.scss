@@ -106,33 +106,12 @@ footer ul li {
   margin-left: 15px;
 }
 
-/* miscellaneous */
 
-.debug_dump{
-  clear: both;
-  float: left;
-  width: 100%;
-  margin-top: 45px;
-  @include box_sizing;
-}
-
-/* forms */
-input, textarea, select, .uneditable-input {
-  width: 100%;
-  margin-bottom: 15px;
-  @include box_sizing;
-}
-
-
-input {
-  height: auto !important;
-}
 
 #error_explanation {
   color: red;
   ul {
     color: red;
-    margin: 0 0 30px 0;
   }
 }
 
@@ -157,6 +136,7 @@ input {
   margin-left: 0;
 }
 
+
 /* Users index */
 .users {
   list-style: none;
@@ -165,5 +145,65 @@ input {
     overflow: auto;
     padding: 10px 0;
     border-bottom: 1px solid $gray-lighter;
+  }
+}
+
+/* Books index */
+.books {
+  list-style: none;
+  li:hover{
+      background: #eee;
+      cursor: pointer;
+  }
+  li {
+    padding: 10px;
+    overflow: auto;
+    border-bottom: 1px dotted $gray-medium-light;
+
+    h3 {
+      font-weight: bold;
+    }
+
+    img {
+      float: left;
+      margin: 0 15px 0 0;
+    }
+
+    p {
+      font: 200 14px/1.5 Georgia, "Times New Roman", serif;
+    }
+  }
+}
+
+/* forms */
+input, textarea, select, .uneditable-input {
+  width: 100%;
+  margin-bottom: 15px;
+  @include box_sizing;
+}
+
+
+input {
+  height: auto !important;
+}
+
+/* miscellaneous */
+
+.debug_dump{
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+}
+
+.alert {
+  border: 1px dashed black;
+  ul {
+    padding-left: 20px;
+    margin: 0;
+  }
+  span {
+    font-weight: bold;
   }
 }

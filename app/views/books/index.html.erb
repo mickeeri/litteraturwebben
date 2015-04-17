@@ -1,0 +1,9 @@
+<% provide(:title, 'Alla böcker') %>
+<h1>Alla böcker</h1>
+<ul class="books">
+	<%= render @books %>
+
+	<div class="new-book-link">
+		<%= link_to "Lägg till ny bok", newbook_path, class: 'new-book-link' %>
+	</div>
+</ul>

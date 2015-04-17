@@ -1,0 +1,7 @@
+<%# View for showning one book. %>
+<li>
+	<%# Display cover pic if there is one. %>
+	<%= image_tag book.cover.url if book.cover? %>
+	<h3><%= book.title %></h3>
+	<p><%= book.about %></p>
+<li>

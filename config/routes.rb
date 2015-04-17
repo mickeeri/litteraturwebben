@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  get 'books/index'
+
+  get 'books/show'
+
+  get 'books/new'
+
+  get 'books/edit'
+
+  get 'books/delete'
+
   get 'sessions/new'
 
   get 'users/new'
@@ -9,7 +19,9 @@ Rails.application.routes.draw do
   get     'signup'    => 'users#new'
   get     'login'     => 'sessions#new'
   post    'login'     => 'sessions#create'
-  delete  'logout'    => 'sessions#destroy' 
+  delete  'logout'    => 'sessions#destroy'
+
+  get     'newbook'   => 'books#new'
 
 
 
@@ -27,6 +39,7 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   resources :users
+  resources :books
 
   # Example resource route with options:
   #   resources :products do

@@ -5,6 +5,7 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li><%= link_to "Hem", root_path %></li>
 				<li><%= link_to "Hjälp", help_path %></li>
+				<li><%= link_to "Böcker", books_path %></li>
 				<% if logged_in? %>
 					<li><%= link_to "Användare", users_path %></li>
 					<li class="dropdown">
