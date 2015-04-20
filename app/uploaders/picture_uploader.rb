@@ -9,22 +9,12 @@ class PictureUploader < CarrierWave::Uploader::Base
 
   # Choose what kind of storage to use for this uploader:
   # File system for development. Cloud storage for production.
-  # if Rails.env.production?
-  #   CarrierWave.configure do |config|
-  #     config.fog.credentials = {
-  #       # Config from Amazon S3
-  #       :provider => 'AWS',
-  #       :aws_access_key_id => ENV['AKIAIL6GQ7YSFVGE4OQQ'],
-  #       :aws_secret_access_key => ENV['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']
-  #     }
-  #     config.fog_directory = ENV['railsproject-bucket']
-  #   end
-  #   storage :fog
-  # else
-  #   storage :file
-  # end
 
-  storage :file
+  if Rails.env.production?
+    storage :fog
+  else
+    storage :file
+  end
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
