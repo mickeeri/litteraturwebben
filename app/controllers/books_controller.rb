@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+  before_action :admin_user, only: [:edit, :update, :destroy]
+
   def index
     @books = Book.all
   end
@@ -10,9 +12,6 @@ class BooksController < ApplicationController
   def new
     @book = Book.new
   end
-
-      # @book = @genre.books.build(title: "Röda rummet", yearofpub: 1879,
-      #             about: "En roman av Strindberg.")
 
   def create
     @book = Book.new(book_params)
@@ -28,29 +27,40 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
   end
 
-  # def update
-  #   @book = Book.find(params[:id])
-  #   if @book.update_attributes(book_params)
-  #     flash[:success] = "Boken är uppdaterad!"
-  #     redirect_to @book
-  #   else
-  #     render 'edit'
-  #   end
-  # end
+  def update
+    @book = Book.find(params[:id])
+    if @book.update_attributes(book_params)
+      flash[:success] = "Boken är uppdaterad!"
+      redirect_to @book
+    else
+      render 'edit'
+    end
+  end
 
-  def delete
+  def destroy
+    Book.find(params[:id]).destroy
+    flash[:success] = "Bok raderad!"
+    # Försvinner cover?
+    redirect_to books_url
+  end
+
+
+  # Metod som laddar ner omslag. Ska senare bli pdf/epub. Lägg till gem mime-types.
+  # http://stackoverflow.com/questions/15326776/file-download-from-link-of-carrierwave-document-attachment
+  def download_file
+    @book = Book.find(params[:id])
+    send_file(@book.cover.path,
+        :disposition => 'attachment',
+        :url_based_filename => false)
   end
 
   private
     def book_params
-      params.require(:book).permit(:title, :yearofpub, :about, :genre_id, :cover)
+      params.require(:book).permit(:title, :yearofpub, :about, :genre_id, :cover, :author)
     end
 
-    # def genre_params
-    #   params.require(:genre).permit(:genre)
-    # end
-
-    # def selected_genre
-    #   Genre.find_by(id: book[:genre_id])
-    # end
+    # Before filters
+    def admin_user
+      redirect_to(books_url) unless logged_in? && current_user.admin?
+    end
 end

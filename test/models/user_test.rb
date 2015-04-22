@@ -7,11 +7,13 @@ class UserTest < ActiveSupport::TestCase
 						password: "lösenord", password_confirmation: "lösenord")
 	end
 
-	# Tests if user is valid.
+	# TESTFALL 1
+	# Test if user is valid.
 	test "should be valid" do
 		assert @user.valid?
 	end
 
+	# TESTFALL 2
 	# Should not be valid if name is blank.
 	test "name should be present" do
 		@user.name = "     "
@@ -34,22 +36,25 @@ class UserTest < ActiveSupport::TestCase
 		assert_not @user.valid?
 	end
 
+	# TESTFALL 3
 	test "email validation should accept valid addresses" do
-		valid_addresses = %w[user@exempel.se USER@example.com A_US-ER@foo.bar.org first.last@foo.jp lisa+bob@baz.cn]
+		valid_addresses = %w[user@exempel.se USER@example.com A_US-ER@e.mail.org first.last@foo.jp kalle+lisa@baz.cn]
 		valid_addresses.each do |valid_address|
 			@user.email = valid_address
 			assert @user.valid?, "#{valid_address.inspect} should be valid"
 		end
 	end
 
+	# TESTFALL 4
 	test "email validation should reject invalid addresses" do
-		invalid_addresses = %w[user@example,com user_at_foo.org user.name@example. foo@bar_baz.com foo@bar+baz.com foo@bar..com]
+		invalid_addresses = %w[user@example,com user_at_mail.org user.name@example. user@e_mail.com user@e+post.com user@mail..com]
 		invalid_addresses.each do |invalid_address|
 			@user.email = invalid_address
 			assert_not @user.valid?, "#{invalid_address.inspect} should be invalid"
 		end
 	end
 
+	# TESTFALL 5
 	# Test to avoid duplicate email addresses
 	test "email addresses should be unique" do
 		# dup duplicates user with same attributes.
@@ -67,12 +72,14 @@ class UserTest < ActiveSupport::TestCase
 		assert_equal mixed_case_email.downcase, @user.reload.email
 	end
 
+	# TESTFALL 6
 	# Test of password validation
 	test "password should have a minimum length of 6 characters" do
 		@user.password = @user.password_confirmation = "a" * 5
 		assert_not @user.valid?
 	end
 
+	# TESTFALL 7
 	test "authenticated? should return false for a user with nil digest" do
 		assert_not @user.authenticated?('')
 	end

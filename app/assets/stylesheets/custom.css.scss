@@ -72,8 +72,8 @@ p {
   padding-top: 9px;
   font-weight: bold;
   &:hover {
-    color: white;
-    text-decoration: none;
+	color: white;
+	text-decoration: none;
   }
 }
 
@@ -85,10 +85,10 @@ footer {
   border-top: 1px solid $gray-medium-light;
   color: $gray-light;
   a {
-  	color: $gray;
-  	&:hover{
-  		color: $gray-darker;
-  	};
+	color: $gray;
+	&:hover{
+		color: $gray-darker;
+	};
   }
 }
 
@@ -111,14 +111,14 @@ footer ul li {
 #error_explanation {
   color: red;
   ul {
-    color: red;
+	color: red;
   }
 }
 
 .field_with_errors {
   @extend .has-error;
   .form-control {
-    color: $state-danger-text;
+	color: $state-danger-text;
   }
 }
 
@@ -126,8 +126,8 @@ footer ul li {
   margin-top: -10px;
   margin-bottom: 10px;
   span {
-    margin-left: 20px;
-    font-weight: normal;
+	margin-left: 20px;
+	font-weight: normal;
   }
 }
 
@@ -142,37 +142,53 @@ footer ul li {
   list-style: none;
   margin: 0;
   li {
-    overflow: auto;
-    padding: 10px 0;
-    border-bottom: 1px solid $gray-lighter;
+	overflow: auto;
+	padding: 10px 0;
+	border-bottom: 1px solid $gray-lighter;
   }
 }
 
 /* Books index */
 .books {
   list-style: none;
-  li:hover{
-      background: #eee;
-      cursor: pointer;
-  }
+
   li {
-    padding: 10px;
-    overflow: auto;
-    border-bottom: 1px dotted $gray-medium-light;
+	padding: 10px;
+	overflow: auto;
+	border-bottom: 1px dotted $gray-medium-light;
 
-    h3 {
-      font-weight: bold;
-    }
+	h3 {
+	  font-weight: bold;
+	}
 
-    img {
-      float: left;
-      margin: 0 15px 0 0;
-    }
+	img {
+	  float: left;
+	  margin: 0 15px 0 0;
+	}
 
-    p {
-      font: 200 14px/1.5 Georgia, "Times New Roman", serif;
-    }
+	p {
+	  font: 200 14px/1.5 Georgia, "Times New Roman", serif;
+	  width: 80%;
+	}
   }
+}
+
+.new-book-link {
+	padding-left: 40px;
+}
+
+/* Books show */
+.book-post {
+  margin-left: 40px;
+
+  h1 {
+	text-align: left;
+  }
+
+  .cover-div {
+  	padding-right: 0;
+  }
+
 }
 
 /* forms */
@@ -180,6 +196,10 @@ input, textarea, select, .uneditable-input {
   width: 100%;
   margin-bottom: 15px;
   @include box_sizing;
+}
+
+.btn {
+	width: 150px;
 }
 
 
@@ -200,10 +220,10 @@ input {
 .alert {
   border: 1px dashed black;
   ul {
-    padding-left: 20px;
-    margin: 0;
+	padding-left: 20px;
+	margin: 0;
   }
   span {
-    font-weight: bold;
+	font-weight: bold;
   }
 }

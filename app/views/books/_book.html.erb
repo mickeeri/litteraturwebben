@@ -2,6 +2,11 @@
 <li>
 	<%# Display cover pic if there is one. %>
 	<%= image_tag book.cover.url if book.cover? %>
-	<h3><%= book.title %></h3>
-	<p><%= book.about %></p>
-<li>
+	<div>
+		<h3> <%= link_to book.title, book %></h3>
+		<strong><%= book.author %></strong><br>
+		<% if logged_in? && current_user.admin? %>
+			<%= link_to "Radera bok", book, method: :delete, data: { confirm: "Är du säker?"} %>
+		<% end %>
+	</div>
+</li>

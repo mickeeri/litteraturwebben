@@ -6,18 +6,22 @@
 		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 		<%= csrf_meta_tags %>
 		<%= render 'layouts/shim' %>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 	<body>
 		<%= render 'layouts/header' %>
 		<div class="container">
 			<!-- Displays message. Css-class depends on message type. -->
 			<% flash.each do |message_type, message| %>
-				<div class="alert alert-<%= message_type %>"><%= message %></div>
+				<div class="alert alert-<%= message_type %> alert-dismissible" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<%= message %>
+				</div>
 			<% end %>
 			<%= yield %>
 			<%= render 'layouts/footer' %>
 
-			<!-- Only display debug info to devolopment only --> 
+			<!-- Only display debug info to devolopment only -->
 			<%= debug(params) if Rails.env.development? %>
 		</div>
 	</body>

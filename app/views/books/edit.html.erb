@@ -1,2 +1,34 @@
-<h1>Books#edit</h1>
-<p>Find me in app/views/books/edit.html.erb</p>
+<% provide(:title, "Redigera bok") %>
+
+<h1>Redigera bok</h1>
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<%= form_for(@book, html: { multipart: true }) do |f| %>
+			<%= render 'shared/error_messages', object: f.object %>
+
+			<%= f.label :title, "Titel" %>
+			<%= f.text_field :title, class: 'form_control' %>
+
+			<%= f.label :author, "Författare" %>
+			<%= f.text_field :author, class: 'form_control' %>
+
+			<%= f.label :yearofpub, "Utgivningsår" %>
+			<%= f.number_field :yearofpub, class: 'form_control' %>
+
+			<%= f.label :about, "Beskrivning" %>
+			<%= f.text_area :about %>
+
+			<%= f.label :genre_id, "Välj genre" %>
+			<%= f.collection_select(:genre_id, Genre.all, :id, :genre) %>
+
+			<span class="cover">
+				<%= f.label :cover, "Ladda upp omslagsbild" %>
+				<%= f.file_field :cover, accept: 'image/jpeg,image/gif,image/png' %>
+			</span>
+
+			<%= f.submit "Spara", class: "btn btn-primary" %>
+			<%= link_to "Avbryt", @book, class: "btn btn-danger" %>
+		<% end %>
+	</div>
+</div>
+

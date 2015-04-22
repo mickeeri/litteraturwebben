@@ -7,6 +7,7 @@ class Book < ActiveRecord::Base
   validates :title, presence: true, length: { maximum: 50 }
   validates :yearofpub, presence: true, length: { maximum: 4 }
   validates :genre_id, presence: true
+  # Validera också: yearofpub inte minus.
 
   #Custom validator for pic size.
   validate :picture_size
