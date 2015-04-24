@@ -45,14 +45,23 @@ class BooksController < ApplicationController
   end
 
 
-  # Metod som laddar ner omslag. Ska senare bli pdf/epub. Lägg till gem mime-types.
-  # http://stackoverflow.com/questions/15326776/file-download-from-link-of-carrierwave-document-attachment
-  def download_file
-    @book = Book.find(params[:id])
-    send_file(@book.cover.path,
-        :disposition => 'attachment',
-        :url_based_filename => false)
-  end
+      # Metod som laddar ner omslag. Ska senare bli pdf/epub. Lägg till gem mime-types.
+      # http://stackoverflow.com/questions/15326776/file-download-from-link-of-carrierwave-document-attachment
+      # Fungerar inte på heroku. Måste få url till aws s3 bucket.
+    # uploader = PictureUploader.new.store_dir
+
+    def download_file
+        @book = Book.find(params[:id])
+        send_file @book.cover.path
+    end
+
+
+    # def download_file
+    #     @book = Book.find(params[:id])
+    #     send_file(@book.cover.path,
+    #         :disposition => 'attachment',
+    #         :url_based_filename => false)
+    # end
 
   private
     def book_params
