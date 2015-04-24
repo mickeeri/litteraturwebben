@@ -56,10 +56,10 @@ class BooksController < ApplicationController
     # end
 
 
-    def download_file
-        @book = Book.find(params[:id])
-        send_file @book.cover.path, :x_sendfile => true
-    end
+    # def download_file
+    #     @book = Book.find(params[:id])
+    #     send_file @book.cover.path, :x_sendfile => true
+    # end
 
   private
     def book_params
