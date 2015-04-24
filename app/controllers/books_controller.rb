@@ -50,18 +50,16 @@ class BooksController < ApplicationController
       # Fungerar inte på heroku. Måste få url till aws s3 bucket.
     # uploader = PictureUploader.new.store_dir
 
-    def download_file
-        @book = Book.find(params[:id])
-        send_file @book.cover.path
-    end
-
-
     # def download_file
     #     @book = Book.find(params[:id])
-    #     send_file(@book.cover.path,
-    #         :disposition => 'attachment',
-    #         :url_based_filename => false)
+    #     send_file @book.cover.path
     # end
+
+
+    def download_file
+        @book = Book.find(params[:id])
+        send_file @book.cover.path, :x_sendfile => true
+    end
 
   private
     def book_params
