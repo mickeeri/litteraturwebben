@@ -27,7 +27,7 @@ class Book < ActiveRecord::Base
       credentials: credentials,
       region: 'eu-central-1'
     )
-    object = s3.bucket('railsproject-bucket').object(self.path)
+    object = s3.bucket('railsproject-bucket').object(self.cover.path)
     return object.public_url
   end
 
