@@ -21,9 +21,14 @@
 			<%= f.label :genre_id, "Välj genre" %>
 			<%= f.collection_select(:genre_id, Genre.all, :id, :genre) %>
 
-			<span class="cover">
+			<span class="upload-cover">
 				<%= f.label :cover, "Ladda upp omslagsbild" %>
 				<%= f.file_field :cover, accept: 'image/jpeg,image/gif,image/png' %>
+			</span>
+
+			<span class="pdf-upload">
+				<%= f.label :pdf, "Ladda upp Pdf-fil" %>
+				<%= f.file_field :pdf, accept: 'application/pdf' %>
 			</span>
 
 			<%= f.submit "Spara", class: "btn btn-primary" %>
@@ -32,3 +37,22 @@
 	</div>
 </div>
 
+
+<%# JQuery function fires alert if user tries to upload pic larger than 5MB. %>
+<script type="text/javascript">
+	$('#book_cover').bind('change', function() {
+		var size_in_megabytes = this.files[0].size/1024/1024;
+		if (size_in_megabytes > 5) {
+			alert('Den största tillåtna filstorleken är 5MB. Var vänlig välj en mindre fil.')
+		}
+	});
+</script>
+
+<script type="text/javascript">
+	$('#book_pdf').bind('change', function() {
+		var size_in_megabytes = this.files[0].size/1024/1024;
+		if (size_in_megabytes > 20) {
+			alert('Den största tillåtna filstorleken är 20MB. Var vänlig välj en mindre fil.')
+		}
+	});
+</script>

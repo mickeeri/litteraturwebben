@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   get 'books/delete'
 
-  get 'books/download_file'
+  get 'books/download_pdf'
 
   get 'sessions/new'
 

@@ -56,20 +56,20 @@ class BooksController < ApplicationController
     # end
 
 
+    def download_pdf
+        @book = Book.find(params[:id])
+        send_file @book.pdf_url, :x_sendfile => true
+    end
+
+
     # def download_file
     #     @book = Book.find(params[:id])
-    #     send_file @book.cover.path, :x_sendfile => true
+    #     redirect_to @book.cover.path
     # end
-
-
-    def download_file
-        @book = Book.find(params[:id])
-        redirect_to @book.cover.path
-    end
 
   private
     def book_params
-      params.require(:book).permit(:title, :yearofpub, :about, :genre_id, :cover, :author)
+      params.require(:book).permit(:title, :yearofpub, :about, :genre_id, :cover, :author, :pdf)
     end
 
     # Before filters
