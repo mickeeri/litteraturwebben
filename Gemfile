@@ -46,6 +46,8 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
 
+gem 'aws-sdk', '~> 2.0.40'
+
 group :development, :test do
   gem 'sqlite3',     '1.3.9'
   gem 'byebug',      '3.4.0'

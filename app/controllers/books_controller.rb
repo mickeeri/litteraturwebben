@@ -51,7 +51,7 @@ class BooksController < ApplicationController
     # uploader = PictureUploader.new.store_dir
 
     # def download_file
-    #     @book = Book.find(params[:id])
+    #
     #     send_file @book.cover.path
     # end
 
@@ -60,6 +60,12 @@ class BooksController < ApplicationController
     #     @book = Book.find(params[:id])
     #     send_file @book.cover.path, :x_sendfile => true
     # end
+
+
+    def download_file
+        @book = Book.find(params[:id])
+        redirect_to @book.cover.path
+    end
 
   private
     def book_params

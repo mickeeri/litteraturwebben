@@ -12,7 +12,7 @@
 		<p>Utgivningsår: <%= @book.yearofpub %></p>
 		<p>Genre: <%= @book.genre.genre %></p>
 		<!-- Ska egentiligen bara visas om anv är inloggad. -->
-		<%# <%= link_to "Ladda ner omslag", :action => :download_file, :id => @book.id %>
+		<%# link_to "Ladda ner omslag", :action => :download_file, :id => @book.id %>
 		<%= link_to "Ladda ner omslag", @book.download_url %>
 		<% if logged_in? && current_user.admin? %>
 			<%= link_to "Redigera bok", edit_book_path %>
