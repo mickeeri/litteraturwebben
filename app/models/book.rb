@@ -12,14 +12,30 @@ class Book < ActiveRecord::Base
   #Custom validator for pic size.
   validate :picture_size
 
-  def download_url
-    S3 = AWS::S3.new.buckets['railsproject-bucket']
+  # def download_url
+  #   s3 = AWS::S3.new.buckets['railsproject-bucket']
 
-    S3.objects[self.path].url_for(:read,
-      expires_in: 60.minutes,
-      use_ssl: true,
-      response_content_disposition: "attachment; filename='#{attachment_file_name}'").to_s
+  #   s3.objects[self.path].url_for(:read,
+  #     expires_in: 60.minutes,
+  #     use_ssl: true,
+  #     response_content_disposition: "attachment; filename='#{attachment_file_name}'").to_s
+  # end
+
+  def download_url
+    credentials = Aws::Credentials.new(ENV['S3_ACCESS_KEY'], ENV['S3_SECRET_KEY'])
+    s3 = Aws::S3::Resource.new(
+      credentials: credentials,
+      region: 'eu-central-1'
+    )
+    object = s3.bucket('railsproject-bucket').object(self.path)
+    return object.public_url
   end
+
+
+      #   :provider => 'AWS',
+      # :aws_access_key_id     => ENV['S3_ACCESS_KEY'],
+      # :aws_secret_access_key => ENV['S3_SECRET_KEY'],
+      # :region                => 'eu-central-1'
 
   private
   	# Makes sure cover img is not larger than 5MB.
