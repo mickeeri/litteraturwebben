@@ -40,7 +40,7 @@ class Book < ActiveRecord::Base
         credentials: credentials,
         region: 'eu-central-1'
       )
-      object = s3.bucket('railsproject-bucket').object(self.cover.path)
+      object = s3.bucket('railsproject-bucket').object(self.pdf.path)
       return object.public_url
     else
       return self.pdf.path
