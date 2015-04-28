@@ -41,7 +41,7 @@ class Book < ActiveRecord::Base
         region: 'eu-central-1'
       )
       object = s3.bucket('railsproject-bucket').object(self.pdf.path)
-      return object.public_url
+      return object.url_for(:read, expires_in: 60.minutes)
     else
       return self.pdf.path
     end

@@ -14,7 +14,11 @@
 
 		<% if logged_in? && @book.pdf? %>
 			<div class="pdf-download">
-				<%= link_to "Ladda ner boken som Pdf-fil", :action => :download_pdf, :id => @book.id %>
+				<% if Rails.env.production? %>
+					<%= link_to "Ladda ner som Pdf-fil", @book.pdf_url %>
+				<% else %>
+					<%= link_to "Ladda ner boken som Pdf-fil", :action => :download_pdf, :id => @book.id %>
+				<% end %>
 			</div>
 		<% end %>
 
