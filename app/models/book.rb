@@ -16,20 +16,6 @@ class Book < ActiveRecord::Base
   validate :pdf_size
   validate :epub_size
 
-  # def pdf_url
-  #   if Rails.env.production?
-  #     credentials = Aws::Credentials.new(ENV['S3_ACCESS_KEY'], ENV['S3_SECRET_KEY'])
-  #     s3 = Aws::S3::Resource.new(
-  #       credentials: credentials,
-  #       region: 'eu-central-1'
-  #     )
-  #     object = s3.bucket('railsproject-bucket').object(self.pdf.path)
-  #     return object.url_for(:read, expires_in: 60.minutes)
-  #   else
-  #     return self.pdf.path
-  #   end
-  # end
-
   private
   	# Makes sure cover img is not larger than 5MB.
   	def picture_size
