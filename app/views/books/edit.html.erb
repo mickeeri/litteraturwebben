@@ -21,15 +21,28 @@
 			<%= f.label :genre_id, "Välj genre" %>
 			<%= f.collection_select(:genre_id, Genre.all, :id, :genre) %>
 
-			<span class="upload-cover">
+			<div class="upload-edit-field">
 				<%= f.label :cover, "Ladda upp omslagsbild" %>
 				<%= f.file_field :cover, accept: 'image/jpeg,image/gif,image/png' %>
-			</span>
+				<% if @book.cover? %>
+					<div class="remove-file">
+						<label>Ta bort omslagsbild</label>
+						<%= f.check_box :remove_cover %>
+					</div>
+				<% end %>
+			</div>
+			<%# Detta fungerar fortfarande inte. %>
 
-			<span class="pdf-upload">
+
+			<div class="upload-edit-field">
 				<%= f.label :pdf, "Ladda upp Pdf-fil" %>
 				<%= f.file_field :pdf, accept: 'application/pdf' %>
-			</span>
+			</div>
+
+			<div class="upload-edit-field">
+				<%= f.label :epub, "Ladda upp Epub-fil" %>
+				<%= f.file_field :epub, accept: 'application/epub' %>
+			</div>
 
 			<%= f.submit "Spara", class: "btn btn-primary" %>
 			<%= link_to "Avbryt", @book, class: "btn btn-danger" %>

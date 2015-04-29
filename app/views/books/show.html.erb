@@ -13,12 +13,17 @@
 		<p>Genre: <%= @book.genre.genre %></p>
 
 		<% if logged_in? && @book.pdf? %>
-			<div class="pdf-download">
-				<% if Rails.env.production? %>
-					<%= link_to "Ladda ner som Pdf-fil", @book.pdf_url %>
-				<% else %>
-					<%= link_to "Ladda ner boken som Pdf-fil", :action => :download_pdf, :id => @book.id %>
-				<% end %>
+			<div class="download-field">
+					<span class="glyphicon glyphicon-download"></span>
+					<%# link_to "Ladda ner boken som Pdf-fil", :action => :download_pdf, :id => @book.id %>
+					<%= link_to "Öppna boken som pdf-dokument", @book.pdf.url %>
+			</div>
+		<% end %>
+
+		<% if logged_in? && @book.epub? %>
+			<div class="download-field">
+				<span class="glyphicon glyphicon-download"></span>
+				<%= link_to "Hämta boken som Epub-fil", @book.epub.url %>
 			</div>
 		<% end %>
 

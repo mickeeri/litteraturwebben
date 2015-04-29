@@ -20,15 +20,20 @@
 			<%= f.label :genre_id, "Välj genre" %>
 			<%= f.collection_select(:genre_id, Genre.all, :id, :genre) %>
 
-			<div class="cover-upload">
+			<div class="upload-edit-field">
 				<%= f.label :cover, "Ladda upp omslagsbild" %>
 				<%= f.file_field :cover, accept: 'image/jpeg,image/gif,image/png' %>
-			</span>
+			</div>
 
-			<div class="pdf-upload">
+			<div class="upload-edit-field">
 				<%= f.label :pdf, "Ladda upp Pdf-fil" %>
 				<%= f.file_field :pdf, accept: 'application/pdf' %>
-			</span>
+			</div>
+
+			<div class="upload-edit-field">
+				<%= f.label :epub, "Ladda upp Epub-fil" %>
+				<%= f.file_field :epub, accept: 'application/epub' %>
+			</div>
 
 			<%= f.submit "Lägg till bok", class: "btn btn-primary" %>
 		<% end %>
@@ -49,7 +54,16 @@
 	$('#book_pdf').bind('change', function() {
 		var size_in_megabytes = this.files[0].size/1024/1024;
 		if (size_in_megabytes > 20) {
-			alert('Den största tillåtna filstorleken är 100MB. Var vänlig välj en mindre fil.')
+			alert('Den största tillåtna filstorleken är 20MB. Var vänlig välj en mindre fil.')
+		}
+	});
+</script>
+
+<script type="text/javascript">
+	$('#book_epub').bind('change', function() {
+		var size_in_megabytes = this.files[0].size/1024/1024;
+		if (size_in_megabytes > 10) {
+			alert('Den största tillåtna filstorleken är 10MB. Var vänlig välj en mindre fil.')
 		}
 	});
 </script>

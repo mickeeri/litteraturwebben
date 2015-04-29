@@ -40,7 +40,6 @@ class BooksController < ApplicationController
   def destroy
     Book.find(params[:id]).destroy
     flash[:success] = "Bok raderad!"
-    # Försvinner cover?
     redirect_to books_url
   end
 
@@ -58,18 +57,12 @@ class BooksController < ApplicationController
 
     def download_pdf
         @book = Book.find(params[:id])
-        send_file @book.pdf_url, :x_sendfile => true
+        send_file @book.pdf.path, :x_sendfile => true
     end
-
-
-    # def download_file
-    #     @book = Book.find(params[:id])
-    #     redirect_to @book.cover.path
-    # end
 
   private
     def book_params
-      params.require(:book).permit(:title, :yearofpub, :about, :genre_id, :cover, :author, :pdf)
+      params.require(:book).permit(:title, :yearofpub, :about, :genre_id, :cover, :author, :pdf, :epub)
     end
 
     # Before filters
