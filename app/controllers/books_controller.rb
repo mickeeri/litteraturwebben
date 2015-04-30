@@ -16,7 +16,7 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     if @book.save
-      flash[:success] = "Boken #{@book.title} är tillagd!"
+      flash[:success] = "Boken '#{@book.title}' är tillagd!"
       redirect_to books_path
     else
       render 'new'
@@ -42,23 +42,6 @@ class BooksController < ApplicationController
     flash[:success] = "Bok raderad!"
     redirect_to books_url
   end
-
-
-      # Metod som laddar ner omslag. Ska senare bli pdf/epub. Lägg till gem mime-types.
-      # http://stackoverflow.com/questions/15326776/file-download-from-link-of-carrierwave-document-attachment
-      # Fungerar inte på heroku. Måste få url till aws s3 bucket.
-    # uploader = PictureUploader.new.store_dir
-
-    # def download_file
-    #
-    #     send_file @book.cover.path
-    # end
-
-
-    def download_pdf
-        @book = Book.find(params[:id])
-        send_file @book.pdf.path, :x_sendfile => true
-    end
 
   private
     def book_params
