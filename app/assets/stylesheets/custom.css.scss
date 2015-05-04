@@ -46,15 +46,6 @@ h1 {
   text-align: center;
 }
 
-h2 {
-  font-size: 1.2em;
-  letter-spacing: -1px;
-  margin-bottom: 30px;
-  text-align: center;
-  font-weight: normal;
-  color: $gray-light;
-}
-
 p {
   font-size: 1.1em;
   line-height: 1.7em;
@@ -195,6 +186,35 @@ footer ul li {
 
 }
 
+.default-cover {
+    width: 130px;
+    height: 200px;
+    float: left;
+    margin-right: 20px;
+    background-color: #204056;
+
+    .title-span, .author-span {
+        text-align: left;
+        color: white;
+        // letter-spacing: 0.09px;
+        font-family: Georgia, "Times New Roman", sans-serif;
+        display: block;
+        line-height: 14px;
+    }
+
+    .title-span {
+        font-size: 15px;
+        margin: 8px 0 0 15px;
+        padding: 0;
+    }
+
+    .author-span {
+        font-size: 12px;
+        margin: 40px 0 0 15px;
+        padding: 0;
+    }
+}
+
 /* forms */
 input, textarea, select, .uneditable-input {
   width: 100%;
@@ -203,7 +223,6 @@ input, textarea, select, .uneditable-input {
 }
 
 .btn {
-	width: 150px;
 }
 
 
@@ -226,6 +245,32 @@ input {
     padding: 10px;
 }
 
+/* Home page */
+.latest-books {
+
+    width: 90%;
+    margin: 0 auto;
+
+
+    h2 {
+        margin-left: 5%;
+    }
+
+    ul {
+        width: inherit;
+        margin: 0 auto;
+    }
+
+    img {
+        vertical-align: baseline;
+    }
+
+    .default-cover {
+        margin: 0;
+    }
+}
+
+
 /* miscellaneous */
 
 .debug_dump{
@@ -246,3 +291,4 @@ input {
 	font-weight: bold;
   }
 }
+

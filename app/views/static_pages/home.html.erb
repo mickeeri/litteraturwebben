@@ -2,9 +2,13 @@
 
 <div class="center jumbotron">
 	<h1>Litteraturklassiker på webben</h1>
-
-	<h2>Det här är hemsidan för litteraturwebben.se</h2>
-
 	<%= link_to "Registera dig nu!", signup_path, class: "btn btn-lg btn-primary" %>
+</div>
+
+<div class="latest-books">
+	<h2>Nyligen tillagda titlar</h2>
+	<ul class="list-inline">
+	 	<%= render 'books/latest_books' %>
+ 	</ul>
 </div>
 

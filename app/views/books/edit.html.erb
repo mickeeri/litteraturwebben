@@ -31,8 +31,6 @@
 					</div>
 				<% end %>
 			</div>
-			<%# Detta fungerar fortfarande inte. %>
-
 
 			<div class="upload-edit-field">
 				<%= f.label :pdf, "Ladda upp Pdf-fil" %>
@@ -41,7 +39,7 @@
 
 			<div class="upload-edit-field">
 				<%= f.label :epub, "Ladda upp Epub-fil" %>
-				<%= f.file_field :epub, accept: 'application/epub' %>
+				<%= f.file_field :epub, accept: 'application/epub+zip' %>
 			</div>
 
 			<%= f.submit "Spara", class: "btn btn-primary" %>

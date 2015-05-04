@@ -5,6 +5,10 @@ class BooksController < ApplicationController
     @books = Book.all
   end
 
+  def latest
+    @books = Book.last(10)
+  end
+
   def show
     @book = Book.find(params[:id])
   end

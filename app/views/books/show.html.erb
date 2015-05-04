@@ -4,7 +4,14 @@
 		<h1><%= @book.title %></h1>
 	</div>
 	<div class="cover-div col-md-2">
-		<%= image_tag @book.cover.url if @book.cover? %>
+		<% if @book.cover? %>
+			<%= image_tag @book.cover.url %>
+		<% else %>
+			<div class="default-cover">
+				<span class="author-span"><%= @book.author %></span>
+				<span class="title-span"><%= @book.title %></span>
+			</div>
+		<% end %>
 	</div>
 	<div class="col-md-8">
 		<p>Författare: <%= @book.author %></p>
