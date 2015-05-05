@@ -8,8 +8,12 @@
 			<%= f.label :title, "Titel" %>
 			<%= f.text_field :title, class: 'form_control' %>
 
-			<%= f.label :author, "Författare" %>
-			<%= f.text_field :author, class: 'form_control' %>
+			<%# fields_for :authorship do |ff| %>
+				<%# ff.label "Författare" %>
+				<%# collection_select(:authors, :id, @all_authors, :id, :name, {}, {:multiple => true}) %>
+			<%#end %>
+
+			<%= f.collection_select(:author_ids, Author.all, :id, :name, {include_hidden: false}, {multiple: true}) %>
 
 			<%= f.label :yearofpub, "Utgivningsår" %>
 			<%= f.number_field :yearofpub, class: 'form_control' %>

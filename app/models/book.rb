@@ -1,5 +1,10 @@
 class Book < ActiveRecord::Base
     belongs_to :genre
+    has_many :authorships, foreign_key: :book_id, dependent: :destroy
+    has_many :authors, through: :authorships, source: :author
+    accepts_nested_attributes_for :authorships, reject_if: :all_blank, allow_destroy: true
+
+    # http://stackoverflow.com/questions/27459269/rails-4-collection-select-multiple-nested-attributes-not-saving-properly
 
     # Adding pic uploader to book model.
     mount_uploader :cover, PictureUploader
@@ -7,12 +12,11 @@ class Book < ActiveRecord::Base
     mount_uploader :epub, EpubUploader
 
     validates :title, presence: true, length: { maximum: 50 }
-    validates :author, presence: true, length: { maximum: 50 }
-    validates :yearofpub, presence: true,
-                length: { maximum: 4 },
-                numericality: { only_integer: true,
-                                greater_than: 0,
-                                less_than: 2050 }
+    # validates :yearofpub, presence: true,
+                # length: { maximum: 4 },
+                # numericality: { only_integer: true,
+                #                 greater_than: 0,
+                #                 less_than: 2050 }
     validates :genre_id, presence: true
 
     #Custom validator for pic size.

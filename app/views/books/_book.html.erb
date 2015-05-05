@@ -5,15 +5,28 @@
 		<%= image_tag book.cover.url %>
 	<% else %>
 		<div class="default-cover">
-			<span class="author-span"><%= book.author %></span>
+			<span class="author-span">
+				<% if book.authors.count == 1 %>
+					<%= book.authors.first.name %>
+				<% end %>
+			</span>
 			<span class="title-span"><%= book.title %></span>
 		</div>
 	<% end %>
 	<div>
 		<h3> <%= link_to book.title, book %></h3>
-		<strong><%= book.author %></strong><br>
-		<% if logged_in? && current_user.admin? %>
-			<%= link_to "Radera bok", book, method: :delete, data: { confirm: "Är du säker?"} %>
-		<% end %>
+		<strong class="books-authors">
+			<% book.authors.each do |author| %>
+					<%= link_to author.name, author %>
+					<% unless author == book.authors.last %>
+						<%= ", " %>
+					<% end %>
+			<% end %>
+		</strong>
+		<div>
+			<% if logged_in? && current_user.admin? %>
+				<%= link_to "Radera bok", book, method: :delete, data: { confirm: "Är du säker?"} %>
+			<% end %>
+		</div>
 	</div>
 </li>

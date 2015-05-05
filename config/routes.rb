@@ -9,7 +9,12 @@ Rails.application.routes.draw do
 
     get 'books/delete'
 
-    get 'books/download_pdf'
+    # Author
+    get 'authors/index'
+    get 'authors/show'
+    get 'authors/new'
+    get 'authors/edit'
+    get 'authors/delete'
 
     get 'sessions/new'
 
@@ -23,7 +28,9 @@ Rails.application.routes.draw do
     post    'login'     => 'sessions#create'
     delete  'logout'    => 'sessions#destroy'
 
+
     get     'newbook'   => 'books#new'
+    get     'newauthor' => 'authors#new'
 
     # The priority is based upon order of creation: first created -> highest priority.
     # See how all your routes lay out with "rake routes".
@@ -40,6 +47,7 @@ Rails.application.routes.draw do
     # Example resource route (maps HTTP verbs to controller actions automatically):
     resources :users
     resources :books
+    resources :authors
 
 
     # Example resource route with options:

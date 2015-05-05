@@ -8,13 +8,17 @@
 			<%= image_tag @book.cover.url %>
 		<% else %>
 			<div class="default-cover">
-				<span class="author-span"><%= @book.author %></span>
+				<span class="author-span"></span>
 				<span class="title-span"><%= @book.title %></span>
 			</div>
 		<% end %>
 	</div>
 	<div class="col-md-8">
-		<p>Författare: <%= @book.author %></p>
+		<p>Författare:
+			<% @book.authors.each do |author| %>
+				<%= link_to author.name, author %>
+			<% end %>
+		</p>
 		<p><%= @book.about %></p>
 		<p>Utgivningsår: <%= @book.yearofpub %></p>
 		<p>Genre: <%= @book.genre.genre %></p>
