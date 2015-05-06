@@ -1,3 +1,5 @@
+$jumbotron-bg: #C0DEED;
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
@@ -14,7 +16,7 @@ $gray-medium-light: #eaeaea;
 /* universal */
 
 body {
-  padding-top: 60px;
+  background-color: #f2f2f2;
 }
 
 section {
@@ -31,6 +33,14 @@ textarea {
 
 .center h1 {
   margin-bottom: 10px;
+}
+
+.row {
+    .primary-col {
+        background-color: white;
+        padding-bottom: 30px;
+    }
+
 }
 
 /* typography */
@@ -67,6 +77,54 @@ p {
 	text-decoration: none;
   }
 }
+
+.navbar-custom {
+    background-color: #614788;
+    padding-top: 50px;
+
+    li {
+        a {
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: 700;
+            &:hover {
+                color: #777;
+            }
+        }
+    }
+
+    li .active {
+        height: 300px;
+    }
+
+    .dropdown-menu li a{
+        color: #777;
+    }
+}
+
+// .navbar-inverse .navbar-nav > li > a {
+//     color: #fff;
+// }
+
+// .navbar-inverse .navbar-nav > li > a:hover,
+// .navbar-inverse .navbar-nav > li > a:focus {
+//     color: #777;
+// }
+
+
+// .navbar-inverse, .navbar-nav {
+//     li {
+//         a {
+
+//             text-transform: uppercase;
+//             font-weight: 700;
+//             color: #FFF;
+//             &:hover {
+//                 color: #777;
+//             }
+//         }
+//     }
+// }
 
 /* footer */
 
@@ -149,19 +207,32 @@ footer ul li {
 	border-bottom: 1px dotted $gray-medium-light;
 
 	h3 {
-	  font-weight: bold;
+	  font-weight: 600;
+      margin-bottom: 5px;
+
+      a {
+        color: $gray;
+      }
 	}
 
 	img {
 	  float: left;
 	  margin: 0 15px 0 0;
 	}
-
-	p {
-	  font: 200 14px/1.5 Georgia, "Times New Roman", serif;
-	  width: 80%;
-	}
   }
+
+  .btn {
+    margin-top: 80px;
+  }
+}
+
+.index-h1 {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 2.5em;
+    border-bottom: 1px dotted $gray-medium-light;
+    text-align: left;
+    margin-left: 40px;
 }
 
 .new-book-link {
@@ -170,6 +241,7 @@ footer ul li {
 
 .books-authors {
   list-style: none;
+  margin-bottom: 10px;
 
   li {
     display: inline;
@@ -178,17 +250,18 @@ footer ul li {
     margin: 0;
     border: none;
     a {
-      color: black;
+      color: $gray;
+      font-style: italic;
     }
   }
 
-  // li:after {
-  //   content: ", ";
-  // }
+  li:after {
+    content: ", ";
+  }
 
-  // li:last-child:after {
-  //   content: "";
-  // }
+  li:last-child:after {
+    content: "";
+  }
 }
 
 /* Books show */
@@ -243,22 +316,43 @@ footer ul li {
     li {
         list-style: none;
         border-bottom: 1px dotted $gray-medium-light;
-        padding: 20px;
+        padding-bottom: 20px;
 
-        .about-text {
-            width: 80%;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            display: block;
-        }
+
 
         .readmore-div {
             text-align: right;
-            margin-right: 20%;
+            // margin-right: 20%;
         }
     }
 }
+
+.about-text {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+}
+
+/* Author show */
+.author-post {
+    h1 {
+        text-align: left;
+        text-transform: uppercase;
+        font-size: 2.1em;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+}
+
+.authors-titles {
+    h3 {
+        font-size: 1.3em;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+}
+
 
 /* forms */
 input, textarea, select, .uneditable-input {

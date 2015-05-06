@@ -15,17 +15,19 @@
 	<% end %>
 	<div>
 		<h3> <%= link_to book.title, book %></h3>
-		<strong class="books-authors">
+		<ul class="books-authors">av
 			<% book.authors.each do |author| %>
+				<li>
 					<%= link_to author.name, author %>
-					<% unless author == book.authors.last %>
-						<%= ", " %>
-					<% end %>
+				</li>
 			<% end %>
-		</strong>
+		</ul>
+		<span class="about-text">
+			<%= book.about %>
+		</span>
 		<div>
 			<% if logged_in? && current_user.admin? %>
-				<%= link_to "Radera bok", book, method: :delete, data: { confirm: "Är du säker?"} %>
+				<%= link_to "Radera bok", book, method: :delete, data: { confirm: "Är du säker?"}, class: "btn btn-danger btn-xs" %>
 			<% end %>
 		</div>
 	</div>

@@ -12,7 +12,7 @@
 				<%# ff.label "Författare" %>
 				<%# collection_select(:authors, :id, @all_authors, :id, :name, {}, {:multiple => true}) %>
 			<%#end %>
-
+			<%= f.label :author_ids, "Författare" %><small> (Håll in Ctrl för att välja flera)</small>
 			<%= f.collection_select(:author_ids, Author.all, :id, :name, {include_hidden: false}, {multiple: true}) %>
 
 			<%= f.label :yearofpub, "Utgivningsår" %>

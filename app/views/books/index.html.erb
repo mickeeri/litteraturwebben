@@ -1,9 +1,13 @@
-<% provide(:title, 'Alla böcker') %>
-<h1>Alla böcker</h1>
-<ul class="books">
-	<%= render @books %>
-</ul>
+<% provide(:title, 'Våra böcker') %>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2 primary-col">
+		<h1 class="index-h1">Våra böcker</h1>
+		<ul class="books">
+			<%= render @books %>
+		</ul>
 
-<% if logged_in? && current_user.admin? %>
-	<%= link_to "Lägg till ny bok", newbook_path, class: 'new-book-link' %>
-<% end %>
+		<% if logged_in? && current_user.admin? %>
+			<%= link_to "Lägg till ny bok", newbook_path, class: 'new-book-link' %>
+		<% end %>
+	</div>
+</div>

@@ -1,31 +1,40 @@
-<header class="navbar navbar-fixed-top navbar navbar-inverse">
-	<div class="container">
-		<%= link_to "Litteraturwebben", root_path, id: "logo" %>
-		<nav>
-			<ul class="nav navbar-nav navbar-right">
-				<li><%= link_to "Hem", root_path %></li>
-				<li><%= link_to "Hjälp", help_path %></li>
-				<li><%= link_to "Böcker", books_path %></li>
-				<li><%= link_to "Författare", authors_path %></li>
-				<% if logged_in? %>
-					<li><%= link_to "Användare", users_path %></li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							Konto <b class="caret"></b>
-						</a>
-						<ul class="dropdown-menu">
-							<li><%= link_to "Profil", current_user %></li>
-							<li><%= link_to "Inställningar", edit_user_path(current_user) %></li>
-							<li class="divider"></li>
-							<li>
-								<%= link_to "Logga ut", logout_path, method: "delete" %>
-							</li>
-						</ul>
-					</li>
-				<% else %>
-					<li><%= link_to "Logga in", login_path %></li>
-				<% end %>
-			</ul>
-		</nav>
-	</div>
+<header>
+	<nav class="navbar navbar-default navbar-static-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<%= link_to "Litteraturwebben", root_path, id: "logo" %>
+			</div>
+
+			<!-- Collect nav links and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right">
+					<li class="<%= is_active?(root_path) %>"><%= link_to "Hem", root_path %></li>
+					<li class="<%= is_active?(help_path) %>"><%= link_to "Hjälp", help_path %></li>
+					<li class="<%= is_active?(books_path) %>"><%= link_to "Böcker", books_path %></li>
+					<li class="<%= is_active?(authors_path) %>"><%= link_to "Författare", authors_path %></li>
+					<% if logged_in? %>
+						<li class="<%= is_active?(users_path) %>"><%= link_to "Användare", users_path %></li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+							aria-expanded="false">Mina sidor <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><%= link_to "Profil", current_user %></li>
+								<li><%= link_to "Inställningar", edit_user_path(current_user) %></li>
+								<li class="divider"></li>
+								<li><%= link_to "Logga ut", logout_path, method: "delete" %></li>
+							</ul>
+						</li>
+					<% else %>
+						<li class="<%= is_active?(login_path) %>"><%= link_to "Logga in", login_path %></li>
+					<% end %>
+				</ul>
+			</div> <!-- .navbar-collapse -->
+		</div><!-- .container-fluid -->
+	</nav>
 </header>

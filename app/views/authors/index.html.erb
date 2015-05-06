@@ -1,9 +1,13 @@
 <% provide(:title, "Våra författare") %>
-<h1>Våra författare</h1>
-<ul class="authors">
-	<%= render @authors %>
-</ul>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2 primary-col">
+		<h1 class="index-h1">Våra författare</h1>
+		<ul class="authors">
+			<%= render @authors %>
+		</ul>
 
-<% if logged_in? && current_user.admin? %>
-	<%= link_to "Lägg till författare", newauthor_path, class: 'new-book-link' %>
-<% end %>
+		<% if logged_in? && current_user.admin? %>
+			<%= link_to "Lägg till författare", newauthor_path, class: 'new-book-link' %>
+		<% end %>
+	</div>
+</div>

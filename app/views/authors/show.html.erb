@@ -1,7 +1,15 @@
 <% provide(:title, @author.name) %>
 <div class="author-post row">
-	<div class="col-md-8">
+	<div class="col-md-8 col-md-offset-2">
 		<h1><%= @author.name %></h1>
 		<p><%= @author.about %></p>
+	</div>
+</div>
+<div class="row authors-titles">
+	<div class="col-md-4 col-md-offset-2">
+		<h3>Titlar</h3>
+		<% @author.books.each do |book| %>
+			<span><%= link_to book.title, book %></span>
+		<% end %>
 	</div>
 </div>
