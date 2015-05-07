@@ -1,46 +1,49 @@
 <% provide(:title, "Lägg till bok") %>
-<h1>Lägg till ny bok</h1>
+
 <div class="row">
-	<div class="col-md-6 col-md-offset-3">
-		<%= form_for(@book, html: { multipart: true }) do |f| %>
-			<%= render 'shared/error_messages', object: f.object %>
+	<div class="col-md-8 col-md-offset-2 primary-col">
+		<h1>Lägg till ny bok</h1>
+		<div class="form-div">
+			<%= form_for(@book, html: { multipart: true }) do |f| %>
+				<%= render 'shared/error_messages', object: f.object %>
 
-			<%= f.label :title, "Titel" %>
-			<%= f.text_field :title, class: 'form_control' %>
+				<%= f.label :title, "Titel" %>
+				<%= f.text_field :title, class: 'form_control' %>
 
-			<%# fields_for :authorship do |ff| %>
-				<%# ff.label "Författare" %>
-				<%# collection_select(:authors, :id, @all_authors, :id, :name, {}, {:multiple => true}) %>
-			<%#end %>
-			<%= f.label :author_ids, "Författare" %><small> (Håll in Ctrl för att välja flera)</small>
-			<%= f.collection_select(:author_ids, Author.all, :id, :name, {include_hidden: false}, {multiple: true}) %>
+				<%# fields_for :authorship do |ff| %>
+					<%# ff.label "Författare" %>
+					<%# collection_select(:authors, :id, @all_authors, :id, :name, {}, {:multiple => true}) %>
+				<%#end %>
+				<%= f.label :author_ids, "Författare" %><small> (Håll in Ctrl för att välja flera)</small>
+				<%= f.collection_select(:author_ids, Author.all, :id, :name, {include_hidden: false}, {multiple: true}) %>
 
-			<%= f.label :yearofpub, "Utgivningsår" %>
-			<%= f.number_field :yearofpub, class: 'form_control' %>
+				<%= f.label :yearofpub, "Utgivningsår" %>
+				<%= f.number_field :yearofpub, class: 'form_control' %>
 
-			<%= f.label :about, "Beskrivning" %>
-			<%= f.text_area :about %>
+				<%= f.label :about, "Beskrivning" %>
+				<%= f.text_area :about %>
 
-			<%= f.label :genre_id, "Välj genre" %>
-			<%= f.collection_select(:genre_id, Genre.all, :id, :genre) %>
+				<%= f.label :genre_id, "Välj genre" %>
+				<%= f.collection_select(:genre_id, Genre.all, :id, :genre) %>
 
-			<div class="upload-edit-field">
-				<%= f.label :cover, "Ladda upp omslagsbild" %>
-				<%= f.file_field :cover, accept: 'image/jpeg,image/gif,image/png' %>
-			</div>
+				<div class="upload-edit-field">
+					<%= f.label :cover, "Ladda upp omslagsbild" %>
+					<%= f.file_field :cover, accept: 'image/jpeg,image/gif,image/png' %>
+				</div>
 
-			<div class="upload-edit-field">
-				<%= f.label :pdf, "Ladda upp Pdf-fil" %>
-				<%= f.file_field :pdf, accept: 'application/pdf' %>
-			</div>
+				<div class="upload-edit-field">
+					<%= f.label :pdf, "Ladda upp Pdf-fil" %>
+					<%= f.file_field :pdf, accept: 'application/pdf' %>
+				</div>
 
-			<div class="upload-edit-field">
-				<%= f.label :epub, "Ladda upp Epub-fil" %>
-				<%= f.file_field :epub, accept: 'application/epub+zip' %>
-			</div>
+				<div class="upload-edit-field">
+					<%= f.label :epub, "Ladda upp Epub-fil" %>
+					<%= f.file_field :epub, accept: 'application/epub+zip' %>
+				</div>
 
-			<%= f.submit "Lägg till bok", class: "btn btn-primary" %>
-		<% end %>
+				<%= f.submit "Lägg till bok", class: "btn btn-primary" %>
+			<% end %>
+		</div>
 	</div>
 </div>
 
