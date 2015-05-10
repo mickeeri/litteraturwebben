@@ -13,3 +13,11 @@
 		<% end %>
 	</div>
 </div>
+<div class="row">
+	<div class="col-md-4 col-md-offset-2">
+		<h3>Artiklar</h3>
+		<% @author.articles.each do |article| %>
+			<span><%= article.writer %>, <%= article.title %></span>
+		<% end %>
+	</div>
+</div>

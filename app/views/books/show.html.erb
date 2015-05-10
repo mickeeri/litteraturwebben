@@ -25,9 +25,9 @@
 
 		<% if logged_in? && @book.pdf? %>
 			<div class="download-field">
-					<span class="glyphicon glyphicon-download"></span>
-					<%# link_to "Ladda ner boken som Pdf-fil", :action => :download_pdf, :id => @book.id %>
-					<%= link_to "Öppna boken som pdf-dokument", @book.pdf.url %>
+				<span class="glyphicon glyphicon-download"></span>
+				<%# link_to "Ladda ner boken som Pdf-fil", :action => :download_pdf, :id => @book.id %>
+				<%= link_to "Öppna boken som pdf-dokument", @book.pdf.url %>
 			</div>
 		<% end %>
 

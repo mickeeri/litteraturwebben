@@ -1,12 +1,12 @@
 <li>
 	<div>
 		<h3><%= author.name %></h3>
-		<p class="about-text"><%= author.about %></p>
+		<p class="about"><%= truncate(author.about, length: 180) %><%= link_to " Läs mer >>", author %></p>
 	</div>
-	<div class="readmore-div">
+<!-- 	<div class="readmore-div">
 		<span class="glyphicon glyphicon-chevron-right"></span>
 		<%= link_to " Läs mer", author %>
-	</div>
+	</div> -->
 	<div>
 		<% if logged_in? && current_user.admin? %>
 			<%= link_to "Ta bort författare", author, method: :delete, data: { confirm: "Är du säker?"}, class: "btn btn-danger btn-xs" %>

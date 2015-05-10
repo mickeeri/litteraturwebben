@@ -11,6 +11,7 @@ class AuthorsController < ApplicationController
 
 	def new
 		@author = Author.new
+		# @author.articles.build
 	end
 
 	def create
@@ -45,7 +46,8 @@ class AuthorsController < ApplicationController
 
 	private
 		def author_params
-			params.require(:author).permit(:name, :about)
+			params.require(:author).permit(:name, :about,
+				articles_attributes: [:title, :writer, :year, :source, :about, :url, :_destroy])
 		end
 
 		# Before filters

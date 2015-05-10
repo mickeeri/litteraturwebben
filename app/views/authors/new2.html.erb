@@ -12,15 +12,10 @@
 				<%= f.label :about, "Om" %>
 				<%= f.text_area :about, class: 'form_control' %>
 
-				<div id='articles'>
-					<%= f.fields_for :articles do |article| %>
-						<%= render 'article_fields', :f => article %>
-					<% end %>
-
-					<div class="links">
-						<%= link_to_add_association 'Lägg till artikel', f, :articles, :partial => 'article_fields' %>
-					</div>
-				</div>
+				<%= f.fields_for :articles do |article| %>
+					<%= render 'articles/article_fields', :f => article %>
+					<%= link_to_add_association "Lägg till artikel", f, :articles, class: "links" %>
+				<% end %>
 
 				<%= f.submit "Lägg till författare", class: 'btn btn-primary' %>
 			<% end %>

@@ -3,7 +3,8 @@ class Book < ActiveRecord::Base
     has_many :authorships, foreign_key: :book_id, dependent: :destroy
     has_many :authors, through: :authorships, source: :author
     accepts_nested_attributes_for :authorships, reject_if: :all_blank, allow_destroy: true
-
+    has_many :articles, dependent: :destroy
+    accepts_nested_attributes_for :articles
     # http://stackoverflow.com/questions/27459269/rails-4-collection-select-multiple-nested-attributes-not-saving-properly
 
     # Adding pic uploader to book model.

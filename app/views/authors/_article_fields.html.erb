@@ -1,0 +1,21 @@
+<div class="nested-fields">
+	<%= f.label :title, "Titel" %>
+	<%= f.text_field :title %>
+
+	<%= f.label :writer, "Upphovsman" %>
+	<%= f.text_field :writer %>
+
+	<%= f.label :source %>
+	<%= f.text_field :source %>
+
+	<%= f.label :year %>
+	<%= f.text_field :year %>
+
+	<%= f.label :about %>
+	<%= f.text_area :about %>
+
+	<%= f.label :url %>
+	<%= f.text_field :url %>
+
+	<%= link_to_remove_association "Ta bort artikel", f %>
+</div>

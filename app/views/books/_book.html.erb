@@ -22,8 +22,8 @@
 				</li>
 			<% end %>
 		</ul>
-		<span class="about-text">
-			<%= book.about %>
+		<span class="about">
+			<%= truncate(book.about, length: 150) %><%= link_to " Läs mer >>", book %>
 		</span>
 		<div>
 			<% if logged_in? && current_user.admin? %>
