@@ -2,7 +2,7 @@ class AuthorsController < ApplicationController
 	before_action :admin_user, only: [:create, :edit, :update, :destroy]
 
 	def index
-		@authors = Author.all
+		@authors = Author.search(params[:search])
 	end
 
 	def show
@@ -47,7 +47,7 @@ class AuthorsController < ApplicationController
 	private
 		def author_params
 			params.require(:author).permit(:name, :about,
-				articles_attributes: [:title, :writer, :year, :source, :about, :url, :_destroy])
+				articles_attributes: [:id, :title, :writer, :year, :source, :about, :url, :_destroy])
 		end
 
 		# Before filters

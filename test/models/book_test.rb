@@ -3,8 +3,10 @@ require 'test_helper'
 class BookTest < ActiveSupport::TestCase
 
 	def setup
-		@book = Book.new(title: "Röda rummet", yearofpub: 1879,
-									author: "August Strindberg", about: "En roman av Strindberg.", genre_id: 1)
+		@author = Author.new(name: "Astrid Lindgren", about: "Lorem ipsum")
+		@author2 = Author.new(name: "Karin Boye", about: "Lorem ipsum")
+		@book = Book.new(title: "Testbok", yearofpub: 1879,
+									author_ids: [@author.id, @author2.id], about: "Lorem ipsum", genre_id: 1)
 	end
 
 	# Test 1.2.1.

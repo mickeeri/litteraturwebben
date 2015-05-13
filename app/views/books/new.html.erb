@@ -26,6 +26,17 @@
 				<%= f.label :genre_id, "Välj genre" %>
 				<%= f.collection_select(:genre_id, Genre.all, :id, :genre) %>
 
+				<div id='articles'>
+					<%= f.fields_for :articles do |article| %>
+						<%= render 'article_fields', :f => article %>
+					<% end %>
+
+					<div class="links">
+						<span class="glyphicon glyphicon-plus"></span>
+						<%= link_to_add_association 'Lägg till artikel', f, :articles, :partial => 'articles/article_fields' %>
+					</div>
+				</div>
+
 				<div class="upload-edit-field">
 					<%= f.label :cover, "Ladda upp omslagsbild" %>
 					<%= f.file_field :cover, accept: 'image/jpeg,image/gif,image/png' %>

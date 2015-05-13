@@ -1,46 +1,59 @@
 <% provide(:title, @book.title) %>
-<div class="book-post row">
-	<div class="col-md-12">
-		<h1><%= @book.title %></h1>
-	</div>
-	<div class="cover-div col-md-2">
-		<% if @book.cover? %>
-			<%= image_tag @book.cover.url %>
-		<% else %>
-			<div class="default-cover">
-				<span class="author-span"></span>
-				<span class="title-span"><%= @book.title %></span>
+<div class="row book-show-div">
+	<div class="col-md-10 col-md-offset-1 primary-col">
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<h1><%= @book.title %></h1>
 			</div>
-		<% end %>
-	</div>
-	<div class="col-md-8">
-		<p>Författare:
-			<% @book.authors.each do |author| %>
-				<%= link_to author.name, author %>
-			<% end %>
-		</p>
-		<p><%= @book.about %></p>
-		<p>Utgivningsår: <%= @book.yearofpub %></p>
-		<p>Genre: <%= @book.genre.genre %></p>
 
-		<% if logged_in? && @book.pdf? %>
-			<div class="download-field">
-				<span class="glyphicon glyphicon-download"></span>
-				<%# link_to "Ladda ner boken som Pdf-fil", :action => :download_pdf, :id => @book.id %>
-				<%= link_to "Öppna boken som pdf-dokument", @book.pdf.url %>
+			<div class="cover-div col-md-2 col-md-offset-1">
+				<% if @book.cover? %>
+					<%= image_tag @book.cover.url %>
+				<% else %>
+					<div class="default-cover">
+						<span class="author-span"><%= @book.authors.first.name %></span>
+						<span class="title-span"><%= @book.title %></span>
+					</div>
+				<% end %>
 			</div>
-		<% end %>
+			<div class="col-md-8">
+				<p><strong>Författare:</strong>
+					<% @book.authors.each do |author| %>
+						<%= link_to author.name, author %>
+					<% end %>
+				</p>
+				<p><%= @book.about %></p>
+				<p><strong>Utgivningsår:</strong> <%= @book.yearofpub %></p>
+				<p><strong>Genre:</strong> <%= @book.genre.genre %></p>
 
-		<% if logged_in? && @book.epub? %>
-			<div class="download-field">
-				<span class="glyphicon glyphicon-download"></span>
-				<%= link_to "Hämta boken som Epub-fil", @book.epub.url %>
+				<% if logged_in? && @book.pdf? %>
+					<div class="download-field">
+						<span class="glyphicon glyphicon-download"></span>
+						<%= link_to "Öppna boken som pdf-dokument", @book.pdf.url %>
+					</div>
+				<% end %>
+
+				<% if logged_in? && @book.epub? %>
+					<div class="download-field">
+						<span class="glyphicon glyphicon-download"></span>
+						<%= link_to "Hämta boken som Epub-fil", @book.epub.url %>
+					</div>
+				<% end %>
+
+				<h3>Artiklar om <%= @book.title %></h3>
+				<ul class="list-group">
+					<% @book.articles.each do |article| %>
+						<li class="list-group-item">
+						<%= article.writer %>, <em><%= article.title %></em>, <%= article.source %>, <%= article.year %>
+							<%= link_to " Läs>>", article.url, :target => "_blank" if article.url? %>
+						</li>
+					<% end %>
+				</ul>
+
+				<% if logged_in? && current_user.admin? %>
+					<%= link_to "Redigera bok", edit_book_path %>
+				<% end %>
 			</div>
-		<% end %>
-
-		<% if logged_in? && current_user.admin? %>
-			<%= link_to "Redigera bok", edit_book_path %>
-		<% end %>
+		</div>
 	</div>
 </div>
-

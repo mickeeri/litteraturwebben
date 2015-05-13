@@ -36,14 +36,17 @@ textarea {
 }
 
 .row {
-    .primary-col {
-        background-color: white;
-        padding-bottom: 30px;
-        padding-top: 30px;
-        border-radius: 6px;
-    }
 
 }
+
+.primary-col, .primary-div {
+    background-color: white;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    border-radius: 6px;
+}
+
+
 
 /* typography */
 
@@ -62,6 +65,7 @@ p {
   font-size: 1.1em;
   line-height: 1.7em;
 }
+
 
 /* header */
 
@@ -205,6 +209,25 @@ footer ul li {
   margin-left: 0;
 }
 
+/* INDEX-PAGES */
+
+.author-show-div, .book-show-div, .user-show-div {
+    h1 {
+    text-align: left;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 2.1em;
+    }
+
+    h3 {
+    font-size: 1.3em;
+    text-transform: uppercase;
+    font-weight: 600;
+    }
+}
+
+
 
 /* Users index */
 .users {
@@ -226,6 +249,7 @@ footer ul li {
 	padding: 10px;
 	overflow: auto;
 	border-bottom: 1px dotted $gray-medium-light;
+    position: relative;
 
 	h3 {
 	  font-weight: 600;
@@ -243,8 +267,11 @@ footer ul li {
   }
 
   .btn {
-    margin-top: 80px;
+    bottom: 10px;
+    right: 10px;
+    position: absolute;
   }
+
 }
 
 .index-h1 {
@@ -283,6 +310,17 @@ footer ul li {
   li:last-child:after {
     content: "";
   }
+}
+
+.article-form-fields {
+    border: 1px dashed $gray;
+    padding: 10px 40px;
+    margin-top: 10px;
+}
+
+.links {
+    padding: 20px;
+    text-align: right;
 }
 
 /* Books show */
@@ -360,23 +398,7 @@ footer ul li {
 }
 
 /* Author show */
-.author-post {
-    h1 {
-        text-align: left;
-        text-transform: uppercase;
-        font-size: 2.1em;
-        font-weight: 700;
-        margin-bottom: 10px;
-    }
-}
 
-.authors-titles {
-    h3 {
-        font-size: 1.3em;
-        text-transform: uppercase;
-        font-weight: 600;
-    }
-}
 
 
 /* forms */

@@ -1,23 +1,32 @@
 <% provide(:title, @author.name) %>
-<div class="author-post row">
+<div class="row author-show-div primary-div">
 	<div class="col-md-8 col-md-offset-2">
-		<h1><%= @author.name %></h1>
+		<h1 class="upcase"><%= @author.name %></h1>
 		<p><%= @author.about %></p>
 	</div>
-</div>
-<div class="row authors-titles">
-	<div class="col-md-4 col-md-offset-2">
-		<h3>Titlar</h3>
-		<% @author.books.each do |book| %>
-			<span><%= link_to book.title, book %></span>
-		<% end %>
+
+	<div class="col-md-6 col-md-offset-2">
+		<h3 class="upcase">Titlar</h3>
+		<ul class="list-group">
+			<% @author.books.each do |book| %>
+				<li class="list-group-item"><%= link_to book.title, book %></li>
+			<% end %>
+		</ul>
 	</div>
-</div>
-<div class="row">
-	<div class="col-md-4 col-md-offset-2">
-		<h3>Artiklar</h3>
-		<% @author.articles.each do |article| %>
-			<span><%= article.writer %>, <%= article.title %></span>
+	<div class="col-md-8 col-md-offset-2">
+		<h3 class="upcase"><%= "Artiklar om " + @author.name unless @author.articles.empty? %></h3>
+		<ul class="list-group">
+			<% @author.articles.each do |article| %>
+				<li class="list-group-item">
+					<%= article.writer %>, <em><%= article.title %></em>, <%= article.source %>, <%= article.year %>
+					<%= link_to " Läs>>", article.url, :target => "_blank" if article.url? %>
+					<%# link_to " Radera", [@book, article], method: :delete, data: { confirm: "Är du säker?"} %>
+				</li>
+			<% end %>
+		</ul>
+
+		<% if logged_in? && current_user.admin? %>
+			<%= link_to "Redigera författare", edit_author_path %>
 		<% end %>
 	</div>
 </div>

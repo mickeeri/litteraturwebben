@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
+  get 'articles/destroy'
+
+    # Books
     get 'books/index'
-
     get 'books/show'
-
     get 'books/new'
-
     get 'books/edit'
-
     get 'books/delete'
 
     # Author
@@ -15,6 +14,7 @@ Rails.application.routes.draw do
     get 'authors/new'
     get 'authors/edit'
     get 'authors/delete'
+
 
     get 'sessions/new'
 

@@ -61,7 +61,8 @@ class BooksController < ApplicationController
 
     private
     def book_params
-        params.require(:book).permit(:title, :yearofpub, :about, :genre_id, :cover, :pdf, :epub, :author_ids => [])
+        params.require(:book).permit(:title, :yearofpub, :about, :genre_id, :cover, :pdf, :epub, :author_ids => [],
+            articles_attributes: [:id, :title, :writer, :year, :source, :about, :url, :_destroy])
     end
 
     # Before filters

@@ -1,9 +1,43 @@
-<div class="nested-fields">
-	<%= f.label :title, "Titel" %>
-	<%= f.text_field :title %>
+<div class="nested-fields row">
+	<div class="article-form-fields col-md-8 col-md-offset-2">
+		<div class="row">
+			<h3>Artikel</h3>
+			<div class="row">
+				<div class="form-group col-md-6">
+					<%= f.label :title, "Titel" %>
+					<%= f.text_field :title, class: "form-control input-sm" %>
+				</div>
 
-	<%= f.label :author, "Upphovsman" %>
-	<%= f.text_field :author %>
+				<div class="form-group col-md-6">
+					<%= f.label :writer, "Upphovsman" %>
+					<%= f.text_field :writer, class: "form-control input-sm" %>
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-md-6">
+					<%= f.label :source %>
+					<%= f.text_field :source, class: "form-control input-sm" %>
+				</div>
+				<div class="form-group col-md-6">
+					<%= f.label :year %>
+					<%= f.text_field :year, type: "number", class: "form-control input-sm" %>
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-md-10">
+					<%= f.label :about %>
+					<%= f.text_area :about, class: "form-control input-sm" %>
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-md-10">
+					<%= f.label :url %>
+					<%= f.text_field :url, type: "url", class: "form-control input-sm" %>
+				</div>
+			</div>
 
-	<%= link_to_remove_association "Ta bort artikel", f %>
+			<span class="glyphicon glyphicon-minus"></span>
+			<%= link_to_remove_association "Ta bort artikel", f %>
+		</div>
+	</div>
 </div>

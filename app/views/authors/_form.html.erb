@@ -1,0 +1,21 @@
+<%= form_for(@author, html: { multipart: true }) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+
+	<%= f.label :name, "Namn" %>
+	<%= f.text_field :name, class: 'form_control' %>
+
+	<%= f.label :about, "Om" %>
+	<%= f.text_area :about, class: 'form_control' %>
+
+	<div id='articles'>
+		<%= f.fields_for :articles do |article| %>
+			<%= render 'articles/article_fields', :f => article %>
+		<% end %>
+
+		<div class="links">
+			<span class="glyphicon glyphicon-plus"></span>
+			<%= link_to_add_association 'Lägg till artikel', f, :articles, :partial => 'articles/article_fields' %>
+		</div>
+	</div>
+	<%= f.submit "Spara", class: 'btn btn-primary' %>
+<% end %>

@@ -1,5 +1,19 @@
 <% provide(:title, @user.name) %>
-<h1>
-	<%= @user.name %>
-	<%= @user.email %>
-</h1>
+<div class="row user-show-div">
+	<div class="col-md-6 col-md-offset-1">
+		<ul class="list-group">
+			<li class="list-group-item"><h3>Min sida</h3></li>
+			<li class="list-group-item"><strong>Namn:</strong> <%= @user.name %></li>
+			<li class="list-group-item"><strong>E-post:</strong> <%= @user.email %></li>
+		</ul>
+	</div>
+	<div class="col-md-2">
+		<ul class="list-group">
+			<li class="list-group-item"><%= link_to "Ändra uppgifter", edit_user_path(current_user) %></li>
+			<li class="list-group-item"><%= link_to "Logga ut", logout_path, method: "delete" %></li>
+		</ul>
+	</div>
+</div>
+
+
+
