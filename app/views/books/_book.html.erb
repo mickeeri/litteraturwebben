@@ -1,34 +1,39 @@
 <%# View for showning one book. %>
 <li>
-	<%# Display cover pic if there is one. %>
-	<% if book.cover? %>
-		<%= image_tag book.cover.url %>
-	<% else %>
-		<div class="default-cover">
-			<span class="author-span">
-				<% if book.authors.count == 1 %>
-					<%= book.authors.first.name %>
-				<% end %>
-			</span>
-			<span class="title-span"><%= book.title %></span>
+	<div class="media-container">
+		<div class="index-thumb-left">
+			<%# Display cover pic if there is one. %>
+			<% if book.cover? %>
+				<%= image_tag book.cover.url, class: "book-cover" %>
+			<% else %>
+				<div class="default-cover">
+					<span class="author-span">
+						<% if book.authors.count == 1 %>
+							<%= book.authors.first.name %>
+						<% end %>
+					</span>
+					<span class="title-span"><%= book.title %></span>
+				</div>
+			<% end %>
 		</div>
-	<% end %>
-	<div>
-		<h3> <%= link_to book.title, book %></h3>
-		<ul class="books-authors">av
-			<% book.authors.each do |author| %>
-				<li>
-					<%= link_to author.name, author %>
-				</li>
-			<% end %>
-		</ul>
-		<span class="about">
-			<%= truncate(book.about, length: 150) %><%= link_to " Läs mer >>", book %>
-		</span>
-		<div>
-			<% if logged_in? && current_user.admin? %>
-				<%= link_to "Radera bok", book, method: :delete, data: { confirm: "Är du säker?"}, class: "btn btn-danger btn-xs" %>
-			<% end %>
+		<div class="index-body">
+			<h3> <%= link_to book.title, book %></h3>
+			<ul class="books-authors">av
+				<% book.authors.each do |author| %>
+					<li>
+						<%= link_to author.name, author %>
+					</li>
+				<% end %>
+			</ul>
+			<p>
+				<%= truncate(book.about, length: 100) %><%= link_to " Läs mer >>", book %>
+			</p>
+			<div>
+				<% if logged_in? && current_user.admin? %>
+					<span class="glyphicon glyphicon-trash"></span>
+					<%= link_to "Radera bok", book, method: :delete, data: { confirm: "Är du säker?"} %>
+				<% end %>
+			</div>
 		</div>
 	</div>
 </li>

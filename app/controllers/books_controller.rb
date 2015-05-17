@@ -1,13 +1,20 @@
 class BooksController < ApplicationController
     before_action :admin_user, only: [:edit, :update, :destroy]
 
+    def search
+        if params[:search].present?
+            @books = Book.search(params[:search])
+        else
+            @books = Book.all
+        end
+    end
 
     def index
         @books = Book.all
     end
 
     def latest
-        @books = Book.last(10)
+        @books = Book.last(2)
     end
 
     def show
@@ -21,12 +28,6 @@ class BooksController < ApplicationController
 
     def create
         @book = Book.new(book_params)
-        # params[:authors][:id].each do |author|
-        #     # @book.authors. do |author|
-        #     if !author.empty?
-        #         @book.authorships.build(:author_id => author)
-        #     end
-        # end
         if @book.save
             flash[:success] = "Boken '#{@book.title}' är tillagd!"
             redirect_to books_path

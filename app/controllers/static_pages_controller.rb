@@ -1,6 +1,7 @@
 class StaticPagesController < ApplicationController
   def home
-  	@books = Book.last(6)
+  	@books = Book.last(3)
+  	@authors = Author.last(4)
   end
 
   def help

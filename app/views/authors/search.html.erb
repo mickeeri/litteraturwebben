@@ -1,4 +1,4 @@
-<% provide(:title, "Våra författare") %>
+<% provide(:title, "Sökresultat") %>
 <div class="row index">
 	<div class="col-md-8 col-md-offset-2 primary-col">
 		<%# Ruby on rails tutorial - Movie app  %>
@@ -11,18 +11,13 @@
 			<%= button_tag name: nil, class: "btn btn-default", type: "submit" do %>
 				<span class="glyphicon glyphicon-search"></span>
 			<% end %>
+			<%= link_to "Tillbaka", authors_path, class: "btn btn-default" %>
 		<% end %>
 
-		<h1 class>Våra författare</h1>
+		<h1 class>Sökresultat</h1>
+
 		<ul class="media-list">
 			<%= render @authors %>
 		</ul>
-
-		<% if logged_in? && current_user.admin? %>
-		<div class="new-book-link">
-			<span class="glyphicon glyphicon-plus"></span>
-			<%= link_to "Lägg till författare", newauthor_path %>
-		</div>
-		<% end %>
 	</div>
 </div>

@@ -1,18 +1,18 @@
 <%# View for showning one book. %>
-<ul class="list-inline">
+<div class="row">
 	<% @books.each do |book| %>
-		<li>
+		<div class="col-xs-2 col-md-2">
 			<%= link_to(book) do %>
 				<%# Display cover pic if there is one. %>
 				<% if book.cover? %>
-					<%= image_tag book.cover.url %>
+					<%= image_tag book.cover.url, class: "thumbnail" %>
 				<% else %>
-						<div class="default-cover">
+						<div class="default-cover thumbnail">
 							<span class="author-span">Författare</span>
 							<span class="title-span"><%= book.title %></span>
 						</div>
 				<% end %>
 			<% end %>
-		</li>
+		</div>
 	<% end %>
-</ul>
+</div>

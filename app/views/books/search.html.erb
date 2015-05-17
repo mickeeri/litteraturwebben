@@ -1,4 +1,4 @@
-<% provide(:title, 'Våra böcker') %>
+<% provide(:title, 'Sökresultat') %>
 <div class="row index">
 	<div class="col-md-8 col-md-offset-2 primary-col">
 		<%= form_tag search_books_path, method: :get, class: "form-inline search-form", role: "search" do %>
@@ -10,14 +10,11 @@
 			<%= button_tag name: nil, class: "btn btn-default", type: "submit" do %>
 				<span class="glyphicon glyphicon-search"></span>
 			<% end %>
+			<%= link_to "Tillbaka", books_path, class: "btn btn-default" %>
 		<% end %>
-		<h1 class="index-h1">Våra böcker</h1>
-		<ul class="media-list">
+		<h1 class="index-h1">Sökresultat</h1>
+		<ul class="books">
 			<%= render @books %>
 		</ul>
-
-		<% if logged_in? && current_user.admin? %>
-			<%= link_to "Lägg till ny bok", newbook_path, class: 'new-book-link' %>
-		<% end %>
 	</div>
 </div>

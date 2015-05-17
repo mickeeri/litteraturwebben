@@ -1,14 +1,29 @@
 <% provide(:title, "Hem") %>
+<div class="row row-fluid">
+	<div class="col-md-3 aside-col col-md-push-9">
+		<div class="login-div">
+			<% if logged_in? %>
+				<strong>Inloggad som <%= link_to current_user.name, current_user %></strong>
+				<div>
+				<%= link_to "Logga ut", logout_path, method: "delete", class: "btn btn-warning" %>
+				</div>
+			<% else %>
+				<h4>Logga in:</h4>
+				<%= render 'sessions/form' %>
+				<p>Ny användare? <%= link_to "Registera dig nu!", signup_path %></p>
+			<% end %>
+		</div>
+	</div>
 
-<div class="center jumbotron">
-	<h1>Litteraturklassiker på webben</h1>
-	<%= link_to "Registera dig nu!", signup_path, class: "btn btn-lg btn-primary" %>
+	<div class="col-md-9 primary-col col-md-pull-3">
+
+		<%= render 'authors/latest' %>
+
+	</div>
+		<!-- 	<h1>Litteraturklassiker på webben</h1>
+			<%# link_to "Registera dig nu!", signup_path, class: "btn btn-lg btn-primary" %> -->
+
+		<%# render 'books/latest' %>
 </div>
 
-<div class="latest-books">
-	<h2>Nyligen tillagda titlar</h2>
-
-	<%= render 'books/latest_books' %>
-
-</div>
 

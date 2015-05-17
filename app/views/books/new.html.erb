@@ -4,85 +4,10 @@
 	<div class="col-md-8 col-md-offset-2 primary-col">
 		<h1>Lägg till ny bok</h1>
 		<div class="form-div">
-			<%= form_for(@book, html: { multipart: true }) do |f| %>
-				<%= render 'shared/error_messages', object: f.object %>
-
-				<%= f.label :title, "Titel" %>
-				<%= f.text_field :title, class: 'form_control' %>
-
-				<%# fields_for :authorship do |ff| %>
-					<%# ff.label "Författare" %>
-					<%# collection_select(:authors, :id, @all_authors, :id, :name, {}, {:multiple => true}) %>
-				<%#end %>
-				<%= f.label :author_ids, "Författare" %><small> (Håll in Ctrl för att välja flera)</small>
-				<%= f.collection_select(:author_ids, Author.all, :id, :name, {include_hidden: false}, {multiple: true}) %>
-
-				<%= f.label :yearofpub, "Utgivningsår" %>
-				<%= f.number_field :yearofpub, class: 'form_control' %>
-
-				<%= f.label :about, "Beskrivning" %>
-				<%= f.text_area :about %>
-
-				<%= f.label :genre_id, "Välj genre" %>
-				<%= f.collection_select(:genre_id, Genre.all, :id, :genre) %>
-
-				<div id='articles'>
-					<%= f.fields_for :articles do |article| %>
-						<%= render 'article_fields', :f => article %>
-					<% end %>
-
-					<div class="links">
-						<span class="glyphicon glyphicon-plus"></span>
-						<%= link_to_add_association 'Lägg till artikel', f, :articles, :partial => 'articles/article_fields' %>
-					</div>
-				</div>
-
-				<div class="upload-edit-field">
-					<%= f.label :cover, "Ladda upp omslagsbild" %>
-					<%= f.file_field :cover, accept: 'image/jpeg,image/gif,image/png' %>
-				</div>
-
-				<div class="upload-edit-field">
-					<%= f.label :pdf, "Ladda upp Pdf-fil" %>
-					<%= f.file_field :pdf, accept: 'application/pdf' %>
-				</div>
-
-				<div class="upload-edit-field">
-					<%= f.label :epub, "Ladda upp Epub-fil" %>
-					<%= f.file_field :epub, accept: 'application/epub+zip' %>
-				</div>
-
-				<%= f.submit "Lägg till bok", class: "btn btn-primary" %>
-			<% end %>
+		 	<%= render 'form' %>
 		</div>
 	</div>
 </div>
 
-<%# JQuery function fires alert if user tries to upload pic larger than 5MB. %>
-<script type="text/javascript">
-	$('#book_cover').bind('change', function() {
-		var size_in_megabytes = this.files[0].size/1024/1024;
-		if (size_in_megabytes > 5) {
-			alert('Den största tillåtna filstorleken är 5MB. Var vänlig välj en mindre fil.')
-		}
-	});
-</script>
 
-<script type="text/javascript">
-	$('#book_pdf').bind('change', function() {
-		var size_in_megabytes = this.files[0].size/1024/1024;
-		if (size_in_megabytes > 20) {
-			alert('Den största tillåtna filstorleken är 20MB. Var vänlig välj en mindre fil.')
-		}
-	});
-</script>
-
-<script type="text/javascript">
-	$('#book_epub').bind('change', function() {
-		var size_in_megabytes = this.files[0].size/1024/1024;
-		if (size_in_megabytes > 8) {
-			alert('Den största tillåtna filstorleken är 8MB. Var vänlig välj en mindre fil.')
-		}
-	});
-</script>
 

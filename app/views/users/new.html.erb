@@ -6,17 +6,25 @@
 			<%= form_for(@user) do |f| %>
 				<%= render 'shared/error_messages', object: f.object %>
 
-				<%= f.label :name, "Namn" %>
-				<%= f.text_field :name, class: 'form_control' %>
+				<div class="form-group">
+					<%= f.label :name, "Namn" %>
+					<%= f.text_field :name, class: 'form-control' %>
+				</div>
 
-				<%= f.label :email, "E-post" %>
-				<%= f.email_field :email, class: 'form_control' %>
+				<div class="form-group">
+					<%= f.label :email, "E-post" %>
+					<%= f.email_field :email, class: 'form-control' %>
+				</div>
 
-				<%= f.label :password, "Lösenord" %>
-				<%= f.password_field :password, class: 'form_control' %>
+				<div class="form-group">
+					<%= f.label :password, "Lösenord" %>
+					<%= f.password_field :password, class: 'form-control' %>
+				</div>
 
-				<%= f.label :password_confirmation, "Bekräfta lösenord" %>
-				<%= f.password_field :password_confirmation, class: 'form_control' %>
+				<div class="form-group">
+					<%= f.label :password_confirmation, "Bekräfta lösenord" %>
+					<%= f.password_field :password_confirmation, class: 'form-control' %>
+				</div>
 
 				<%= f.submit "Skapa mitt konto", class: "btn btn-primary" %>
 			<% end %>

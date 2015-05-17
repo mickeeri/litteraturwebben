@@ -1,8 +1,20 @@
 class AuthorsController < ApplicationController
 	before_action :admin_user, only: [:create, :edit, :update, :destroy]
 
+	def search
+		if params[:search].present?
+			@authors = Author.search(params[:search])
+		else
+			@authors = Author.all
+		end
+	end
+
 	def index
-		@authors = Author.search(params[:search])
+		@authors = Author.all
+	end
+
+	def latest
+		@authors = Author.last(2)
 	end
 
 	def show
@@ -44,9 +56,11 @@ class AuthorsController < ApplicationController
 		redirect_to authors_url
 	end
 
+
+
 	private
 		def author_params
-			params.require(:author).permit(:name, :about,
+			params.require(:author).permit(:name, :about, :portrait,
 				articles_attributes: [:id, :title, :writer, :year, :source, :about, :url, :_destroy])
 		end
 

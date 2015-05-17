@@ -1,4 +1,5 @@
 class Book < ActiveRecord::Base
+    searchkick
     belongs_to :genre
     has_many :authorships, foreign_key: :book_id, dependent: :destroy
     has_many :authors, through: :authorships, source: :author

@@ -1,11 +1,20 @@
 <%= form_for(@author, html: { multipart: true }) do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
 
-	<%= f.label :name, "Namn" %>
-	<%= f.text_field :name, class: 'form_control' %>
+	<div class="form-group">
+		<%= f.label :name, "Namn" %>
+		<%= f.text_field :name, class: 'form-control' %>
+	</div>
 
-	<%= f.label :about, "Om" %>
-	<%= f.text_area :about, class: 'form_control' %>
+	<div class="form-group">
+		<%= f.label :about, "Om" %>
+		<%= f.text_area :about, class: 'form-control' %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :portrait, "Ladda upp författarbild" %>
+		<%= f.file_field :portrait, accept: 'image/jpeg,image/gif,image/png' %>
+	</div>
 
 	<div id='articles'>
 		<%= f.fields_for :articles do |article| %>
@@ -18,4 +27,14 @@
 		</div>
 	</div>
 	<%= f.submit "Spara", class: 'btn btn-primary' %>
+	<%= link_to "Avbryt", authors_path, class: 'btn btn-danger' %>
 <% end %>
+
+<script type="text/javascript">
+	$('#book_cover').bind('change', function() {
+		var size_in_megabytes = this.files[0].size/1024/1024;
+		if (size_in_megabytes > 5) {
+			alert('Den största tillåtna filstorleken är 5MB. Var vänlig välj en mindre fil.')
+		}
+	});
+</script>
