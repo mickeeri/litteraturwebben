@@ -13,6 +13,23 @@ User.create!(name: "admin",
 			password_confirmation: "lösenord",
 			admin: true)
 
+Genre.create(genre: "Skönlitteratur")
+Genre.create(genre: "Lyrik")
+Genre.create(genre: "Dramatik")
+Genre.create(genre: "Faktalitteratur")
+Genre.create(genre: "Essäer")
+
+# Using Faker gem to make 99 example users.
+99.times do |n|
+	name = Faker::Name.name
+	email = "example-#{n+1}@mail.com"
+	password = "password"
+	User.create!(name: name,
+				email: email,
+				password: password,
+				password_confirmation: password)
+end
+
 Author.create!(name: "August Strindberg",
 	about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 	Maecenas mollis vestibulum elementum. Curabitur et pretium lorem.
@@ -76,19 +93,6 @@ Author.create!(name: "Victoria Benedictsson",
 	Integer venenatis, erat in condimentum cursus, lectus augue vulputate tellus,
 	et dictum elit risus a quam. Aliquam erat volutpat. Proin vel eros in mauris ornare ornare in id turpis.")
 
-# Using Faker gem to make 99 example users.
-99.times do |n|
-	name = Faker::Name.name
-	email = "example-#{n+1}@mail.com"
-	password = "password"
-	User.create!(name: name,
-				email: email,
-				password: password,
-				password_confirmation: password)
-end
 
-Genre.create(genre: "Skönlitteratur")
-Genre.create(genre: "Lyrik")
-Genre.create(genre: "Dramatik")
-Genre.create(genre: "Faktalitteratur")
-Genre.create(genre: "Essäer")
+
+
