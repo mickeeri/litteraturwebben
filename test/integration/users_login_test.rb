@@ -7,6 +7,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
 		@user = users(:testexample)
 	end
 
+	# Test 3.4.1
 	test "login with valid information followed by logout" do
 		get login_path
 		post login_path, session: { email: @user.email, password: 'password' }
@@ -22,7 +23,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
 		# Log-out - verifies that user is logged out and redirected to root url.
 		delete logout_path
 		assert_not is_logged_in?
-		assert_redirected_to root_url		
+		assert_redirected_to root_url
 		# Simulate user logging out in a second browser window.
 		delete logout_path
 		follow_redirect!
@@ -31,13 +32,13 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
 		assert_select "a[href=?]", user_path(@user), count: 0
 	end
 
-
+	# Test 3.4.2
 	test "login with invalid information" do
 		# Visit login path
 		get login_path
 		# Verify that new sessions form renders.
 		assert_template 'sessions/new'
-		# Post with invalid params. 
+		# Post with invalid params.
 		post login_path, session: { email: "", password: "" }
 		# Verify that new sessions form gets re-rendered and flash error message appears
 		assert_template 'sessions/new'
@@ -47,7 +48,8 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
 		assert flash.empty?
 	end
 
-	# Test if remember me checkbox works accordingly. 
+	# Test 3.4.3
+	# Test if remember me checkbox works accordingly.
 	test "login with remembering" do
 		# remember_me checkbox checked: value = 1
 		log_in_as(@user, remember_me: '1')
@@ -55,6 +57,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
 		assert_not_nil cookies['remember_token']
 	end
 
+	# Test 3.4.4
 	test "login without remembering" do
 		# remember_me checkbox not checked: value = 0
 		log_in_as(@user, remember_me: '0')

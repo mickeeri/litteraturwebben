@@ -5,12 +5,12 @@ class AuthorsController < ApplicationController
 		if params[:search].present?
 			@authors = Author.search(params[:search])
 		else
-			@authors = Author.all
+			@authors = Author.order('lower(name)').paginate(page: params[:page], per_page: 5)
 		end
 	end
 
 	def index
-		@authors = Author.all
+		@authors = Author.order('lower(name)').paginate(page: params[:page], per_page: 5)
 	end
 
 	def latest

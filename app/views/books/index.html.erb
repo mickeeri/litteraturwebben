@@ -17,7 +17,16 @@
 		</ul>
 
 		<% if logged_in? && current_user.admin? %>
-			<%= link_to "Lägg till ny bok", newbook_path, class: 'new-book-link' %>
+			<div class="new-book-link">
+				<span class="glyphicon glyphicon-plus"></span>
+				<%= link_to "Lägg till ny bok", newbook_path %>
+			</div>
 		<% end %>
 	</div>
 </div>
+<div class="row pagination-row">
+	<%= will_paginate @posts, :previous_label => '<<', :next_label => '>>' %>
+</div>
+
+
+

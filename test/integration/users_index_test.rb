@@ -6,6 +6,7 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
 		@non_admin = users(:pelle)
 	end
 
+	# Test 3.3.1
 	test "index as admin including pagination and delete links" do
 		log_in_as(@admin)
 		get users_path
@@ -25,6 +26,7 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
 		end
 	end
 
+	# Test 3.3.2
 	# Makes sure there is no delete link if user is non-admin
 	test "index as non-admin" do
 		log_in_as(@non_admin)
@@ -32,16 +34,16 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
 		assert_select 'a', text: 'Radera användare', count: 0
 	end
 
-	# Testing users index page pagination.
-	test "index including pagination" do
-		log_in_as(@non_admin)
-		get users_path
-		assert_template 'users/index'
-		# Checking for a div with class pagination.
-		assert_select 'div.pagination'
-		# Verifying that the first page of users is present.
-		User.paginate(page: 1).each do |user|
-			assert_select 'a[href=?]', user_path(user), text: user.name
-		end
-	end
+	# # Testing users index page pagination.
+	# test "index including pagination" do
+	# 	log_in_as(@non_admin)
+	# 	get users_path
+	# 	assert_template 'users/index'
+	# 	# Checking for a div with class pagination.
+	# 	assert_select 'div.pagination'
+	# 	# Verifying that the first page of users is present.
+	# 	User.paginate(page: 1).each do |user|
+	# 		assert_select 'a[href=?]', user_path(user), text: user.name
+	# 	end
+	# end
 end

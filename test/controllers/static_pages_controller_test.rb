@@ -6,6 +6,7 @@ class StaticPagesControllerTest < ActionController::TestCase
   	@base_title = "Litteraturappen"
   end
 
+  # Test 2.2.1
   # Test expect home and help to be ordinary web pages accessed using GET request.
   test "should get home" do
     get :home
@@ -31,5 +32,4 @@ class StaticPagesControllerTest < ActionController::TestCase
   	assert_response :success
   	assert_select "title", "Kontakt | #{@base_title}"
   end
-
 end
