@@ -14,11 +14,11 @@ $gray-medium-light: #eaeaea;
 }
 
 @mixin transition {
-    -webkit-transition: all 0.4s linear;
-    -moz-transition: all 0.4s linear;
-    -o-transition: all 0.4s linear;
-    -ms-transition: all 0.4s linear;
-    transition: all 0.4s linear;
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    -ms-transition: all 0.2s linear;
+    transition: all 0.2s linear;
 }
 
 /* universal */
@@ -47,11 +47,21 @@ textarea {
 
 }
 
+.clearfix {
+    clear: both;
+}
+
 .primary-col, .primary-div {
     background-color: white;
     padding-bottom: 30px;
     padding-top: 30px;
     border-radius: 6px;
+}
+
+.main-content {
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 25px;
 }
 
 
@@ -258,7 +268,7 @@ footer ul li {
 }
 
 /* Books index */
-.books {
+.bookssss {
   list-style: none;
   margin-right: 40px;
 
@@ -337,7 +347,117 @@ footer ul li {
     text-align: center;
 }
 
-/* Books show */
+/* SHOW PAGES*/
+.show-container {
+    // margin: 0 4%;
+    display: inline-block;
+
+    h1 {
+        text-align: left;
+        margin-top: 0;
+        font-size: 2.3em;
+    }
+
+    .show-pic-left {
+        float: left;
+        margin: 0 2.5% 2.5% 0;
+        display: block;
+        max-width: 20%;
+        img {
+            width: 100%;
+        }
+    }
+
+    .show-content {
+        float: left;
+        //max-width: 400px;
+        max-width: 75%;
+        display: inline-block;
+    }
+
+
+    @media (max-width: 992px) {
+        .show-pic-left {
+            max-width: 100%;
+        }
+
+        .show-content {
+            max-width: 100%;
+        }
+    }
+}
+
+/* Displays authors books in author show view and home page */
+.author-titles {
+    margin-top: 10px;
+    text-align: center;
+}
+
+// .books, .slider {
+//     position: relative;
+//     border: 1px solid black;
+//     height: 285px;
+//     overflow: hidden;
+
+//     .track {
+//         position: absolute;
+//         top: 10px;
+//         left: 10px;
+
+//         margin: 0;
+//         padding: 0;
+//         border: 0;
+
+//         width: 600px;
+//     }
+
+//     // display: inline-block;
+//     // margin: 0 auto;
+//     // overflow-x: auto;
+//     // white-space: nowrap;
+//     .book {
+//         float: left;
+//         margin: 0;
+//         margin-right: 10px;
+//         padding: 0;
+//         border: 0;
+
+
+
+
+//         display: inline-block;
+//         padding: 10px;
+//         background-color: $gray-medium-light;
+//         vertical-align: top;
+//         height: 280px;
+//         border-radius: 4px;
+//         //margin: 0 20px;
+
+//         .caption {
+//             display: block;
+//             text-align: center;
+//         }
+
+//         .cover-div {
+
+//             width: 150px;
+//             height: 240px;
+
+//             img, .default-cover {
+//                 max-width: 100%;
+//                 max-height: 100%;
+//             }
+//         }
+
+
+//     }
+// }
+
+
+
+
+
+
 .book-post {
   margin-left: 40px;
   background: white;
@@ -347,9 +467,6 @@ footer ul li {
 	text-align: left;
   }
 
-  .cover-div {
-  	padding-right: 0;
-  }
 
     .download-field {
         margin-bottom: 10px;
@@ -358,8 +475,8 @@ footer ul li {
 }
 
 .default-cover {
-    width: 135px;
-    height: 200px;
+    width: 160px;
+    height: 230px;
     float: left;
     margin-right: 20px;
     background-color: #204056;
@@ -482,6 +599,10 @@ footer ul li {
     border: 1px dashed $gray-darker;
     margin-bottom: 10px;
     padding: 10px;
+}
+
+.small-thumb {
+    width: 10%;
 }
 
 /* Home page */

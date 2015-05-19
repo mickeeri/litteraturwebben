@@ -38,22 +38,44 @@
 		</div>
 	</div>
 
-	<%= image_tag @book.cover.url, class: "thumbnail" if @book.cover? %>
 	<%# Destroy cover  %>
 	<div class="upload-edit-field form-group">
+		<%= image_tag(@book.cover.url, class: "thumbnail small-thumb") if @book.cover? %>
 		<%= f.label :cover, "Ladda upp omslagsbild" %>
 		<%= f.file_field :cover, accept: 'image/jpeg,image/gif,image/png', type: "file" %>
+		<%= f.hidden_field :cover_cache %>
+		<% if @book.cover? %>
+			<label>
+				<%= f.check_box :remove_cover %>
+				Ta bort omslagsbild
+			</label>
+		<% end %>
 	</div>
 
-	<%= @book.pdf if @book.pdf? %>
+
 	<div class="upload-edit-field form-group">
+		<p><%= @book.pdf if @book.pdf? %></p>
 		<%= f.label :pdf, "Ladda upp Pdf-fil" %>
 		<%= f.file_field :pdf, accept: 'application/pdf', type: "file" %>
+		<%= f.hidden_field :pdf_cache %>
+		<% if @book.pdf? %>
+			<label>
+				<%= f.check_box :remove_pdf %>
+				Ta bort pdf-dokument
+			</label>
+		<% end %>
 	</div>
 
 	<div class="upload-edit-field form-group">
+		<p><%= @book.epub if @book.epub %></p>
 		<%= f.label :epub, "Ladda upp Epub-fil" %>
 		<%= f.file_field :epub, accept: 'application/epub+zip', type: "file" %>
+		<%= f.hidden_field :epub_cache %>
+		<% if @book.epub? %>
+			<label>
+				<%= f.check_box :remove_epub %>
+			</label>
+		<% end %>
 	</div>
 
 	<%= f.submit "Spara", class: "btn btn-primary btn-block" %>

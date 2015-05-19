@@ -1,18 +1,27 @@
 <%# View for showning one book. %>
-<div class="row">
-	<% @books.each do |book| %>
-		<div class="col-xs-2 col-md-2">
-			<%= link_to(book) do %>
-				<%# Display cover pic if there is one. %>
-				<% if book.cover? %>
-					<%= image_tag book.cover.url, class: "thumbnail" %>
-				<% else %>
-						<div class="default-cover thumbnail">
-							<span class="author-span">Författare</span>
-							<span class="title-span"><%= book.title %></span>
-						</div>
-				<% end %>
-			<% end %>
-		</div>
-	<% end %>
+<div class="slider books">
+	<div class="left" id="left">&lt;</div>
+	<div class="right" id="right">&gt;</div>
+	<div class="track" id="latest-books-track">
+		<% @books.each do |book| %>
+			<div class="book">
+				<div class="cover-div">
+					<%= link_to(book) do %>
+						<%# Display cover pic if there is one. %>
+						<% if book.cover? %>
+							<%= image_tag book.cover.url %>
+						<% else %>
+								<div class="default-cover">
+									<span class="author-span">Författare</span>
+									<span class="title-span"><%= book.title %></span>
+								</div>
+						<% end %>
+					<% end %>
+				</div>
+				<div class="caption">
+					<%= book.title %>
+				</div>
+			</div>
+		<% end %>
+	</div>
 </div>

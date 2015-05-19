@@ -1,18 +1,51 @@
 <% provide(:title, @author.name) %>
-<div class="row author-show-div primary-div">
+<div class="row">
+	<div class="main col-md-9 col-md-offset-1">
+		<div class="show-container main-content">
+			<div class="show-pic-left">
+				<%= image_tag(@author.portrait.url) %>
+			</div>
+			<div class="show-content">
+				<h1 class="show-header"><%= @author.name %></h1>
+				<h3>Om författaren</h3>
+				<p><%= @author.about %></p>
+			</div>
+		</div>
+	</div>
+	<div class="clearfix">
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-9 col-md-offset-1">
+		<div class="author-titles main-content">
+			<h3 class="upcase">Titlar</h3>
+			<div class="books">
+				<% @author.books.each do |book| %>
+					<div class="book">
+						<div class="cover-div">
+							<%= image_tag(book.cover.url) %>
+						</div>
+						<div class="caption">
+							<%= link_to book.title, book %>
+						</div>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+<!-- <div class="row author-show-div primary-div">
 	<div class="col-md-8 col-md-offset-2">
 		<h1 class="upcase"><%= @author.name %></h1>
 		<p><%= @author.about %></p>
 	</div>
 
-	<div class="col-md-6 col-md-offset-2">
-		<h3 class="upcase">Titlar</h3>
-		<ul class="list-group">
-			<% @author.books.each do |book| %>
-				<li class="list-group-item"><%= link_to book.title, book %></li>
-			<% end %>
-		</ul>
-	</div>
+
 	<div class="col-md-8 col-md-offset-2">
 		<h3 class="upcase"><%= "Artiklar om " + @author.name unless @author.articles.empty? %></h3>
 		<ul class="list-group">
@@ -29,4 +62,4 @@
 			<%= link_to "Redigera författare", edit_author_path %>
 		<% end %>
 	</div>
-</div>
+</div> -->
