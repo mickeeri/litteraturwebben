@@ -10,6 +10,8 @@ class Author < ActiveRecord::Base
     accepts_nested_attributes_for :articles, :reject_if => :all_blank, :allow_destroy => true
 
     # Validation
+    validates :name, presence: true, length: { maximum: 50 }
+    validates :about, length: { maximum: 500 }
     validate :portrait_size
 
     private
@@ -21,3 +23,10 @@ class Author < ActiveRecord::Base
 	    	end
 	    end
 end
+
+
+
+    # validates :title, presence: true, length: { maximum: 50 }
+    # validates :yearofpub, presence: true, length: { maximum: 4 },
+    #           numericality: { only_integer: true, greater_than: 0, less_than: 2050 }
+    # validates :genre_id, presence: true

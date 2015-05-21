@@ -27,13 +27,17 @@ $('#latest-books-track').ready(function(){
 });
 
 
-$(document).ready(function(){
-
-	alert("hej!");
+$('#latest-books-track').ready(function(){
 
 	var left = parseInt($('#latest-books-track').css('left'));
 
-	$('#latest-books-track').on("swipeleft", function(){
+		$('#test').on("swipe", function(){
+
+		$('#latest-books-track').css('left', left-40);
+
+	});
+
+	$('#test').on("swipeleft", function(){
 
 		$('#latest-books-track').css('left', left+20);
 

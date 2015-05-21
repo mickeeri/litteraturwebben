@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  title: MyString
-  yearofpub: 1
-  about: MyText
-  genre_id: 
+book1:
+  title: Exempelbok
+  yearofpub: 1994
+  about: Lorem ipsum
+  genre_id: 1
 
 two:
   title: MyString
   yearofpub: 1
   about: MyText
-  genre_id: 
+  genre_id:

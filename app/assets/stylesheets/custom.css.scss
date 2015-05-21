@@ -362,7 +362,7 @@ footer ul li {
         float: left;
         margin: 0 2.5% 2.5% 0;
         display: block;
-        max-width: 20%;
+        max-width: 30%;
         img {
             width: 100%;
         }
@@ -371,18 +371,25 @@ footer ul li {
     .show-content {
         float: left;
         //max-width: 400px;
-        max-width: 75%;
+        max-width: 67%;
         display: inline-block;
     }
 
-
-    @media (max-width: 992px) {
+    @media (max-width: $screen-sm-min) {
         .show-pic-left {
             max-width: 100%;
         }
 
         .show-content {
             max-width: 100%;
+
+            p {
+                font-size: 1.4em;
+            }
+
+            h3 {
+                font-weight: bold;
+            }
         }
     }
 }
@@ -392,71 +399,6 @@ footer ul li {
     margin-top: 10px;
     text-align: center;
 }
-
-// .books, .slider {
-//     position: relative;
-//     border: 1px solid black;
-//     height: 285px;
-//     overflow: hidden;
-
-//     .track {
-//         position: absolute;
-//         top: 10px;
-//         left: 10px;
-
-//         margin: 0;
-//         padding: 0;
-//         border: 0;
-
-//         width: 600px;
-//     }
-
-//     // display: inline-block;
-//     // margin: 0 auto;
-//     // overflow-x: auto;
-//     // white-space: nowrap;
-//     .book {
-//         float: left;
-//         margin: 0;
-//         margin-right: 10px;
-//         padding: 0;
-//         border: 0;
-
-
-
-
-//         display: inline-block;
-//         padding: 10px;
-//         background-color: $gray-medium-light;
-//         vertical-align: top;
-//         height: 280px;
-//         border-radius: 4px;
-//         //margin: 0 20px;
-
-//         .caption {
-//             display: block;
-//             text-align: center;
-//         }
-
-//         .cover-div {
-
-//             width: 150px;
-//             height: 240px;
-
-//             img, .default-cover {
-//                 max-width: 100%;
-//                 max-height: 100%;
-//             }
-//         }
-
-
-//     }
-// }
-
-
-
-
-
 
 .book-post {
   margin-left: 40px;

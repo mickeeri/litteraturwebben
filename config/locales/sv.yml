@@ -14,6 +14,15 @@ sv:
         title: "Titel"
         author: "Författare"
         yearofpub: "Utgivningsår"
+      author:
+        name: "Namn"
+        about: "Beskrivning"
+      article:
+        title: "Titel"
+        year: "År/Datum"
+        writer: "Upphovsman"
+        about: "Beskrivning"
+        source: "Källa"
   date:
     abbr_day_names:
     - sön

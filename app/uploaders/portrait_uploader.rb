@@ -4,7 +4,7 @@ class PortraitUploader < CarrierWave::Uploader::Base
 
     # Include RMagick or MiniMagick support:
     include CarrierWave::MiniMagick
-    process resize_to_limit: [300, 350]
+    process resize_to_limit: [300, 350] # [width, heigth]
 
     # Choose what kind of storage to use for this uploader:
     if Rails.env.production?
