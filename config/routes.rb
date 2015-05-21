@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
-  get 'articles/destroy'
+  # get 'password_resets/new'
+
+  # get 'password_resets/edit'
+
+  # get 'password_reset/new'
+
+  # get 'password_reset/edit'
+
+  # get 'articles/destroy'
 
     # Books
     get 'books/index'
@@ -62,6 +70,8 @@ Rails.application.routes.draw do
             get 'search'
         end
     end
+
+    resources :password_resets, only: [:new, :create, :edit, :update]
 
 
     # Example resource route with options:
