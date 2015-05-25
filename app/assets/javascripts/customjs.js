@@ -1,5 +1,3 @@
-
-
 $('#latest-books-track').ready(function(){
 	setInterval(function() {
 		var left = parseInt($('#latest-books-track').css('left'));
@@ -50,3 +48,33 @@ $('#latest-books-track').ready(function(){
 
 	});
 });
+
+
+$('.article_form').ready(function(){
+	console.log("Hej")
+
+	$('.article-form-link').click(function(){
+		var span = $('.glyphicon');
+
+		if (span.hasClass('glyphicon-chevron-right')) {
+			span.removeClass('glyphicon-chevron-right');
+			span.addClass('glyphicon-chevron-down');
+		}
+		else {
+			span.removeClass('glyphicon-chevron-down')
+			span.addClass('glyphicon-chevron-right')
+		}
+	});
+
+
+	// var article_form_div = $('.article_form')
+
+	// if ($('#author-article-form').hasClass('article-form collapse in')) {
+	// 	console.log("if");
+	// 	glyphicon_span.toggleClass('glyphicon glyphicon-arrow-down');
+	// }
+	// else {
+	// 	console.log("else");
+	// }
+});
+

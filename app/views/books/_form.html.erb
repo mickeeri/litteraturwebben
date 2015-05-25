@@ -1,6 +1,7 @@
 <%= form_for(@book, html: { multipart: true }) do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
 
+
 	<div class="form-group">
 		<%= f.label :title, "Titel" %>
 		<%= f.text_field :title, class: 'form-control' %>
@@ -27,6 +28,7 @@
 		<%= f.collection_select(:genre_id, Genre.all, :id, :genre,{}, {:class => 'form-control'}) %>
 	</div>
 
+
 	<div id='articles'>
 		<%= f.fields_for :articles do |article| %>
 			<%= render 'articles/article_fields', :f => article %>
@@ -38,7 +40,7 @@
 		</div>
 	</div>
 
-	<%# Destroy cover  %>
+
 	<div class="upload-edit-field form-group">
 		<%= image_tag(@book.cover.url, class: "thumbnail small-thumb") if @book.cover? %>
 		<%= f.label :cover, "Ladda upp omslagsbild" %>

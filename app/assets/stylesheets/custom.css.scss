@@ -1,5 +1,15 @@
 $jumbotron-bg: #C0DEED;
 
+/* Navbar */
+$navbar-default-bg: #1B1B1B;
+$navbar-default-link-color: #fff;
+$navbar-default-link-hover-color: #0E76BC;
+$navbar-default-link-active-color: #0E76BC;
+$navbar-default-border: #282828;
+$navbar-default-toggle-border-color: #1B1B1B;
+$navbar-default-toggle-icon-bar-bg: #fff;
+
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
@@ -14,11 +24,24 @@ $gray-medium-light: #eaeaea;
 }
 
 @mixin transition {
-    -webkit-transition: all 0.2s linear;
-    -moz-transition: all 0.2s linear;
-    -o-transition: all 0.2s linear;
-    -ms-transition: all 0.2s linear;
-    transition: all 0.2s linear;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+@mixin gradient {
+    background: rgba(89,89,89,1);
+    background: -moz-linear-gradient(top, rgba(89,89,89,1) 0%, rgba(27,27,27,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(89,89,89,1)),
+        color-stop(100%, rgba(27,27,27,1)));
+    background: -webkit-linear-gradient(top, rgba(89,89,89,1) 0%, rgba(27,27,27,1) 100%);
+    background: -o-linear-gradient(top, rgba(89,89,89,1) 0%, rgba(27,27,27,1) 100%);
+    background: -ms-linear-gradient(top, rgba(89,89,89,1) 0%, rgba(27,27,27,1) 100%);
+    background: linear-gradient(to bottom, rgba(89,89,89,1) 0%, rgba(27,27,27,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#595959',
+        endColorstr='#1b1b1b', GradientType=0 );
 }
 
 /* universal */
@@ -55,13 +78,15 @@ textarea {
     background-color: white;
     padding-bottom: 30px;
     padding-top: 30px;
-    border-radius: 6px;
+    border: 1px solid #E3E3E3;
+    // border-radius: 6px;
 }
 
 .main-content {
     background-color: #fff;
-    border-radius: 6px;
+    // border-radius: 6px;
     padding: 25px;
+    border: 1px solid #E3E3E3;
 }
 
 
@@ -102,9 +127,24 @@ p {
 //   }
 // }
 
+/* Navbar */
+
+.navbar-header {
+    border-bottom: 1px solid #282828;
+    width: 100%;
+}
+
 .navbar {
+
+    //background-color: #1B1B1B;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.35);
+    @include gradient;
+
+
+
+
     .container-fluid {
-        max-width: 1140px;
+        max-width: 1200px;
     }
 
     a {
@@ -112,13 +152,12 @@ p {
     }
 
     .navbar-brand {
-        font-size: 1.7em;
-        color: #fff;
+        // font-size: 1.7em;
+        // color: #fff;
         text-transform: uppercase;
         text-decoration: none;
     }
 }
-
 
 /* footer */
 
@@ -333,9 +372,12 @@ footer ul li {
 }
 
 .article-form-fields {
-    border: 1px dashed $gray;
-    padding: 10px 40px;
-    margin-top: 10px;
+    // padding: 10px 40px;
+    // margin-top: 10px;
+
+    input {
+      margin-left: 60px;
+    }
 }
 
 .links {
@@ -471,7 +513,12 @@ footer ul li {
 }
 
 /* Author show */
+.list-group {
+  li:last-child {
+    display: none;
+  }
 
+}
 
 
 /* FORMS */
@@ -547,6 +594,37 @@ footer ul li {
     width: 10%;
 }
 
+/* Article form */
+.article-form {
+
+  width: 600px;
+
+  h3 {
+    margin-left: 94px;
+    font-weight: 600;
+    color: #0E76BC;
+  }
+
+  .form-group {
+    text-align: right;
+  }
+
+  .form-control {
+    width: 400px;
+    // margin-right: 80px;
+    margin-left: 30px;
+  }
+
+  label {
+
+  }
+
+  .btn {
+    margin-left: 494px;
+    background: #0E76BC;
+  }
+}
+
 /* Home page */
 .latest-books {
 
@@ -604,7 +682,8 @@ footer ul li {
 .login-div {
     background-color: #fff;
     padding: 20px;
-    border-radius: 6px;
+    // border-radius: 6px;
+    border: 1px solid #E3E3E3;
 
     @media (max-width: 992px) {
         // border-bottom: 10px dotted $gray-medium-light;
@@ -631,5 +710,9 @@ footer ul li {
   span {
 	font-weight: bold;
   }
+}
+
+.glyphicon, .article-form-link {
+    //@include transition;
 }
 

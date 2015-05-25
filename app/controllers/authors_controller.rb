@@ -19,6 +19,7 @@ class AuthorsController < ApplicationController
 
 	def show
 		@author = Author.find(params[:id])
+		@new_article = @author.articles.build
 	end
 
 	def new
@@ -56,7 +57,10 @@ class AuthorsController < ApplicationController
 		redirect_to authors_url
 	end
 
-
+	def add_articles(id)
+		@author = Author.find(id)
+		@author.article.build
+	end
 
 	private
 		def author_params

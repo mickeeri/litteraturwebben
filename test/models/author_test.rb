@@ -6,26 +6,22 @@ class AuthorTest < ActiveSupport::TestCase
 		@author = Author.new(name: "Nisse Författarsson", about: "Lorem ipsum")
 	end
 
-	# TEST 1.3.1
-	test "author should be valid" do
+	test "Test 1.3.1: author should be valid" do
 		assert @author.valid?
 	end
 
-	# TEST 1.3.2
-	test "name should be present" do
+	test "Test 1.3.2: name should be present" do
 		@author.name = ""
 		assert_not @author.valid?
 	end
 
-	# TEST 1.3.3
-	test "name should be at most 50 charachters" do
-		@author.name = "a" * 50
+	test "Test 1.3.3: name should be at most 50 charachters" do
+		@author.name = "a" * 51
 		assert_not @author.valid?
 	end
 
-	# TEST 1.3.4
-	test "about should be at most 500 charachters" do
-		@author.about = "a" * 500
+	test "Test 1.3.4: about should be at most 500 charachters" do
+		@author.about = "a" * 504
 		assert_not @author.valid?
 	end
 end

@@ -26,16 +26,6 @@ class UserTest < ActiveSupport::TestCase
 		assert_not @user.valid?
 	end
 
-	test "name should not be too long" do
-		@user.name = "a" * 51
-		assert_not @user.valid?
-	end
-
-	test "email shuld not be too long" do
-		@user.email = "a" * 244 + "@example.com"
-		assert_not @user.valid?
-	end
-
 	# Test 1.1.4
 	test "email validation should accept valid addresses" do
 		valid_addresses = %w[user@exempel.se USER@example.com A_US-ER@e.mail.org first.last@foo.jp kalle+lisa@baz.cn]
@@ -64,14 +54,6 @@ class UserTest < ActiveSupport::TestCase
 		assert_not duplicate_user.valid?
 	end
 
-	# Test uses reload method to see if value from database is equal to lower-case value.
-	test "emails should be saved as lower-case" do
-		mixed_case_email = "EpoST@exEMeL.CoM"
-		@user.email = mixed_case_email
-		@user.save
-		assert_equal mixed_case_email.downcase, @user.reload.email
-	end
-
 	# Test 1.1.7.
 	# Test of password validation
 	test "password should have a minimum length of 6 characters" do
@@ -79,8 +61,29 @@ class UserTest < ActiveSupport::TestCase
 		assert_not @user.valid?
 	end
 
-	# Test 1.1.8
+	# TEST 1.1.8
 	test "authenticated? should return false for a user with nil digest" do
 		assert_not @user.authenticated?(:remember, '')
+	end
+
+	# TEST 1.1.9
+	test "name should not be too long" do
+		@user.name = "a" * 51
+		assert_not @user.valid?
+	end
+
+	# TEST 1.1.10
+	test "email shuld not be too long" do
+		@user.email = "a" * 244 + "@example.com"
+		assert_not @user.valid?
+	end
+
+	# TEST 1.1.11
+	# Test uses reload method to see if value from database is equal to lower-case value.
+	test "emails should be saved as lower-case" do
+		mixed_case_email = "EpoST@exEMeL.CoM"
+		@user.email = mixed_case_email
+		@user.save
+		assert_equal mixed_case_email.downcase, @user.reload.email
 	end
 end

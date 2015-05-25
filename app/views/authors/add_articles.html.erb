@@ -1,0 +1,11 @@
+<%= form_for(@author, html: { multipart: true }) do |f| %>
+	<%= f.fields_for :articles do |article| %>
+		<%= render 'articles/article_fields', :f => article %>
+	<% end %>
+
+	<div class="links">
+		<span class="glyphicon glyphicon-plus"></span>
+		<%= link_to_add_association 'Ny artikel', f, :articles, :partial => 'articles/article_fields' %>
+	</div>
+	<%= f.submit "Spara", class: 'btn btn-primary' %>
+<% end %>

@@ -6,6 +6,7 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
 		@user = users(:test_user)
 	end
 
+	# TEST 3.5.1
 	test "password resets" do
 		# Get of the password reset page.
 		get new_password_reset_path
@@ -17,7 +18,7 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
 		assert_template 'password_resets/new'
 		# Valid email.
 		post password_resets_path, password_reset: { email: @user.email }
-		# ???
+		#
 		assert_not_equal @user.reset_digest, @user.reload.reset_digest
 		# Verifies that number of deliveries is one.
 		assert_equal 1, ActionMailer::Base.deliveries.size

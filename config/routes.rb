@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
-  # get 'password_resets/new'
+  get 'password_resets/new'
 
-  # get 'password_resets/edit'
+  get 'password_resets/edit'
 
-  # get 'password_reset/new'
+  get 'password_reset/new'
 
-  # get 'password_reset/edit'
+  get 'password_reset/edit'
 
-  # get 'articles/destroy'
+  get 'articles/destroy'
 
     # Books
     get 'books/index'
@@ -40,6 +40,10 @@ Rails.application.routes.draw do
     get     'newbook'   => 'books#new'
     get     'newauthor' => 'authors#new'
 
+
+
+    # get     'articles/destroy'
+
     # The priority is based upon order of creation: first created -> highest priority.
     # See how all your routes lay out with "rake routes".
 
@@ -69,9 +73,15 @@ Rails.application.routes.draw do
         collection do
             get 'search'
         end
+
+        resource :articles
+
+
     end
 
     resources :password_resets, only: [:new, :create, :edit, :update]
+
+    # resources :articles, only: [:new, :create, :edit, :update, :destroy]
 
 
     # Example resource route with options:

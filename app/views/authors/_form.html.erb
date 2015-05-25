@@ -1,6 +1,5 @@
 <%= form_for(@author, html: { multipart: true }) do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
-
 	<div class="form-group">
 		<%= f.label :name, "Namn" %>
 		<%= f.text_field :name, class: 'form-control' %>
@@ -15,7 +14,8 @@
 		<%= f.label :portrait, "Ladda upp författarbild" %>
 		<%= f.file_field :portrait, accept: 'image/jpeg,image/gif,image/png' %>
 	</div>
-
+	<%# Remove this later %>
+	<% if false %>
 	<div id='articles'>
 		<%= f.fields_for :articles do |article| %>
 			<%= render 'articles/article_fields', :f => article %>
@@ -26,9 +26,15 @@
 			<%= link_to_add_association 'Lägg till artikel', f, :articles, :partial => 'articles/article_fields' %>
 		</div>
 	</div>
+	<% end %>
+
+
+
 	<%= f.submit "Spara", class: 'btn btn-primary' %>
 	<%= link_to "Avbryt", authors_path, class: 'btn btn-danger' %>
 <% end %>
+
+
 
 <script type="text/javascript">
 	$('#book_cover').bind('change', function() {

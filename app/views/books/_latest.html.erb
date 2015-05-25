@@ -1,7 +1,11 @@
 <%# View for showning one book. %>
 <div class="slider books">
-	<div class="left" id="left">&lt;</div>
-	<div class="right" id="right">&gt;</div>
+	<div class="left" id="left">
+		<%= image_tag("icons/left.png") %>
+	</div>
+	<div class="right" id="right">
+		<%= image_tag("icons/right.png") %>
+	</div>
 	<div class="track" id="latest-books-track">
 		<% @books.each do |book| %>
 			<div class="book">
@@ -12,7 +16,7 @@
 							<%= image_tag book.cover.url %>
 						<% else %>
 								<div class="default-cover">
-									<span class="author-span">Författare</span>
+									<span class="author-span"><%= "Författare" %></span>
 									<span class="title-span"><%= book.title %></span>
 								</div>
 						<% end %>
