@@ -6,6 +6,7 @@ class BooksController < ApplicationController
             @books = Book.order('lower(title)').search(params[:search])
         else
             @books = Book.order('lower(title)').paginate(page: params[:page], per_page: 5)
+            # index:
         end
     end
 
@@ -19,11 +20,12 @@ class BooksController < ApplicationController
 
     def show
         @book = Book.find(params[:id])
+        @new_article = @book.articles.build
     end
 
     def new
         @book = Book.new
-        @book.authorships.build
+        #@book.authorships.build
     end
 
     def create
@@ -62,8 +64,15 @@ class BooksController < ApplicationController
 
     private
     def book_params
-        params.require(:book).permit(:title, :yearofpub, :about, :genre_id, :cover, :remove_cover, :pdf, :remove_pdf, :epub, :remove_epub,
-            :author_ids => [], articles_attributes: [:id, :title, :writer, :year, :source, :about, :url, :_destroy])
+        # params.require(:book).permit(
+        #     :title, :yearofpub, :about, :genre_id, :cover, :remove_cover, :pdf, :remove_pdf, :epub, :remove_epub,
+        #     :author_ids => [], articles_attributes: [:id, :title, :writer, :year, :source, :about, :url, :_destroy])
+
+        params.require(:book).permit(
+            :title, :yearofpub, :about, :genre_id, :cover, :remove_cover, :pdf, :remove_pdf, :epub, :remove_epub,
+            articles_attributes: [:id, :title, :writer, :year, :source, :about, :url, :_destroy],
+            authorships_attributes: [:id, :_destroy, :author_id, author_attributes: [:id, :_destroy, :name, :about, :portrait]]
+            )
     end
 
     # Before filters

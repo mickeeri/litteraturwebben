@@ -72,5 +72,4 @@ class AuthorsController < ApplicationController
 		def admin_user
 			redirect_to(authors_url) unless logged_in? && current_user.admin?
 		end
-
 end

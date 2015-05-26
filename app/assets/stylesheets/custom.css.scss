@@ -685,8 +685,21 @@ footer ul li {
     // border-radius: 6px;
     border: 1px solid #E3E3E3;
 
+    span {
+      font-weight: normal;
+      font-size: 14px;
+    }
+
+    .btn {
+      // margin-bottom: 20px;
+      // margin-left: 140px;
+    }
+
     @media (max-width: 992px) {
-        // border-bottom: 10px dotted $gray-medium-light;
+      .btn {
+        margin-left: 0;
+        width: 40%;
+      }
     }
 }
 

@@ -1,22 +1,23 @@
 <% provide(:title, @book.title) %>
-<div class="row book-show-div">
-	<div class="col-md-11 col-md-offset-1 primary-col">
-		<div class="row">
-			<div class="col-md-10 col-md-offset-1">
-				<h1><%= @book.title %></h1>
-			</div>
-
-			<div class="cover-div col-md-3 col-md-offset-1">
+<div class="row">
+	<div class="col-md-9 col-md-offset-1">
+		<div class="show-container main-content">
+			<div class="show-pic-left">
 				<% if @book.cover? %>
 					<%= image_tag @book.cover.url %>
 				<% else %>
 					<div class="default-cover">
-						<span class="author-span"><%= @book.authors.first.name %></span>
+						<span class="author-span">
+							<% if @book.authors.count == 1 %>
+								<%= @book.authors.first.name %>
+							<% end %>
+						</span>
 						<span class="title-span"><%= @book.title %></span>
 					</div>
 				<% end %>
 			</div>
-			<div class="col-md-8">
+			<div class="show-content">
+				<h1 class="show-header"><%= @book.title %></h1>
 				<p><strong>Författare:</strong>
 					<% @book.authors.each do |author| %>
 						<%= link_to author.name, author %>
@@ -40,6 +41,15 @@
 					</div>
 				<% end %>
 
+
+
+				<% if logged_in? && current_user.admin? %>
+					<%= link_to "Redigera bok", edit_book_path %>
+				<% end %>
+			</div>
+		</div>
+
+			<div class="main-content">
 				<h3>Artiklar om <%= @book.title %></h3>
 				<ul class="list-group">
 					<% @book.articles.each do |article| %>
@@ -49,11 +59,17 @@
 						</li>
 					<% end %>
 				</ul>
-
 				<% if logged_in? && current_user.admin? %>
-					<%= link_to "Redigera bok", edit_book_path %>
+					<a class="article-form-link" data-toggle="collapse" href="#book-article-form"
+						aria-expanded="false" aria-controls="book-article-form">Lägg till artikel
+						<span class="glyphicon glyphicon-chevron-right"></span>
+					</a>
+					<div class="collapse article-form" id="book-article-form">
+						<%= render 'new_article_form' %>
+					</div>
 				<% end %>
 			</div>
-		</div>
+
 	</div>
+
 </div>

@@ -1,28 +1,28 @@
-$('#latest-books-track').ready(function(){
-	setInterval(function() {
-		var left = parseInt($('#latest-books-track').css('left'));
+// $('#latest-books-track').ready(function(){
+// 	setInterval(function() {
+// 		var left = parseInt($('#latest-books-track').css('left'));
 
-		if(left < -600) {
-			// left = 10;
-			// $('#latest-books-track').css('left', left);
-		}
-		else {
-			if ($('#right').is(":hover")) {
-				$('#latest-books-track').css('left', left-4);
-			}
-		}
+// 		if(left < -600) {
+// 			// left = 10;
+// 			// $('#latest-books-track').css('left', left);
+// 		}
+// 		else {
+// 			if ($('#right').is(":hover")) {
+// 				$('#latest-books-track').css('left', left-4);
+// 			}
+// 		}
 
-		if(left > 10) {
-			// left = -750;
-			// $('#latest-books-track').css('left', left);
-		}
-		else {
-			if ($('#left').is(":hover")) {
-				$('#latest-books-track').css('left', left+4);
-			}
-		}
-	}, 10);
-});
+// 		if(left > 10) {
+// 			// left = -750;
+// 			// $('#latest-books-track').css('left', left);
+// 		}
+// 		else {
+// 			if ($('#left').is(":hover")) {
+// 				$('#latest-books-track').css('left', left+4);
+// 			}
+// 		}
+// 	}, 10);
+// });
 
 
 $('#latest-books-track').ready(function(){
@@ -51,8 +51,6 @@ $('#latest-books-track').ready(function(){
 
 
 $('.article_form').ready(function(){
-	console.log("Hej")
-
 	$('.article-form-link').click(function(){
 		var span = $('.glyphicon');
 
@@ -65,16 +63,24 @@ $('.article_form').ready(function(){
 			span.addClass('glyphicon-chevron-right')
 		}
 	});
-
-
-	// var article_form_div = $('.article_form')
-
-	// if ($('#author-article-form').hasClass('article-form collapse in')) {
-	// 	console.log("if");
-	// 	glyphicon_span.toggleClass('glyphicon glyphicon-arrow-down');
-	// }
-	// else {
-	// 	console.log("else");
-	// }
 });
+
+$("#authors a.add_fields").
+  data("association-insertion-position", 'before').
+  data("association-insertion-node", 'this');
+
+$('#authors').on('cocoon:after-insert',
+     function() {
+         $(".authorship-fields a.add_fields").
+             data("association-insertion-position", 'before').
+             data("association-insertion-node", 'this');
+         $('.authorship-fields').on('cocoon:after-insert',
+              function() {
+                $(this).children("#author_from_list").remove();
+                $(this).children("a.add_fields").hide();
+              });
+});
+
+
+
 

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     get 'books/new'
     get 'books/edit'
     get 'books/delete'
+    get 'books/add_author_path'
 
     # Author
     get 'authors/index'
@@ -42,6 +43,8 @@ Rails.application.routes.draw do
 
 
 
+
+
     # get     'articles/destroy'
 
     # The priority is based upon order of creation: first created -> highest priority.
@@ -64,9 +67,18 @@ Rails.application.routes.draw do
             get 'search'
         end
 
-        collection do
-            get 'latest'
-        end
+
+        # collection do
+        #     get 'genre'
+        # end
+
+
+
+        resource :articles
+
+        # collection do
+        #     get 'latest'
+        # end
     end
 
     resources :authors do

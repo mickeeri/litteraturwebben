@@ -17,7 +17,7 @@
 	<%# Remove this later %>
 	<% if false %>
 	<div id='articles'>
-		<%= f.fields_for :articles do |article| %>
+		<%= f.simple_fields_for :articles do |article| %>
 			<%= render 'articles/article_fields', :f => article %>
 		<% end %>
 

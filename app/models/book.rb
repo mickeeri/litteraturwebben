@@ -5,10 +5,19 @@ class Book < ActiveRecord::Base
 
     # Relationships
     belongs_to :genre
-    has_many :authorships, foreign_key: :book_id, dependent: :destroy
-    has_many :authors, through: :authorships, source: :author
+    #has_many :authorships, foreign_key: :book_id, dependent: :destroy
+    #has_many :authors, through: :authorships, source: :author
+
+    # Cocoon setup
+    has_many :authorships, :class_name => 'Authorship'
+    has_many :authors, :through => :authorships, :class_name => 'Author'
+    accepts_nested_attributes_for :authors
+    accepts_nested_attributes_for :authorships, :allow_destroy => true
+
     has_many :articles, dependent: :destroy
-    accepts_nested_attributes_for :authorships, reject_if: :all_blank, allow_destroy: true
+    #accepts_nested_attributes_for :authors
+    #accepts_nested_attributes_for :authorships
+    # accepts_nested_attributes_for :authorships, reject_if: :all_blank, allow_destroy: true
     accepts_nested_attributes_for :articles, :reject_if => :all_blank, :allow_destroy => true
     # http://stackoverflow.com/questions/27459269/rails-4-collection-select-multiple-nested-attributes-not-saving-properly
 
