@@ -1,0 +1,14 @@
+.nested-fields.new-author-fields.well
+	= render 'shared/error_messages', object: f.object
+	h3 Skapa ny författare
+	.form-group
+		= f.label :name, "Namn på författare"
+		= f.text_field :name, class: 'form-control'
+
+	.form-group
+		= f.label :about, "Om författare"
+		= f.text_area :about, class: 'form-control'
+
+	.form-group
+		= f.label :portrait, "Ladda upp författarbild"
+		= f.file_field :portrait, accept: 'image/jpeg,image/gif,image/png'

@@ -625,9 +625,31 @@ footer ul li {
   }
 }
 
-.author-fields {
-    border: 1px dotted $gray-medium-light;
-    padding: 20px;
+.authorship-fields {
+
+    select {
+        width: 100%;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .new-author-fields {
+        // border: 1px dotted $gray-medium-light;
+        padding: 20px;
+    }
+
+    .remove-author {
+        background: #F2DEDE;
+        float: right;
+    }
+
+    .form {
+        margin-bottom: 10px;
+        border-bottom: 1px dotted $gray-medium-light;
+        border-top: 1px dotted $gray-medium-light;
+        padding: 10px 0;
+    }
+
 }
 
 /* Home page */

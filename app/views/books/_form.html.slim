@@ -1,0 +1,91 @@
+= simple_form_for @book, html: { multipart: true } do |f|
+	= render 'shared/error_messages', object: f.object
+
+	.form-group
+		= f.label :title, "Titel"
+		= f.text_field :title, class: 'form-control'
+
+	#authors.form-group
+		= f.simple_fields_for :authorships do |authorship|
+			= render 'authorship_fields', :f => authorship
+		= link_to_add_association 'Lägg till författare', f, :authorships
+
+	.form-group
+		= f.label :yearofpub, "Utgivningsår"
+		= f.number_field :yearofpub, class: 'form-control'
+
+	.form-group
+		= f.label :about, "Beskrivning"
+		= f.text_area :about, class: "form-control"
+
+	.form-group
+		= f.label :genre_id, "Välj genre"
+		= f.collection_select(:genre_id, Genre.all, :id, :genre,{}, {:class => 'form-control'})
+
+
+	/ <div id='articles'>
+	/ 	<%#= f.fields_for :articles do |article| %>
+	/ 		<%#= render 'articles/article_fields', :f => article %>
+	/ 	<%# end %>
+
+	/ 	<div class="links">
+	/ 		<span class="glyphicon glyphicon-plus"></span>
+	/ 		<%#= link_to_add_association 'Lägg till artikel', f, :articles, :partial => 'articles/article_fields' %>
+	/ 	</div>
+	/ </div>
+
+
+	.upload-edit-field.form-group
+		= image_tag(@book.cover.url, class: "thumbnail small-thumb") if @book.cover?
+		= f.label :cover, "Ladda upp omslagsbild"
+		= f.file_field :cover, accept: 'image/jpeg,image/gif,image/png', type: "file"
+		= f.hidden_field :cover_cache
+		- if @book.cover?
+			label
+				= f.check_box :remove_cover
+				Ta bort omslagsbild
+
+	.upload-edit-field.form-group
+		p = @book.pdf if @book.pdf?
+		= f.label :pdf, "Ladda upp Pdf-fil"
+		= f.file_field :pdf, accept: 'application/pdf', type: "file"
+		= f.hidden_field :pdf_cache
+		- if @book.pdf?
+			label
+				= f.check_box :remove_pdf
+				Ta bort pdf-dokument
+
+	.upload-edit-field.form-group
+		p= @book.epub if @book.epub
+		= f.label :epub, "Ladda upp Epub-fil"
+		= f.file_field :epub, accept: 'application/epub+zip', type: "file"
+		= f.hidden_field :epub_cache
+		- if @book.epub?
+			label
+				= f.check_box :remove_epub
+
+	= f.submit "Spara", class: "btn btn-primary btn-block"
+
+javascript:
+	$('#book_cover').bind('change', function() {
+		var size_in_megabytes = this.files[0].size/1024/1024;
+		if (size_in_megabytes > 5) {
+			alert('Den största tillåtna filstorleken är 5MB. Var vänlig välj en mindre fil.')
+		}
+	});
+
+	$('#book_pdf').bind('change', function() {
+		var size_in_megabytes = this.files[0].size/1024/1024;
+		if (size_in_megabytes > 20) {
+			alert('Den största tillåtna filstorleken är 20MB. Var vänlig välj en mindre fil.')
+		}
+	});
+
+	$('#book_epub').bind('change', function() {
+		var size_in_megabytes = this.files[0].size/1024/1024;
+		if (size_in_megabytes > 8) {
+			alert('Den största tillåtna filstorleken är 8MB. Var vänlig välj en mindre fil.')
+		}
+	});
+
+/ Lägg till portrait här också.

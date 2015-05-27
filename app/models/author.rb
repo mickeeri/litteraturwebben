@@ -4,15 +4,17 @@ class Author < ActiveRecord::Base
 	mount_uploader :portrait, PortraitUploader
 
 	# Relationships
-    has_many :authorships, foreign_key: :author_id, dependent: :destroy
-    has_many :books, through: :authorships, source: :book
+    # has_many :authorships, foreign_key: :author_id, dependent: :destroy
+    # has_many :books, through: :authorships, source: :book
+    has_many :authorships
+    has_many :books, through: :authorships
     has_many :articles, dependent: :destroy
     accepts_nested_attributes_for :articles, :reject_if => :all_blank, :allow_destroy => true
 
     # Validation
-    # validates :name, presence: true, length: { maximum: 50 }
-    # validates :about, length: { maximum: 500 }
-    # validate :portrait_size
+    validates :name, presence: true, length: { maximum: 50 }
+    validates :about, length: { maximum: 1000 }
+    validate :portrait_size
 
     private
     	# Validates portrait picture size.

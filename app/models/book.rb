@@ -10,9 +10,10 @@ class Book < ActiveRecord::Base
 
     # Cocoon setup
     has_many :authorships, :class_name => 'Authorship'
-    has_many :authors, :through => :authorships, :class_name => 'Author'
-    accepts_nested_attributes_for :authors
-    accepts_nested_attributes_for :authorships, :allow_destroy => true
+    has_many :authors, :through => :authorships
+    accepts_nested_attributes_for :authors, :reject_if => :no_author
+
+    accepts_nested_attributes_for :authorships, :allow_destroy => true, :reject_if => :all_blank
 
     has_many :articles, dependent: :destroy
     #accepts_nested_attributes_for :authors
@@ -32,6 +33,7 @@ class Book < ActiveRecord::Base
       numericality: { only_integer: true, greater_than: 0, less_than: 2050 }
     validates :genre_id, presence: true
     validates :about, length: { maximum: 500 }
+    validates :authorships, presence: { message: " Välj minst en författare"}
 
     # Custom validator for file size.
     validate :picture_size
@@ -57,5 +59,9 @@ class Book < ActiveRecord::Base
             if epub.size > 10.megabytes
                 errors.add(:epub, "måste vara mindre än 10MB.")
             end
+        end
+
+        def no_author(attributes)
+            attributes[:id].blank?
         end
 end
