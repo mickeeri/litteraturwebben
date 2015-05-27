@@ -25,29 +25,25 @@
 // });
 
 
-$('#latest-books-track').ready(function(){
 
-	var left = parseInt($('#latest-books-track').css('left'));
 
-		$('#test').on("swipe", function(){
+// $('#latest-books-track').ready(function(){
+// 	var left = parseInt($('#latest-books-track').css('left'));
 
-		$('#latest-books-track').css('left', left-40);
+// 	$('#right').click(function(){
+// 		$('#latest-books-track').css('left', left+4);
+// 	});
 
-	});
+// 	$('#right').click(function(){
+// 		$('#latest-books-track').css('left', left-4);
+// 	});
+// });
 
-	$('#test').on("swipeleft", function(){
+// $(document).ready(function(){
+// 	console.log("hallå!");
 
-		$('#latest-books-track').css('left', left+20);
-
-	});
-
-	$('#latest-books-track').on("swiperight", function(){
-
-	$('#latest-books-track').css('left', left-20);
-	alert("Swiperight");
-
-	});
-});
+// 	$('.select optional').addClass('form-control');
+// });
 
 
 $('.article_form').ready(function(){
@@ -65,20 +61,51 @@ $('.article_form').ready(function(){
 	});
 });
 
-$("#authors a.add_fields").
-  data("association-insertion-position", 'before').
-  data("association-insertion-node", 'this');
+// For cocoon form
+// $("#authors a.add_fields").
+//   data("association-insertion-position", 'before').
+//   data("association-insertion-node", 'this');
 
-$('#authors').on('cocoon:after-insert',
-     function() {
-         $(".authorship-fields a.add_fields").
-             data("association-insertion-position", 'before').
-             data("association-insertion-node", 'this');
-         $('.authorship-fields').on('cocoon:after-insert',
-              function() {
-                $(this).children("#author_from_list").remove();
-                $(this).children("a.add_fields").hide();
-              });
+// $('#authors').on('cocoon:after-insert',
+//      function() {
+//          $(".authorship-fields a.add_fields").
+//              data("association-insertion-position", 'before').
+//              data("association-insertion-node", 'this');
+//          $('.authorship-fields').on('cocoon:after-insert',
+//               function() {
+//                 $(this).children("#author_from_list").remove();
+//                 $(this).children("a.add_fields").hide();
+//               });
+// 	});
+
+$(document).ready(function() {
+    $("#authors a.add_fields").
+      data("association-insertion-position", 'before').
+      data("association-insertion-node", 'this');
+
+    $('#authors').bind('cocoon:after-insert',
+         function(e, author) {
+             console.log('inserting new author ...');
+             $(".authorship-fields a.add-author").
+                 data("association-insertion-position", 'after').
+                 data("association-insertion-node", 'this');
+             $(this).find('.authorship-fields').bind('cocoon:after-insert',
+                  function() {
+                    console.log('insert new author ...');
+                    console.log($(this));
+                    $(this).find(".author_from_list").remove();
+                    $(this).find("a.add_fields").hide();
+                  });
+         });
+
+    $('.authorship-fields').bind('cocoon:after-insert',
+        function(e) {
+            console.log('replace OLD author ...');
+            e.stopPropagation();
+            console.log($(this));
+            $(this).find(".author_from_list").remove();
+            $(this).find("a.add_fields").hide();
+        });
 });
 
 

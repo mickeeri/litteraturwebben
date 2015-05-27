@@ -1,5 +1,9 @@
 .nested-fields.authorship-fields
 	#author_from_list
-		= f.association :author, :collection => Author.order(:name), :prompt => 'Välj en existerande författare'
-	= link_to_add_association 'eller skapa en ny författare', f, :author
-	= link_to_remove_association "ta bort författare", f
+		= f.association :author, :collection => Author.order(:name), :prompt => 'Välj en existerande författare...'
+	= link_to_add_association '...eller skapa en ny författare', f, :author
+	= link_to_remove_association f, class: 'remove-author btn btn-default btn-xs' do
+		.glyphicon.glyphicon-remove
+
+javascript:
+	$('.select optional').addClass('form-control');

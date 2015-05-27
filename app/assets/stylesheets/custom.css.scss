@@ -307,38 +307,38 @@ footer ul li {
 }
 
 /* Books index */
-.bookssss {
-  list-style: none;
-  margin-right: 40px;
+// .bookssss {
+//   list-style: none;
+//   margin-right: 40px;
 
-  li {
-	padding: 10px;
-	overflow: auto;
-	border-bottom: 1px dotted $gray-medium-light;
-    position: relative;
+//   li {
+// 	padding: 10px;
+// 	overflow: auto;
+// 	border-bottom: 1px dotted $gray-medium-light;
+//     position: relative;
 
-	// h3 {
-	//   font-weight: 600;
- //      margin-bottom: 5px;
+// 	// h3 {
+// 	//   font-weight: 600;
+//  //      margin-bottom: 5px;
 
-      // a {
-      //   color: $gray;
-      // }
-	// }
+//       // a {
+//       //   color: $gray;
+//       // }
+// 	// }
 
-	img {
-	  float: left;
-	  margin: 0 15px 0 0;
-	}
-  }
+// 	img {
+// 	  float: left;
+// 	  margin: 0 15px 0 0;
+// 	}
+//   }
 
-  .btn {
-    bottom: 10px;
-    right: 10px;
-    position: absolute;
-  }
+//   .btn {
+//     bottom: 10px;
+//     right: 10px;
+//     position: absolute;
+//   }
 
-}
+// }
 
 .new-book-link {
     text-align: right;
@@ -625,52 +625,52 @@ footer ul li {
   }
 }
 
+.author-fields {
+    border: 1px dotted $gray-medium-light;
+    padding: 20px;
+}
+
 /* Home page */
-.latest-books {
+.latest-content {
+    display: inline-block;
+    padding-left: 6%;
+}
 
-    width: 90%;
-    margin: 0 auto;
+.books {
 
-    h2 {
-        margin-left: 5%;
-    }
-
-    ul {
-        width: inherit;
-        margin: 0 auto;
-    }
-
-    img {
-        vertical-align: baseline;
-    }
-
-    .default-cover {
+    .book {
+        //float: left;
+        display: inline-block;
         margin: 0;
+        margin-right: 10px;
+        margin-bottom: 20px;
+        padding: 0;
+        border: 0;
+        height: 280px;
+        // display: inline-block;
+        padding: 10px;
+        background-color: #ccc;
+        vertical-align: top;
+        // border-radius: 4px;
+        //margin: 0 20px;
+
+        .caption {
+            display: block;
+            text-align: center;
+        }
+        .cover-div {
+
+            width: 150px;
+            height: 240px;
+
+            img, .default-cover {
+                max-width: 100%;
+                max-height: 100%;
+            }
+        }
     }
 }
 
-.thumbnail {
-    // height: 300px;
-
-    // .caption {
-    //     position: absolute;
-    //     bottom: 30px;
-    // }
-
-    img {
-        // max-width: 200px;
-        // max-height: 250px;
-    }
-
-    h3 {
-        // text-align: center;
-        // bottom: 60px;
-        // position: absolute;
-        // font-size: 1.5em;
-
-    }
-
-}
 
 .aside-col {
     @media (max-width: 992px) {

@@ -1,35 +1,40 @@
-<%# View for showning one book. %>
+<div class="books">
+	<% @books.each do |book| %>
+		<div class="book">
+			<div class="cover-div">
+				<%= link_to(book) do %>
+					<%# Display cover pic if there is one. %>
+					<% if book.cover? %>
+						<%= image_tag book.cover.url %>
+					<% else %>
+						<div class="default-cover">
+							<span class="author-span">
+								<% if book.authors.count == 1 %>
+									<%= book.authors.first.name %>
+								<% end %>
+							</span>
+							<span class="title-span"><%= book.title %></span>
+						</div>
+					<% end %>
+				<% end %>
+			</div>
+			<div class="caption">
+				<%= book.title %>
+			</div>
+		</div>
+	<% end %>
+</div>
+
+
+<!-- <%# View for showning one book. %>
 <div class="slider books">
 	<div class="left" id="left">
-		<%= image_tag("icons/left.png") %>
+		<%#= image_tag("icons/left.png") %>
 	</div>
 	<div class="right" id="right">
-		<%= image_tag("icons/right.png") %>
+		<%#= image_tag("icons/right.png") %>
 	</div>
 	<div class="track" id="latest-books-track">
-		<% @books.each do |book| %>
-			<div class="book">
-				<div class="cover-div">
-					<%= link_to(book) do %>
-						<%# Display cover pic if there is one. %>
-						<% if book.cover? %>
-							<%= image_tag book.cover.url %>
-						<% else %>
-							<div class="default-cover">
-								<span class="author-span">
-									<% if book.authors.count == 1 %>
-										<%= book.authors.first.name %>
-									<% end %>
-								</span>
-								<span class="title-span"><%= book.title %></span>
-							</div>
-						<% end %>
-					<% end %>
-				</div>
-				<div class="caption">
-					<%= book.title %>
-				</div>
-			</div>
-		<% end %>
+
 	</div>
-</div>
+</div> -->
