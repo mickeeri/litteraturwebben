@@ -3,15 +3,17 @@ class Book < ActiveRecord::Base
     # Make searchable
     searchkick
 
+    validates_associated :authorships
+
     # Relationships
     belongs_to :genre
     #has_many :authorships, foreign_key: :book_id, dependent: :destroy
     #has_many :authors, through: :authorships, source: :author
 
     # Cocoon setup
-    has_many :authorships, :class_name => 'Authorship'
+    has_many :authorships, :class_name => 'Authorship', :dependent => :destroy
     has_many :authors, :through => :authorships
-    accepts_nested_attributes_for :authors, :reject_if => :no_author
+    accepts_nested_attributes_for :authors
 
     accepts_nested_attributes_for :authorships, :allow_destroy => true, :reject_if => :all_blank
 
@@ -28,11 +30,11 @@ class Book < ActiveRecord::Base
     mount_uploader :epub, EpubUploader
 
     # Validation
-    validates :title, presence: true, length: { maximum: 50 }
-    validates :yearofpub, presence: true, length: { maximum: 4 },
-      numericality: { only_integer: true, greater_than: 0, less_than: 2050 }
-    validates :genre_id, presence: true
-    validates :about, length: { maximum: 500 }
+    validates :title, presence: { message: "Titel måste anges."}, length: { maximum: 100, message: "Titel får inte överstiga 100 tecken." }
+    validates :yearofpub, presence: { message: "Utgivningsår måste anges."}, length: { maximum: 4, message: "Utgivningsår: max 4 siffror" },
+      numericality: { only_integer: true, greater_than: 0, less_than: 2050, message: "Utgivningsår ska vara en siffra mellan 0 och 2050" }
+    validates :genre_id, presence: { message: "Genre saknas"}
+    validates :about, length: { maximum: 1000, message: "Beskrivning av bok får inte överstiga 1000 tecken." }
     validates :authorships, presence: { message: " Välj minst en författare"}
 
     # Custom validator for file size.
@@ -61,7 +63,7 @@ class Book < ActiveRecord::Base
             end
         end
 
-        def no_author(attributes)
-            attributes[:id].blank?
-        end
+        # def no_author(attributes)
+        #     attributes[:id].blank?
+        # end
 end

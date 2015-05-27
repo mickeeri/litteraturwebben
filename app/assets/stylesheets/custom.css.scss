@@ -624,7 +624,7 @@ footer ul li {
     background: #0E76BC;
   }
 }
-
+// Form for author inside of book form.
 .authorship-fields {
 
     select {
@@ -649,7 +649,6 @@ footer ul li {
         border-top: 1px dotted $gray-medium-light;
         padding: 10px 0;
     }
-
 }
 
 /* Home page */
@@ -666,9 +665,8 @@ footer ul li {
         margin: 0;
         margin-right: 10px;
         margin-bottom: 20px;
-        padding: 0;
-        border: 0;
         height: 280px;
+        max-width: 170px;
         // display: inline-block;
         padding: 10px;
         background-color: #ccc;
@@ -690,6 +688,11 @@ footer ul li {
                 max-height: 100%;
             }
         }
+    }
+
+    @media (max-width: $screen-sm-min) {
+        padding: 0;
+        text-align: center;
     }
 }
 

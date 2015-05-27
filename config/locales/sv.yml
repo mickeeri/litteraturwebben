@@ -4,6 +4,7 @@ sv:
     models:
       user: "Användare"
       book: "Bok"
+      authorship: "Författare"
     attributes:
       user:
         name: "Namn"
@@ -15,7 +16,7 @@ sv:
         author: "Författare"
         yearofpub: "Utgivningsår"
         authors: "Författare"
-        authorships: "Författare:"
+        authorships: "Författare"
       author:
         name: "Namn"
         about: "Beskrivning"
@@ -25,6 +26,8 @@ sv:
         writer: "Upphovsman"
         about: "Beskrivning"
         source: "Källa"
+      authorship:
+        authorships: "Hundar"
   date:
     abbr_day_names:
     - sön
@@ -122,7 +125,7 @@ sv:
       second: Sekund
       year: År
   errors:
-    format: "%{attribute} %{message}"
+    format: "%{message}"
     messages:
       accepted: måste vara accepterad
       blank: måste anges

@@ -100,13 +100,23 @@ $(document).ready(function() {
 
     $('.authorship-fields').bind('cocoon:after-insert',
         function(e) {
-            console.log('replace OLD author ...');
+            alert('replace OLD author ...');
             e.stopPropagation();
             console.log($(this));
             $(this).find(".author_from_list").remove();
             $(this).find("a.add_fields").hide();
         });
 });
+
+
+// $("select.select").change(function () {
+//     $("select.select option").prop('disabled', false);
+//     $("select.select option:selected:not([value='0'])").each(function (i) {
+//         $("select.select option:nth-child(" + ((+this.value) + 1) + ")").prop('disabled', true)
+//     });
+// });
+
+
 
 
 
