@@ -1,5 +1,4 @@
 <% provide(:title, 'Uppdatera användare') %>
-
 <div class="row">
 	<div class="col-md-6 col-md-offset-3 primary-col">
 		<h1>Uppdatera din profil</h1>
@@ -8,25 +7,26 @@
 
 			<div class="form-group">
 					<%= f.label :name, "Namn" %>
-					<%= f.text_field :name, class: 'form_control' %>
+					<%= f.text_field :name, class: 'form-control' %>
 			</div>
 
 			<div class="form-group">
 				<%= f.label :email, "E-post" %>
-				<%= f.email_field :email, class: 'form_control' %>
+				<%= f.email_field :email, class: 'form-control' %>
 			</div>
 
 			<div class="form-group">
 				<%= f.label :password, "Lösenord" %>
-				<%= f.password_field :password, class: 'form_control' %>
+				<%= f.password_field :password, class: 'form-control' %>
 			</div>
 
 			<div class="form-group">
 				<%= f.label :password_confirmation, "Bekräfta lösenord" %>
-				<%= f.password_field :password_confirmation, class: 'form_control' %>
+				<%= f.password_field :password_confirmation, class: 'form-control' %>
 			</div>
 
 			<%= f.submit "Spara ändringar", class: "btn btn-primary" %>
+			<%= link_to "Tillbaka", :back, class: "btn btn-default" %>
 		<% end %>
 	</div>
 </div>

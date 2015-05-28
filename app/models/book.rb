@@ -34,7 +34,7 @@ class Book < ActiveRecord::Base
       numericality: { only_integer: true, greater_than: 0, less_than: 2050, message: "Utgivningsår ska vara en siffra över 0" }
     validates :genre_id, presence: { message: "Genre saknas"}
     validates :about, length: { maximum: 1000, message: "Beskrivning av bok får inte överstiga 1000 tecken." }
-    validates :authorships, presence: { message: " Välj minst en författare"}
+    #validates :authorships, presence: { message: " Välj minst en författare"}
 
     # Custom validator for file size.
     validate :picture_size

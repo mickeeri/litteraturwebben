@@ -18,37 +18,45 @@
 			</div>
 			<div class="show-content">
 				<h1 class="show-header"><%= @book.title %></h1>
-				<p><strong>Författare:</strong>
+				<p class="inline"><strong>Författare:</strong>
+					<ul class="book-author-list">
 					<% @book.authors.each do |author| %>
-						<%= link_to author.name, author %>
+						<li><%= link_to author.name, author %></li>
 					<% end %>
+					</ul>
 				</p>
 				<p><%= @book.about %></p>
 				<p><strong>Utgivningsår:</strong> <%= @book.yearofpub %></p>
 				<p><strong>Genre:</strong> <%= @book.genre.genre %></p>
 
-				<% if logged_in? && @book.pdf? %>
-					<div class="download-field">
-						<span class="glyphicon glyphicon-download"></span>
-						<%= link_to "Öppna boken som pdf-dokument", @book.pdf.url %>
-					</div>
+				<% if @book.pdf? || @book.epub? %>
+					<% if logged_in? %>
+						<% if @book.pdf? %>
+							<div class="download-field">
+								<span class="glyphicon glyphicon-download"></span>
+								<%= link_to "Öppna boken som pdf-dokument", @book.pdf.url %>
+							</div>
+						<% end %>
+
+						<% if @book.epub? %>
+							<div class="download-field">
+								<span class="glyphicon glyphicon-download"></span>
+								<%= link_to "Hämta boken som Epub-fil", @book.epub.url %>
+							</div>
+						<% end %>
+					<% else %>
+						<%= link_to "Logga in ", login_path %><p class="inline">för att ladda ner e-boken.</p>
+					<% end %>
+				<% else %>
+					<em class="block">Boken saknar uppladdad e-bok.</em>
 				<% end %>
-
-				<% if logged_in? && @book.epub? %>
-					<div class="download-field">
-						<span class="glyphicon glyphicon-download"></span>
-						<%= link_to "Hämta boken som Epub-fil", @book.epub.url %>
-					</div>
-				<% end %>
-
-
-
 				<% if logged_in? && current_user.admin? %>
-					<%= link_to "Redigera bok", edit_book_path %>
+					<%= link_to "Redigera bok", edit_book_path, class: "edit-book-link" %>
 				<% end %>
 			</div>
+			<div class="clearfix"></div>
 		</div>
-
+		<% if @book.articles.count > 0 || logged_in? && current_user.admin? %>
 			<div class="main-content">
 				<h3>Artiklar om <%= @book.title %></h3>
 				<ul class="list-group">
@@ -69,7 +77,6 @@
 					</div>
 				<% end %>
 			</div>
-
+		<% end %>
 	</div>
-
 </div>

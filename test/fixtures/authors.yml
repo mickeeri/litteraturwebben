@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 author1:
-  name: Nisse Författare
+  name: Astrind Lindgren
   about: Lorem ipsum
 
-two:
-  name: MyString
-  about: MyText
+author2:
+  name: Karin Boye
+  about: Lorem ipsum

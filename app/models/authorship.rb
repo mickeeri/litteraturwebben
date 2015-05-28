@@ -1,8 +1,8 @@
 class Authorship < ActiveRecord::Base
 	belongs_to :book
 	belongs_to :author
-	# validates :author_id, presence: { message: "Objektet saknar koppling till författare" }
-	# validates :book_id, presence: true
+	# validates :author_id, presence: { scope: :book_id }
+	# validates :book_id, presence: { scope: :author_id }
 	# validates_associated :author
 	accepts_nested_attributes_for :author
 

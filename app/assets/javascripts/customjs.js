@@ -46,7 +46,7 @@
 // });
 
 
-$('.article_form').ready(function(){
+$('.articles').ready(function(){
 	$('.article-form-link').click(function(){
 		var span = $('.glyphicon');
 

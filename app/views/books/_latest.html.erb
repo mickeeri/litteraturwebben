@@ -20,8 +20,10 @@
 			<div class="caption">
 				<h3><%= book.title %></h3>
 				<h4>
-					<% if book.authors.count == 1 %>
+					<% if book.authors.count == 1%>
 						<%= book.authors.first.name %>
+					<% elsif book.authors.count == 2 %>
+						<%= book.authors.first.name %>, <%= book.authors.second.name %>
 					<% end %>
 				</h4>
 			</div>

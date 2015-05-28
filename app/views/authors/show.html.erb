@@ -3,40 +3,40 @@
 	<div class="main col-md-9 col-md-offset-1">
 		<div class="show-container main-content">
 			<div class="show-pic-left">
-				<%= image_tag(@author.portrait.url) %>
+				<%= image_tag(@author.portrait.url) if @author.portrait?  %>
 			</div>
 			<div class="show-content">
 				<h1 class="show-header"><%= @author.name %></h1>
 				<h3>Om författaren</h3>
 				<p><%= @author.about %></p>
-
-
 				<% if logged_in? && current_user.admin? %>
 					<%= link_to "Redigera författare", edit_author_path %>
 				<% end %>
 			</div>
 			<div class="clearfix"></div>
 		</div>
-		<div class="main-content articles">
-				<h3>Artiklar om <%= @author.name %></h3>
-				<ul class="list-group">
-					<% @author.articles.each do |article| %>
-						<li class="list-group-item">
-							<%= article.writer %>, <em><%= article.title %></em>, <%= article.source %>, <%= article.year %>
-							<%= link_to " Läs>>", article.url, :target => "_blank" if article.url? %>
-						</li>
-					<% end %>
-				</ul>
-			<% if logged_in? && current_user.admin? %>
-				<a class="article-form-link" data-toggle="collapse" href="#author-article-form"
-					aria-expanded="false" aria-controls="author-article-form">Lägg till artikel
-					<span class="glyphicon glyphicon-chevron-right"></span></a>
-				<div class="collapse article-form" id="author-article-form">
-					<h3>Artikel</h3>
-					<%= render 'new_article_form' %>
-				</div>
-			<% end %>
-		</div>
+		<% if @author.articles.count > 0 || logged_in? && current_user.admin? %>
+			<div class="main-content articles">
+					<h3>Artiklar om <%= @author.name %></h3>
+					<ul class="list-group">
+						<% @author.articles.each do |article| %>
+							<li class="list-group-item">
+								<%= article.writer %>, <em><%= article.title %></em>, <%= article.source %>, <%= article.year %>
+								<%= link_to " Läs>>", article.url, :target => "_blank" if article.url? %>
+							</li>
+						<% end %>
+					</ul>
+				<% if logged_in? && current_user.admin? %>
+					<a class="article-form-link" data-toggle="collapse" href="#author-article-form"
+						aria-expanded="false" aria-controls="author-article-form">Lägg till artikel
+						<span class="glyphicon glyphicon-chevron-right"></span></a>
+					<div class="collapse article-form" id="author-article-form">
+						<h3>Artikel</h3>
+						<%= render 'new_article_form' %>
+					</div>
+				<% end %>
+			</div>
+		<% end %>
 		<% if @author.books.count > 0 %>
 			<div class="main-content titles">
 				<h3>Titlar</h3>

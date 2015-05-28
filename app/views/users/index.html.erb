@@ -1,14 +1,21 @@
 <% provide(:title, 'Alla användare') %>
-<div class="primary-div">
-	<h1>Alla användare</h1>
-
-	<%# Using gems to paginate %>
+<div class="row pagination-row">
 	<%= will_paginate @posts, :previous_label => '<<', :next_label => '>>' %>
+</div>
+<div class="row index">
+	<div class="col-md-8 col-md-offset-2 main-content">
+		<h1>Alla användare</h1>
 
-	<ul class="users">
-		<%# Iterates trough users with _user.html.erb %>
-		<%= render @users %>
-	</ul>
+		<%# Using gems to paginate %>
+		<%# will_paginate @posts, :previous_label => '<<', :next_label => '>>' %>
 
+		<ul class="users">
+			<%# Iterates trough users with _user.html.erb %>
+			<%= render @users %>
+		</ul>
+	</div>
+
+</div>
+<div class="row pagination-row">
 	<%= will_paginate @posts, :previous_label => '<<', :next_label => '>>' %>
 </div>

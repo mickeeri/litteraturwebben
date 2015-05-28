@@ -20,8 +20,8 @@ class AuthorTest < ActiveSupport::TestCase
 		assert_not @author.valid?
 	end
 
-	test "Test 1.3.4: about should be at most 500 charachters" do
-		@author.about = "a" * 504
+	test "Test 1.3.4: about should be at most 1000 charachters" do
+		@author.about = "a" * 1004
 		assert_not @author.valid?
 	end
 end
