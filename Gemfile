@@ -20,6 +20,7 @@ gem 'bootstrap-sass',       '3.2.0.0'
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
+gem 'jquery-turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -71,9 +72,9 @@ group :test do
 end
 
 group :production do
-  gem 'pg',             '0.17.1'
-  gem 'rails_12factor', '0.0.2'
-  gem 'puma', 			'2.11.1'
+  gem 'pg',             '0.18.2'
+  gem 'rails_12factor', '0.0.3'
+  gem 'puma', 			'2.11.3'
   gem 'elasticsearch-model'
   gem 'elasticsearch-rails'
   gem 'bonsai-elasticsearch-rails'
