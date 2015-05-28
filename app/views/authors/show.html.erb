@@ -15,8 +15,9 @@
 					<%= link_to "Redigera författare", edit_author_path %>
 				<% end %>
 			</div>
+			<div class="clearfix"></div>
 		</div>
-		<div class="main-content">
+		<div class="main-content articles">
 				<h3>Artiklar om <%= @author.name %></h3>
 				<ul class="list-group">
 					<% @author.articles.each do |article| %>
@@ -36,48 +37,11 @@
 				</div>
 			<% end %>
 		</div>
-
-	</div>
-	<div class="clearfix">
-	</div>
-</div>
-<% if @author.books.count > 0 %>
-<div class="row">
-	<div class="col-md-9 col-md-offset-1">
-		<div class="author-titles main-content">
-			<h3 class="upcase">Titlar</h3>
-			<div class="books">
-				<% @author.books.each do |book| %>
-					<div class="book">
-						<div class="cover-div">
-							<%= image_tag(book.cover.url) %>
-						</div>
-						<div class="caption">
-							<%= link_to book.title, book %>
-						</div>
-					</div>
-				<% end %>
+		<% if @author.books.count > 0 %>
+			<div class="main-content titles">
+				<h3>Titlar</h3>
+				<%= render 'books/latest' %>
 			</div>
-		</div>
+		<% end %>
 	</div>
 </div>
-<% end %>
-
-
-
-
-
-<!-- <div class="row author-show-div primary-div">
-	<div class="col-md-8 col-md-offset-2">
-		<h1 class="upcase"><%= @author.name %></h1>
-		<p><%= @author.about %></p>
-	</div>
-
-
-	<div class="col-md-8 col-md-offset-2">
-		<h3 class="upcase"><%= "Artiklar om " + @author.name unless @author.articles.empty? %></h3>
-
-
-
-	</div>
-</div> -->

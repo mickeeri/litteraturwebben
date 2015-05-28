@@ -70,9 +70,10 @@ class BooksController < ApplicationController
 
         params.require(:book).permit(
             :title, :yearofpub, :about, :genre_id, :cover, :remove_cover, :pdf, :remove_pdf, :epub, :remove_epub,
+            :cover_cache, :pdf_cache, :epub_cache,
             articles_attributes: [:id, :title, :writer, :year, :source, :about, :url, :_destroy],
             authorships_attributes: [:id, :_destroy, :book_id, :author_id,
-                author_attributes: [:id, :_destroy, :name, :about, :portrait]]
+                author_attributes: [:id, :_destroy, :name, :about, :portrait, :remove_portrait, :portrait_cache]]
             )
     end
 

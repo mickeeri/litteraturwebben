@@ -1,27 +1,32 @@
 <div class="books">
 	<% @books.each do |book| %>
+		<%= link_to(book) do %>
 		<div class="book">
 			<div class="cover-div">
-				<%= link_to(book) do %>
-					<%# Display cover pic if there is one. %>
-					<% if book.cover? %>
-						<%= image_tag book.cover.url %>
-					<% else %>
-						<div class="default-cover">
-							<span class="author-span">
-								<% if book.authors.count == 1 %>
-									<%= book.authors.first.name %>
-								<% end %>
-							</span>
-							<span class="title-span"><%= book.title %></span>
-						</div>
-					<% end %>
+				<%# Display cover pic if there is one. %>
+				<% if book.cover? %>
+					<%= image_tag book.cover.url %>
+				<% else %>
+					<div class="default-cover">
+						<span class="author-span">
+							<% if book.authors.count == 1 %>
+								<%= book.authors.first.name %>
+							<% end %>
+						</span>
+						<span class="title-span"><%= book.title %></span>
+					</div>
 				<% end %>
 			</div>
 			<div class="caption">
-				<%= book.title %>
+				<h3><%= book.title %></h3>
+				<h4>
+					<% if book.authors.count == 1 %>
+						<%= book.authors.first.name %>
+					<% end %>
+				</h4>
 			</div>
 		</div>
+		<% end %>
 	<% end %>
 </div>
 

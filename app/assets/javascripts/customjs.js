@@ -84,7 +84,7 @@ $(document).ready(function() {
       data("association-insertion-node", 'this');
 
     $('#authors').bind('cocoon:after-insert',
-         function(e, author) {
+        function(e, author) {
              console.log('inserting new author ...');
              $(".authorship-fields a.add-author").
                  data("association-insertion-position", 'after').
@@ -100,7 +100,7 @@ $(document).ready(function() {
 
     $('.authorship-fields').bind('cocoon:after-insert',
         function(e) {
-            alert('replace OLD author ...');
+            console.log('replace OLD author ...');
             e.stopPropagation();
             console.log($(this));
             $(this).find(".author_from_list").remove();
@@ -109,12 +109,68 @@ $(document).ready(function() {
 });
 
 
-// $("select.select").change(function () {
-//     $("select.select option").prop('disabled', false);
-//     $("select.select option:selected:not([value='0'])").each(function (i) {
-//         $("select.select option:nth-child(" + ((+this.value) + 1) + ")").prop('disabled', true)
+// $("select.author-options").change(function () {
+//     $("select.author-options option").prop('disabled', false);
+//     $("select.author-options option:selected:not([value='0'])").each(function (i) {
+//         $("select.author-options option:nth-child(" + ((+this.value) + 1) + ")").prop('disabled', true)
 //     });
 // });
+
+
+// Upload fileds
+$('#new_book').ready(function(){
+    $('#book_cover').bind('change', function() {
+       var size_in_megabytes = this.files[0].size/1024/1024;
+       if (size_in_megabytes > 5) {
+           alert('Den största tillåtna filstorleken är 5MB. Var vänlig välj en mindre fil.')
+       }
+   });
+
+   $('#book_pdf').bind('change', function() {
+       var size_in_megabytes = this.files[0].size/1024/1024;
+       if (size_in_megabytes > 20) {
+           alert('Den största tillåtna filstorleken är 20MB. Var vänlig välj en mindre fil.')
+       }
+   });
+
+   $('#book_epub').bind('change', function() {
+       var size_in_megabytes = this.files[0].size/1024/1024;
+       if (size_in_megabytes > 8) {
+           alert('Den största tillåtna filstorleken är 8MB. Var vänlig välj en mindre fil.')
+       }
+   });
+});
+
+$('.portrait-upload').ready(function(){
+    $('#book_cover').bind('change', function() {
+        var size_in_megabytes = this.files[0].size/1024/1024;
+        if (size_in_megabytes > 5) {
+            alert('Den största tillåtna filstorleken är 5MB. Var vänlig välj en mindre fil.')
+        }
+    });
+});
+
+// Function that disables selected options in other dropdowns.
+// Source: http://stackoverflow.com/questions/25423108/disable-select-option-in-group-of-select-dropdowns-when-option-is-selected
+$('#new_book').ready(function(){
+    $('#authors').on('change', '.author-options', function () {
+        // Get the selected options of all positions
+        var allSelected = $(".author-options").map(function () {
+            return $(this).val();
+        }).get();
+
+        // set all enabled
+        $(".author-options option").removeAttr("disabled");
+
+        // Disable selected options in other positions
+        $(".author-options option:not(:selected):not([value='0'])").each(function () {
+            if ($.inArray($(this).val(), allSelected) != -1) {
+                $(this).attr('disabled', true);
+            }
+        });
+    });
+});
+
 
 
 

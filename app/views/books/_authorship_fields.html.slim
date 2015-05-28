@@ -2,7 +2,9 @@
 	.form
 		= link_to_remove_association f, class: 'remove-author btn btn-default btn-xs' do
 			.glyphicon.glyphicon-remove
-		.author_from_list#author_from_list
+		.author_from_list
 			= f.association :author, :collection => Author.order(:name), :prompt => 'Välj en existerande författare...', :label => 'Författare', input_html: { class: "form-control author-options"}
 		= link_to_add_association '...eller skapa en ny författare', f, :author, class: 'add-author'
+
+
 

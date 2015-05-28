@@ -1,4 +1,4 @@
-= simple_form_for @book, html: { multipart: true } do |f|
+= form_for @book, html: { multipart: true } do |f|
 	= render 'shared/error_messages', object: f.object
 
 	.form-group
@@ -65,33 +65,3 @@
 				= f.check_box :remove_epub
 
 	= f.submit "Spara", class: "btn btn-primary btn-block"
-
-javascript:
-	$('#book_cover').bind('change', function() {
-		var size_in_megabytes = this.files[0].size/1024/1024;
-		if (size_in_megabytes > 5) {
-			alert('Den största tillåtna filstorleken är 5MB. Var vänlig välj en mindre fil.')
-		}
-	});
-
-	$('#book_pdf').bind('change', function() {
-		var size_in_megabytes = this.files[0].size/1024/1024;
-		if (size_in_megabytes > 20) {
-			alert('Den största tillåtna filstorleken är 20MB. Var vänlig välj en mindre fil.')
-		}
-	});
-
-	$('#book_epub').bind('change', function() {
-		var size_in_megabytes = this.files[0].size/1024/1024;
-		if (size_in_megabytes > 8) {
-			alert('Den största tillåtna filstorleken är 8MB. Var vänlig välj en mindre fil.')
-		}
-	});
-
-	$(document).ready(function(){
-		$("select").change(function(){
-			$("select").not(this).find("option[value="+$(this).val() + "]").attr('disabled', true);
-		});
-	})
-
-/ Lägg till portrait här också.

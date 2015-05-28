@@ -10,25 +10,10 @@
 		<%= f.text_area :about, class: 'form-control' %>
 	</div>
 
-	<div class="form-group">
+	<div class="form-group portrait-upload">
 		<%= f.label :portrait, "Ladda upp författarbild" %>
 		<%= f.file_field :portrait, accept: 'image/jpeg,image/gif,image/png' %>
 	</div>
-	<%# Remove this later %>
-	<% if false %>
-	<div id='articles'>
-		<%= f.simple_fields_for :articles do |article| %>
-			<%= render 'articles/article_fields', :f => article %>
-		<% end %>
-
-		<div class="links">
-			<span class="glyphicon glyphicon-plus"></span>
-			<%= link_to_add_association 'Lägg till artikel', f, :articles, :partial => 'articles/article_fields' %>
-		</div>
-	</div>
-	<% end %>
-
-
 
 	<%= f.submit "Spara", class: 'btn btn-primary' %>
 	<%= link_to "Avbryt", authors_path, class: 'btn btn-danger' %>
@@ -36,11 +21,3 @@
 
 
 
-<script type="text/javascript">
-	$('#book_cover').bind('change', function() {
-		var size_in_megabytes = this.files[0].size/1024/1024;
-		if (size_in_megabytes > 5) {
-			alert('Den största tillåtna filstorleken är 5MB. Var vänlig välj en mindre fil.')
-		}
-	});
-</script>
