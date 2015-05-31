@@ -19,11 +19,8 @@
 			<div class="main-content articles">
 					<h3>Artiklar om <%= @author.name %></h3>
 					<ul class="list-group">
-						<% @author.articles.each do |article| %>
-							<li class="list-group-item">
-								<%= article.writer %>, <em><%= article.title %></em>, <%= article.source %>, <%= article.year %>
-								<%= link_to " Läs>>", article.url, :target => "_blank" if article.url? %>
-							</li>
+						<% @articles.each do |article| %>
+							<%= render 'articles/article', :article => article %>
 						<% end %>
 					</ul>
 				<% if logged_in? && current_user.admin? %>
@@ -32,7 +29,9 @@
 						<span class="glyphicon glyphicon-chevron-right"></span></a>
 					<div class="collapse article-form" id="author-article-form">
 						<h3>Artikel</h3>
-						<%= render 'new_article_form' %>
+						<%= form_for [@author, @new_article] do |f| %>
+							<%= render 'articles/form', :f => f %>
+						<% end %>
 					</div>
 				<% end %>
 			</div>

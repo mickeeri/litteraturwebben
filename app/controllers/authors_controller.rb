@@ -20,6 +20,7 @@ class AuthorsController < ApplicationController
 	def show
 		@author = Author.find(params[:id])
 		@books = @author.books
+		@articles = @author.articles
 		@new_article = @author.articles.build
 	end
 

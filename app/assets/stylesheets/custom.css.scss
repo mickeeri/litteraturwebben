@@ -110,6 +110,13 @@ h1 {
   text-align: center;
 }
 
+h3 {
+  font-weight: 600;
+  color: #0E76BC;
+}
+
+
+
 p {
   font-size: 1.1em;
   line-height: 1.7em;
@@ -481,26 +488,30 @@ footer ul li {
 }
 
 /* Displays authors books in author show view and home page */
-.author-titles {
-    margin-top: 10px;
-    text-align: center;
+// .author-titles {
+//     margin-top: 10px;
+//     text-align: center;
+// }
+
+.titles {
+    padding-left: 50px;
 }
 
-.book-post {
-  margin-left: 40px;
-  background: white;
-  padding: 30px;
+// .book-post {
+//   margin-left: 40px;
+//   background: white;
+//   padding: 30px;
 
-  h1 {
-	text-align: left;
-  }
+//   h1 {
+// 	text-align: left;
+//   }
 
 
-    .download-field {
-        margin-bottom: 10px;
-    }
+//     .download-field {
+//         margin-bottom: 10px;
+//     }
 
-}
+// }
 
 .default-cover {
     width: 160px;
@@ -608,11 +619,13 @@ footer ul li {
 }
 
 
-// input, textarea, select, .uneditable-input {
-//   width: 100%;
-//   margin-bottom: 15px;
-//   @include box_sizing;
-// }
+input, textarea, select, .uneditable-input {
+  @include box_sizing;
+}
+
+#author_about {
+    height: 150px;
+}
 
 .form-div {
     width: 80%;
@@ -645,23 +658,22 @@ footer ul li {
 
 /* Article form */
 .article-form {
-
-  width: 600px;
-
+    padding: 0 100px 50px 50px;
   h3 {
-    margin-left: 94px;
+    // margin-left: 94px;
     font-weight: 600;
     color: #0E76BC;
   }
 
   .form-group {
-    text-align: right;
+    // text-align: right;
+    // padding-right: 200px;
   }
 
   .form-control {
-    width: 400px;
-    // margin-right: 80px;
-    margin-left: 30px;
+    // width: 400px;
+    // // margin-right: 80px;
+    // margin-left: 30px;
   }
 
   label {
@@ -669,9 +681,15 @@ footer ul li {
   }
 
   .btn {
-    margin-left: 494px;
+    //margin-left: 646px;
+    float: right;
     background: #0E76BC;
   }
+
+    @media (max-width: $screen-md-min) {
+        padding: 0;
+        padding-bottom: 50px;
+    }
 }
 // Form for author inside of book form.
 .authorship-fields {
@@ -823,7 +841,6 @@ footer ul li {
 }
 
 .alert {
-  border: 1px dashed black;
   ul {
 	padding-left: 20px;
 	margin: 0;

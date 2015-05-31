@@ -1,4 +1,5 @@
 <%= form_for [@author, @new_article] do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
 	<div class="form-inline form-group">
 		<%= f.label :title, "Titel:" %>
 		<%= f.text_field :title, class: "form-control input-sm" %>

@@ -46,6 +46,7 @@
 // });
 
 
+// To toggle icon in article form.
 $('.articles').ready(function(){
 	$('.article-form-link').click(function(){
 		var span = $('.glyphicon');
@@ -78,6 +79,8 @@ $('.articles').ready(function(){
 //               });
 // 	});
 
+// Javascript from Cocoon gem wiki for :has_many :through forms.
+// https://github.com/nathanvda/cocoon/wiki/A-guide-to-doing-nested-model-forms
 $(document).ready(function() {
     $("#authors a.add_fields").
       data("association-insertion-position", 'before').
@@ -108,7 +111,6 @@ $(document).ready(function() {
         });
 });
 
-
 // $("select.author-options").change(function () {
 //     $("select.author-options option").prop('disabled', false);
 //     $("select.author-options option:selected:not([value='0'])").each(function (i) {
@@ -117,7 +119,7 @@ $(document).ready(function() {
 // });
 
 
-// Upload fileds
+// Upload file size validation.
 $('#new_book').ready(function(){
     $('#book_cover').bind('change', function() {
        var size_in_megabytes = this.files[0].size/1024/1024;
@@ -169,6 +171,13 @@ $('#new_book').ready(function(){
             }
         });
     });
+});
+
+// If error message is displayed article form should be visisible.
+$('#new_article').ready(function(){
+    if($('.alert-danger')[0]){
+        $('#author-article-form').addClass('in');
+    }
 });
 
 

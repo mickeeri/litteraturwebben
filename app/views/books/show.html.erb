@@ -64,6 +64,7 @@
 						<li class="list-group-item">
 						<%= article.writer %>, <em><%= article.title %></em>, <%= article.source %>, <%= article.year %>
 							<%= link_to " Läs>>", article.url, :target => "_blank" if article.url? %>
+							<%= link_to "Ta bort artikel", article, method: :delete, data: { confirm: "Är du säker?"} %>
 						</li>
 					<% end %>
 				</ul>
@@ -73,7 +74,9 @@
 						<span class="glyphicon glyphicon-chevron-right"></span>
 					</a>
 					<div class="collapse article-form" id="book-article-form">
-						<%= render 'new_article_form' %>
+					<%= form_for [@book, @new_article] do |f| %>
+						<%= render 'articles/form', :f => f %>
+					<% end %>
 					</div>
 				<% end %>
 			</div>

@@ -93,7 +93,7 @@ Rails.application.routes.draw do
 
     resources :password_resets, only: [:new, :create, :edit, :update]
 
-    # resources :articles, only: [:new, :create, :edit, :update, :destroy]
+    resources :articles, only: [:new, :create, :edit, :update, :destroy]
 
 
     # Example resource route with options:

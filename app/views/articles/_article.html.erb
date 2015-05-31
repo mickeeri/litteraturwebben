@@ -1,0 +1,8 @@
+<li class="list-group-item">
+	<%= article.writer %>, <em><%= article.title %></em>, <%= article.source %>, <%= article.year %>
+	<%= link_to " Läs>>", article.url, :target => "_blank" if article.url? %>
+	<% if logged_in? && current_user.admin? %>
+		<%#= link_to "Redigera artikel", edit_article_path %> |
+		<%= link_to "Ta bort artikel", article, method: :delete, data: { confirm: "Är du säker?"} %>
+	<% end %>
+</li>
