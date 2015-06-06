@@ -49,7 +49,7 @@
 // To toggle icon in article form.
 $('.articles').ready(function(){
 	$('.article-form-link').click(function(){
-		var span = $('.glyphicon');
+		var span = $('#article-form-arrow');
 
 		if (span.hasClass('glyphicon-chevron-right')) {
 			span.removeClass('glyphicon-chevron-right');
@@ -123,31 +123,31 @@ $(document).ready(function() {
 $('#new_book').ready(function(){
     $('#book_cover').bind('change', function() {
        var size_in_megabytes = this.files[0].size/1024/1024;
-       if (size_in_megabytes > 5) {
-           alert('Den största tillåtna filstorleken är 5MB. Var vänlig välj en mindre fil.')
+       if (size_in_megabytes > 3) {
+           alert('Den största tillåtna filstorleken är 3 Mb. Var vänlig välj en mindre fil.')
        }
    });
 
    $('#book_pdf').bind('change', function() {
        var size_in_megabytes = this.files[0].size/1024/1024;
-       if (size_in_megabytes > 20) {
-           alert('Den största tillåtna filstorleken är 20MB. Var vänlig välj en mindre fil.')
+       if (size_in_megabytes > 15) {
+           alert('Den största tillåtna filstorleken är 15 Mb. Var vänlig välj en mindre fil.')
        }
    });
 
    $('#book_epub').bind('change', function() {
        var size_in_megabytes = this.files[0].size/1024/1024;
-       if (size_in_megabytes > 8) {
-           alert('Den största tillåtna filstorleken är 8MB. Var vänlig välj en mindre fil.')
+       if (size_in_megabytes > 5) {
+           alert('Den största tillåtna filstorleken är 5 Mb. Var vänlig välj en mindre fil.')
        }
    });
 });
 
 $('.portrait-upload').ready(function(){
-    $('#book_cover').bind('change', function() {
+    $('#author_portrait').bind('change', function() {
         var size_in_megabytes = this.files[0].size/1024/1024;
-        if (size_in_megabytes > 5) {
-            alert('Den största tillåtna filstorleken är 5MB. Var vänlig välj en mindre fil.')
+        if (size_in_megabytes > 3) {
+            alert('Den största tillåtna filstorleken är 3 Mb. Var vänlig välj en mindre fil.')
         }
     });
 });
@@ -176,13 +176,14 @@ $('#new_book').ready(function(){
 // If error message is displayed article form should be visisible.
 $('#new_article').ready(function(){
     if($('.alert-danger')[0]){
-        $('#author-article-form').addClass('in');
+      $('.collapse').addClass('in');
     }
 });
 
-
-
-
-
-
-
+$('.search-form').ready(function(){
+  $('.remove-input').click(function(){
+    if ($('.search-field').val().length > 0) {
+      $('.search-field').val("");
+    }
+  });
+});

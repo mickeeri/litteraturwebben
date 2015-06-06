@@ -11,3 +11,4 @@
 	.form-group.portrait-upload
 		= f.label :portrait, "Ladda upp författarbild"
 		= f.file_field :portrait, accept: 'image/jpeg,image/gif,image/png'
+		= f.hidden_field :portrait_cache

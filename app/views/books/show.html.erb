@@ -1,7 +1,8 @@
 <% provide(:title, @book.title) %>
-<div class="row">
+<div class="row show-row">
 	<div class="col-md-9 col-md-offset-1">
 		<div class="show-container main-content">
+			<!-- Picture -->
 			<div class="show-pic-left">
 				<% if @book.cover? %>
 					<%= image_tag @book.cover.url %>
@@ -15,63 +16,82 @@
 						<span class="title-span"><%= @book.title %></span>
 					</div>
 				<% end %>
+				<div class="aside-info">
+					<p><strong>Utgiven:</strong> <%= @book.yearofpub %></p>
+					<p><strong>Genre:</strong> <%= @book.genre.genre %></p>
+				</div>
 			</div>
-			<div class="show-content">
+
+			<!-- Content -->
+			<div class="show-content book-show-content">
 				<h1 class="show-header"><%= @book.title %></h1>
-				<p class="inline"><strong>Författare:</strong>
+				<p class="inline"><strong>Av:</strong>
 					<ul class="book-author-list">
 					<% @book.authors.each do |author| %>
 						<li><%= link_to author.name, author %></li>
 					<% end %>
 					</ul>
 				</p>
+
+				<h4>Om <%= @book.title %></h4>
 				<p><%= @book.about %></p>
-				<p><strong>Utgivningsår:</strong> <%= @book.yearofpub %></p>
-				<p><strong>Genre:</strong> <%= @book.genre.genre %></p>
 
+				<!-- E-book -->
+				<h4>E-bok</h4>
 				<% if @book.pdf? || @book.epub? %>
-					<% if logged_in? %>
-						<% if @book.pdf? %>
-							<div class="download-field">
-								<span class="glyphicon glyphicon-download"></span>
-								<%= link_to "Öppna boken som pdf-dokument", @book.pdf.url %>
+					<div class="e-book">
+						<% if logged_in? %>
+							<% if @book.pdf? %>
+								<div class="download-field">
+									<span class="glyphicon glyphicon-download"></span>
+									<%= link_to "Öppna boken som pdf-dokument", @book.pdf.url %>
+								</div>
+							<% end %>
+							<% if @book.epub? %>
+								<div class="download-field">
+									<span class="glyphicon glyphicon-download"></span>
+									<%= link_to "Hämta boken som Epub-fil", @book.epub.url %>
+								</div>
+							<% end %>
+						<% else %>
+							<div class="e-book-login">
+							<%= link_to "Logga in ", login_path %><p class="inline">för att ladda ner e-boken.</p>
 							</div>
 						<% end %>
-
-						<% if @book.epub? %>
-							<div class="download-field">
-								<span class="glyphicon glyphicon-download"></span>
-								<%= link_to "Hämta boken som Epub-fil", @book.epub.url %>
-							</div>
-						<% end %>
-					<% else %>
-						<%= link_to "Logga in ", login_path %><p class="inline">för att ladda ner e-boken.</p>
-					<% end %>
+					</div>
 				<% else %>
-					<em class="block">Boken saknar uppladdad e-bok.</em>
+					<p>
+						<em class="block">Titeln saknar e-bok.</em>
+					</p>
 				<% end %>
 				<% if logged_in? && current_user.admin? %>
-					<%= link_to "Redigera bok", edit_book_path, class: "edit-book-link" %>
+					<div class="admin-field">
+						<h4>För administratör</h4>
+						<span class="glyphicon glyphicon-edit"></span>
+						<%= link_to "Redigera bok", edit_book_path %>
+						<span> | </span>
+						<span class="glyphicon glyphicon-trash"></span>
+						<%= link_to "Radera bok", @book, method: :delete, data: { confirm: "Är du säker?"} %>
+					</div>
 				<% end %>
 			</div>
+
 			<div class="clearfix"></div>
 		</div>
+
+		<%# Articles div %>
 		<% if @book.articles.count > 0 || logged_in? && current_user.admin? %>
-			<div class="main-content">
+			<div class="main-content articles">
 				<h3>Artiklar om <%= @book.title %></h3>
 				<ul class="list-group">
 					<% @book.articles.each do |article| %>
-						<li class="list-group-item">
-						<%= article.writer %>, <em><%= article.title %></em>, <%= article.source %>, <%= article.year %>
-							<%= link_to " Läs>>", article.url, :target => "_blank" if article.url? %>
-							<%= link_to "Ta bort artikel", article, method: :delete, data: { confirm: "Är du säker?"} %>
-						</li>
+						<%= render 'articles/article', :article => article %>
 					<% end %>
 				</ul>
 				<% if logged_in? && current_user.admin? %>
 					<a class="article-form-link" data-toggle="collapse" href="#book-article-form"
 						aria-expanded="false" aria-controls="book-article-form">Lägg till artikel
-						<span class="glyphicon glyphicon-chevron-right"></span>
+						<span id="article-form-arrow" class="glyphicon glyphicon-chevron-right"></span>
 					</a>
 					<div class="collapse article-form" id="book-article-form">
 					<%= form_for [@book, @new_article] do |f| %>

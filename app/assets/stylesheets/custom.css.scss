@@ -1,4 +1,21 @@
-$jumbotron-bg: #C0DEED;
+/* My Colors */
+$gray-medium-light: #eaeaea;
+$my-blue: #0E76BC;
+$btn-blue: #0E76BC;
+$light-green: #B2F4D4;
+$my-orange: #D9923B;
+$dark-blue: #204056;
+//$medium-red: #EF4135;
+$medium-red: #F64B3F;
+$twitter-yellow: #FFB037;
+$lighter-blue: #0090D7;
+
+/* BOOTSTRAP VARIABLES */
+
+/* Buttons */
+$btn-primary-bg: $btn-blue;
+
+$jumbotron-bg: $light-green;
 
 /* Navbar */
 $navbar-default-bg: #1B1B1B;
@@ -9,15 +26,11 @@ $navbar-default-border: #282828;
 $navbar-default-toggle-border-color: #1B1B1B;
 $navbar-default-toggle-icon-bar-bg: #fff;
 
-
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-/* variables */
-$gray-medium-light: #eaeaea;
-$my-blue: #0E76BC;
+/* Mixins */
 
-// Mixin allows a group of Css rules to be packaged up and used for multiple elements.
 @mixin box_sizing {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -25,27 +38,34 @@ $my-blue: #0E76BC;
 }
 
 @mixin transition {
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    -ms-transition: all 0.5s ease;
-    transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
+// From http://www.cssmatic.com.
 @mixin gradient {
-    background: rgba(89,89,89,1);
-    background: -moz-linear-gradient(top, rgba(89,89,89,1) 0%, rgba(27,27,27,1) 100%);
-    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(89,89,89,1)),
-        color-stop(100%, rgba(27,27,27,1)));
-    background: -webkit-linear-gradient(top, rgba(89,89,89,1) 0%, rgba(27,27,27,1) 100%);
-    background: -o-linear-gradient(top, rgba(89,89,89,1) 0%, rgba(27,27,27,1) 100%);
-    background: -ms-linear-gradient(top, rgba(89,89,89,1) 0%, rgba(27,27,27,1) 100%);
-    background: linear-gradient(to bottom, rgba(89,89,89,1) 0%, rgba(27,27,27,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#595959',
-        endColorstr='#1b1b1b', GradientType=0 );
+  background: rgba(89,89,89,1);
+  background: -moz-linear-gradient(top, rgba(89,89,89,1) 0%, rgba(27,27,27,1) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(89,89,89,1)),
+    color-stop(100%, rgba(27,27,27,1)));
+  background: -webkit-linear-gradient(top, rgba(89,89,89,1) 0%, rgba(27,27,27,1) 100%);
+  background: -o-linear-gradient(top, rgba(89,89,89,1) 0%, rgba(27,27,27,1) 100%);
+  background: -ms-linear-gradient(top, rgba(89,89,89,1) 0%, rgba(27,27,27,1) 100%);
+  background: linear-gradient(to bottom, rgba(89,89,89,1) 0%, rgba(27,27,27,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#595959',
+    endColorstr='#1b1b1b', GradientType=0 );
 }
 
-/* universal */
+@mixin border-radius {
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+}
+
+/* UNIVERSAL */
 
 body {
   background-color: #f2f2f2;
@@ -68,53 +88,48 @@ textarea {
 }
 
 .inline {
-    display: inline;
+  display: inline;
 }
 
 .block {
-    display: block;
+  display: block;
 }
 
 .clearfix {
-    clear: both;
+  clear: both;
 }
 
-.primary-col, .primary-div {
-    background-color: white;
-    padding-bottom: 30px;
-    padding-top: 30px;
-    border: 1px solid #E3E3E3;
-    // border-radius: 6px;
+.top-margin {
+  margin-top: 10px;
+  display: block;
 }
 
-.main-content {
-    background-color: #fff;
-    // border-radius: 6px;
-    padding: 25px;
-    border: 1px solid #E3E3E3;
-    margin-bottom: 10px;
+.main-content, .primary-col {
+  background-color: #fff;
+  padding: 25px;
+  border: 1px solid #E3E3E3;
+  margin-bottom: 10px;
+  padding-bottom: 50px;
 }
 
 
 
-/* typography */
+/* TYPOGRAPHY */
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
 }
 
-h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
-}
+// h1 {
+//   font-size: 3em;
+//   margin-bottom: 30px;
+//   text-align: center;
+// }
 
 h3 {
   font-weight: 600;
-  color: #0E76BC;
+  color: $medium-red;
 }
-
 
 
 p {
@@ -122,72 +137,57 @@ p {
   line-height: 1.7em;
 }
 
+.black {
+  color: #333;
+}
 
-/* header */
-
-// #logo {
-//   float: left;
-//   margin-right: 10px;
-//   font-size: 1.7em;
-//   color: #fff;
-//   text-transform: uppercase;
-//   letter-spacing: -1px;
-//   padding-top: 9px;
-//   font-weight: bold;
-//   &:hover {
-// 	color: white;
-// 	text-decoration: none;
-//   }
-// }
-
-/* Navbar */
+/* HEADER */
 
 .navbar-header {
-    border-bottom: 1px solid #282828;
-    width: 100%;
+  border-bottom: 1px solid #282828;
+  width: 100%;
+
+  @media (max-width: $screen-sm-min) {
+    border-bottom: none;
+  }
 }
 
 .navbar-toggle {
-    margin-right: 0;
+  margin-right: 0;
 }
 
 .navbar {
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.35);
+  @include gradient;
 
-    //background-color: #1B1B1B;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.35);
-    @include gradient;
+  .container-fluid {
+    max-width: 1200px;
+  }
 
+  a {
+    font-weight: 600;
+  }
 
-
-
-    .container-fluid {
-        max-width: 1200px;
-    }
-
-    a {
-        font-weight: 600;
-    }
-
-    .navbar-brand {
-        // font-size: 1.7em;
-        // color: #fff;
-        text-transform: uppercase;
-        text-decoration: none;
-    }
+  .navbar-brand {
+    text-transform: uppercase;
+    text-decoration: none;
+  }
 }
 
-/* footer */
+/* FOOTER */
 
 footer {
   margin-top: 45px;
   padding-top: 5px;
   border-top: 1px solid $gray-medium-light;
   color: $gray-light;
+
   a {
-	color: $gray;
-	&:hover{
-		color: $gray-darker;
-	};
+    color: $gray;
+
+    &:hover{
+      color: $gray-darker;
+    }
   }
 }
 
@@ -210,23 +210,25 @@ footer ul li {
 #error_explanation {
   color: red;
   ul {
-	color: red;
+	 color: red;
   }
 }
 
 .field_with_errors {
-    @extend .has-error;
-        .form-control {
-            border-color: red;
-        }
+  @extend .has-error;
+
+  .form-control {
+    border-color: red;
+  }
 }
 
 .checkbox {
   margin-top: -10px;
   margin-bottom: 10px;
+
   span {
-	margin-left: 20px;
-	font-weight: normal;
+  	margin-left: 20px;
+  	font-weight: normal;
   }
 }
 
@@ -237,129 +239,108 @@ footer ul li {
 
 /* INDEX-PAGES */
 
-.author-show-div, .book-show-div, .user-show-div {
-    h1 {
-    text-align: left;
-    text-transform: uppercase;
-    font-weight: 550;
-    margin-bottom: 10px;
-    font-size: 2.1em;
-    color: #d9923b;
-    }media
+// .author-show-div, .book-show-div, .user-show-div {
+//   h1 {
+//   text-align: left;
+//   text-transform: uppercase;
+//   font-weight: 550;
+//   margin-bottom: 10px;
+//   font-size: 2.1em;
+//   color: #d9923b;
+//   }
 
-    h3 {
-    font-size: 1.3em;
-    text-transform: uppercase;
-    font-weight: 600;
-    color: #d9923b;
-    }
-}
+//   h3 {
+//   font-size: 1.3em;
+//   text-transform: uppercase;
+//   font-weight: 600;
+//   color: #d9923b;
+//   }
+// }
 
 .index {
 
-    h1 {
-        text-transform: uppercase;
-        font-weight: 700;
-        font-size: 2.1em;
-        border-bottom: 1px dotted $gray-medium-light;
-        text-align: left;
-        margin:0 40px 40px 4%;
-        color: #d9923b;
+  h1 {
+    // letter-spacing: 0.8px;
+    // font-weight: 700;
+    // font-size: 2.5em;
+    border-bottom: 1px dotted $gray-medium-light;
+    text-align: left;
+    margin:0 40px 40px 4%;
+
+    // @media (max-width: $screen-sm-min) {
+    //   font-size: 34px;
+    // }
+  }
+
+  a {
+    color: $my-blue;
+    &:hover {
+      color: $lighter-blue;
+      text-decoration: none;
     }
+  }
 
-    h3, h3 a {
-    font-size: 1.3em;
-    // text-transform: uppercase;
-    font-weight: 600;
-    color: #d9923b;
+  h3 {
+    margin-top: 0;
+
+    a {
+      font-size: 22px;
+      font-weight: 600;
     }
+  }
 
-    // For both books-index and authors-index
-    .media-list {
-        margin: 0 4%;
+  .media-list {
+    margin: 0 4%;
 
-        li {
-            overflow: auto;
-            border-bottom: 1px solid $gray-lighter;
-            margin-bottom: 30px;
+    li {
+      overflow: auto;
+      border-bottom: 1px solid $gray-lighter;
+      margin-bottom: 30px;
 
-            .media-container {
-                margin-bottom: 10px;
-                display: inline-block;
-            }
+      .media-container {
+        margin-bottom: 10px;
+        display: inline-block;
+      }
 
-            .index-thumb-left {
-                float: left;
-                margin: 0 20px 20px 0;
+      .index-thumb-left {
+        float: left;
+        margin: 0 20px 20px 0;
 
-                img {
-                    max-width: 200px;
-                }
-
-                .book-cover {
-                    max-width: 160px;
-                }
-            }
-
-            .index-body {
-                display: inline-block;
-                float: left;
-                max-width: 400px;
-            }
+        img {
+          max-width: 200px;
         }
+
+        .book-cover {
+          max-width: 160px;
+        }
+      }
+
+      .index-body {
+        display: inline-block;
+        float: left;
+        max-width: 400px;
+      }
     }
+  }
 }
-
-
 
 /* Users index */
 .users {
   list-style: none;
   margin: 0;
   li {
-	overflow: auto;
-	padding: 10px 0;
-	border-bottom: 1px solid $gray-lighter;
+  	overflow: auto;
+  	padding: 10px 0;
+  	border-bottom: 1px solid $gray-lighter;
   }
 }
 
-/* Books index */
-// .bookssss {
-//   list-style: none;
-//   margin-right: 40px;
-
-//   li {
-// 	padding: 10px;
-// 	overflow: auto;
-// 	border-bottom: 1px dotted $gray-medium-light;
-//     position: relative;
-
-// 	// h3 {
-// 	//   font-weight: 600;
-//  //      margin-bottom: 5px;
-
-//       // a {
-//       //   color: $gray;
-//       // }
-// 	// }
-
-// 	img {
-// 	  float: left;
-// 	  margin: 0 15px 0 0;
-// 	}
-//   }
-
-//   .btn {
-//     bottom: 10px;
-//     right: 10px;
-//     position: absolute;
-//   }
-
-// }
-
-.new-book-link {
-    text-align: right;
-    margin-right: 4%;
+.new-book-link, .new-author-link {
+  padding: 10px;
+  padding-left: 20px;
+  @include border-radius;
+  background-color: $light-green;
+  margin-bottom: 20px;
 }
 
 .books-authors {
@@ -373,6 +354,7 @@ footer ul li {
     padding: 0;
     margin: 0;
     border: none;
+
     a {
       color: $gray;
       font-style: italic;
@@ -389,233 +371,272 @@ footer ul li {
 }
 
 .article-form-fields {
-    // padding: 10px 40px;
-    // margin-top: 10px;
-
-    input {
-      margin-left: 60px;
-    }
+  input {
+    margin-left: 60px;
+  }
 }
 
 .links {
-    padding: 20px;
-    text-align: right;
+  padding: 20px;
+  text-align: right;
 }
 
 .pagination-row {
-    text-align: center;
+  text-align: center;
 }
 
-/* SHOW PAGES*/
+/* SHOW PAGES */
+
+.show-row {
+  @media (max-width: $screen-sm-min) {
+    .col-md-9 {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+
+.e-book-login, .e-book {
+  background-color: $light-green;
+  padding: 8px;
+  @include border-radius;
+
+  .download-field {
+    margin-top: 5px;
+  }
+}
+
 .edit-book-link {
-    margin: 20px 0;
-    display: block;
+  margin: 20px 0;
+  display: block;
 }
 
 .show-container {
-    // margin: 0 4%;
-    //display: inline-block;
+  h1 {
+    text-align: left;
+    margin-top: 0;
+    font-size: 2.3em;
+  }
 
-    h1 {
-        text-align: left;
-        margin-top: 0;
-        font-size: 2.3em;
+  .show-pic-left {
+    float: left;
+    margin: 0 2.5% 2.5% 0;
+    display: block;
+    max-width: 30%;
+
+    img {
+      width: 100%;
     }
 
+    .aside-info {
+      margin: 10px 0 0 20px;
+      display: block;
+    }
+  }
+
+  .show-content {
+
+    float: left;
+    max-width: 67%;
+    display: inline-block;
+
+    .book-author-list {
+      list-style: none;
+      margin-bottom: 10px;
+      padding: 0;
+      display: inline;
+
+      li {
+        display: inline;
+        padding: 0;
+        margin: 0;
+        border: none;
+      }
+
+      li:after {
+        content: ", ";
+      }
+
+      li:last-child:after {
+        content: "";
+      }
+    }
+  }
+
+  .book-show-content {
+    h1 {
+      color: $medium-red;
+      margin-bottom: 10px;
+      font-weight: 600;
+      letter-spacing: 0;
+    }
+
+    h4 {
+      color: $medium-red;
+      font-weight: 600;
+    }
+  }
+
+  @media (max-width: $screen-sm-min) {
+
     .show-pic-left {
-        float: left;
-        margin: 0 2.5% 2.5% 0;
-        display: block;
-        max-width: 30%;
-        img {
-            width: 100%;
-        }
+      width: 100%;
+      float: none;
+      max-width: 280px;
+      margin-top: 45px;
+
+      .aside-info {
+        margin: 0;
+        margin-top: 20px;
+      }
     }
 
     .show-content {
-        float: left;
-        max-width: 67%;
-        display: inline-block;
+      max-width: 100%;
+      float: none;
 
-        .book-author-list {
-          list-style: none;
-          margin-bottom: 10px;
-          padding: 0;
-          display: inline;
+      p {
+        font-size: 1.1em;
+      }
 
-            li {
-            display: inline;
-            padding: 0;
-            margin: 0;
-            border: none;
-            a {
-              // color: $gray;
-              // font-style: italic;
-            }
-          }
-
-          li:after {
-            content: ", ";
-          }
-
-          li:last-child:after {
-            content: "";
-          }
-        }
+      h1 {
+        margin-top: 20px;
+        font-size: 2.0em;
+        position: absolute;
+        top: 5px;
+        text-align: center;
+      }
     }
-
-    @media (max-width: $screen-sm-min) {
-
-        .show-pic-left {
-            width: 100%;
-            float: none;
-            max-width: 280px;
-        }
-
-        .show-content {
-            max-width: 100%;
-            float: none;
-
-            p {
-                font-size: 1.2em;
-            }
-
-            h3, h1 {
-                margin-left: 5%;
-            }
-        }
-    }
+  }
 }
 
-/* Displays authors books in author show view and home page */
-// .author-titles {
-//     margin-top: 10px;
-//     text-align: center;
-// }
-
-.titles {
-    padding-left: 50px;
+.admin-field {
+  border-top: 1px solid $gray-lighter;
 }
 
-// .book-post {
-//   margin-left: 40px;
-//   background: white;
-//   padding: 30px;
+.articles, .titles {
+  padding-left: 50px;
 
-//   h1 {
-// 	text-align: left;
-//   }
+  @media (max-width: $screen-sm-min) {
+    padding: 10px 10px 50px 10px;
+    text-align: center;
 
+    .book .caption {
 
-//     .download-field {
-//         margin-bottom: 10px;
-//     }
-
-// }
+    }
+  }
+}
 
 .default-cover {
-    width: 160px;
-    height: 230px;
-    float: left;
-    margin-right: 20px;
-    background-color: #204056;
+  width: 160px;
+  height: 230px;
+  float: left;
+  margin-right: 20px;
+  background-color: #204056;
 
-    // @media (max-width: $screen-sm-min) {
-    //     width: 200px;
-    //     height: 270px;
-    // }
+  // @media (max-width: $screen-sm-min) {
+  //     width: 200px;
+  //     height: 270px;
+  // }
 
-    .title-span, .author-span {
-        text-align: left;
-        color: white;
-        // letter-spacing: 0.09px;
-        font-family: Georgia, "Times New Roman", sans-serif;
-        display: block;
-        line-height: 14px;
-    }
+  .title-span, .author-span {
+    text-align: left;
+    color: white;
+    font-family: Georgia, "Times New Roman", sans-serif;
+    display: block;
+    line-height: 14px;
+  }
 
-    .title-span {
-        font-size: 15px;
-        margin: 8px 0 0 15px;
-        padding: 0;
-    }
+  .title-span {
+    font-size: 15px;
+    margin: 8px 0 0 15px;
+    padding: 0;
+  }
 
-    .author-span {
-        font-size: 12px;
-        margin: 40px 0 0 15px;
-        padding: 0;
-    }
+  .author-span {
+    font-size: 12px;
+    margin: 40px 0 0 15px;
+    padding: 0;
+  }
 }
+
+/* SHOW PAGES END */
 
 /* Author index */
 .authors {
-    margin-right: 40px;
+  margin-right: 40px;
 
-    li {
-        list-style: none;
-        border-bottom: 1px dotted $gray-medium-light;
-        padding-bottom: 20px;
+  li {
+    list-style: none;
+    border-bottom: 1px dotted $gray-medium-light;
+    padding-bottom: 20px;
 
-
-
-        .readmore-div {
-            text-align: right;
-            // margin-right: 20%;
-        }
+    .readmore-div {
+      text-align: right;
     }
+  }
 }
 
 .about-text {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: block;
 }
 
 /* Author show */
 .list-group {
+
   li:last-child {
     display: none;
   }
-
 }
 
-
 /* FORMS */
+
+.new-session {
+  .btn {
+    width: 150px;
+  }
+}
 
 /* Search */
 
 .search-form {
-    background: $gray-medium-light;
-    padding: 20px;
-    border-radius: 6px;
-    margin-bottom: 20px;
+  background: $gray-medium-light;
+  padding: 20px;
+  @include border-radius;
+  margin-bottom: 20px;
 
+  .form-control-feedback {
+    //width: 10px;
+    cursor: pointer;
+    line-height: 30px;
+  }
 
-    label {
-        color: #fff;
+  label {
+    color: #fff;
+  }
+
+  #author-search-input, #book-search-input {
+    width: 450px;
+    max-width: 99%;
+  }
+
+  .btn {
+    width: 100px;
+    font-weight: 600;
+  }
+
+  input {
+    height: 30px;
+  }
+
+  @media (max-width: $screen-md-min) {
+    .form-control-feedback {
+      display: none;
     }
-
-    #author-search-input, #book-search-input {
-        width: 350px;
-        max-width: 99%;
-        // @include transition;
-        // &:focus {
-        //     background-color: #fff8dc;
-        //     width: 350px;
-        //     @include transition;
-        // }
-    }
-
-    .btn {
-        width: 100px;
-        font-weight: 600;
-
-    }
-
-    input {
-        height: 30px;
-    }
+  }
 }
 
 
@@ -623,216 +644,250 @@ input, textarea, select, .uneditable-input {
   @include box_sizing;
 }
 
-#author_about {
-    height: 150px;
+#author_about, #book_about {
+  height: 150px;
 }
 
 .form-div {
-    width: 80%;
-    margin: 0 auto;
+  width: 80%;
+  margin: 0 auto;
+
+  .btn {
+    float: right;
+  }
 }
 
-
-// input {
-//   height: auto !important;
-// }
-
-
 .remove-file {
-    input {
-        width: 0;
-    }
+  margin-bottom: 10px;
 
-    margin-bottom: 10px;
+  input {
+    width: 0;
+  }
 }
 
 .upload-edit-field {
-    border: 1px dashed $gray-darker;
-    margin-bottom: 10px;
-    padding: 10px;
+  border: 1px dashed $gray-darker;
+  margin-bottom: 10px;
+  padding: 10px;
 }
 
 .small-thumb {
-    width: 10%;
+  width: 10%;
+}
+
+.button-group {
+  .btn {
+    width: 44%;
+    margin: 10px 2.5%;
+    float: none;
+
+    @media (max-width: $screen-md-min) {
+      width: 100%;
+      margin: 10px 0;
+    }
+  }
 }
 
 /* Article form */
 .article-form {
-    padding: 0 100px 50px 50px;
+  margin-top: 30px;
+  padding: 0 100px 50px 50px;
+
   h3 {
-    // margin-left: 94px;
     font-weight: 600;
-    color: #0E76BC;
-  }
-
-  .form-group {
-    // text-align: right;
-    // padding-right: 200px;
-  }
-
-  .form-control {
-    // width: 400px;
-    // // margin-right: 80px;
-    // margin-left: 30px;
-  }
-
-  label {
-
+    color: $medium-red;
   }
 
   .btn {
-    //margin-left: 646px;
     float: right;
-    background: #0E76BC;
+    background: $my-blue;
   }
 
-    @media (max-width: $screen-md-min) {
-        padding: 0;
-        padding-bottom: 50px;
-    }
+  @media (max-width: $screen-md-min) {
+    padding: 0;
+    padding-bottom: 50px;
+  }
 }
-// Form for author inside of book form.
+
+/* Form for author inside of book form */
+
 .authorship-fields {
+  select {
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+  }
 
-    select {
-        width: 100%;
-        display: block;
-        margin-bottom: 10px;
-    }
+  .new-author-fields {
+    padding: 20px;
+  }
 
-    .new-author-fields {
-        // border: 1px dotted $gray-medium-light;
-        padding: 20px;
-    }
+  .remove-author {
+    background: #F2DEDE;
+    float: right;
+  }
 
-    .remove-author {
-        background: #F2DEDE;
-        float: right;
-    }
-
-    .form {
-        margin-bottom: 10px;
-        #border-bottom: 1px dotted $gray-medium-light;
-        #border-top: 1px dotted $gray-medium-light;
-        padding: 10px 0;
-    }
+  .form {
+    margin-bottom: 10px;
+    padding: 10px 0;
+  }
 }
 
-/* Home page */
-.latest-content {
-    // display: inline-block;
-    padding-left: 6%;
+.checkbox-group {
+  margin-top: 10px;
+
+  label {
+    margin-left: 10px;
+  }
+}
+
+/* HOME PAGE */
+.latest-books-home {
+  padding-top: 20px;
+  padding-left: 6%;
+
+  h2 {
+    font-weight: bold;
+    border-bottom: 1px solid #DDD;
+    margin-left: 14px;
+    margin-right: 62px;
+
+    @media (max-width: $screen-sm-min) {
+      margin: 0;
+    }
+  }
 }
 
 .books {
 
+  @media (max-width: $screen-sm-min) {
+    text-align: center;
+
     .book {
-        //float: left;
-        display: inline-block;
-        margin: 0;
-        margin-right: 10px;
-        margin-bottom: 20px;
-        height: 295px;
-        width: 170px;
-        padding: 10px;
-        // background-color: #ccc;
-        vertical-align: bottom;
-        // border-radius: 4px;
-        //margin: 0 20px;
+      margin-bottom: 20px;
 
+      .caption {
+        text-align: left;
+      }
+    }
+  }
 
-        .caption {
-            display: block;
-            overflow: hidden;
+  .book {
+    display: inline-block;
+    vertical-align: bottom;
+    margin: 0;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    height: 295px;
+    width: 170px;
+    padding: 10px;
 
-            h3, h4 {
-                margin-top: 3px;
-                overflow: hidden;
-                line-height: 1.2;
-                max-height: 2.6em;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-            }
+    .caption {
+      display: block;
+      overflow: hidden;
 
-            h3 {
-                font-weight: 600;
-                font-size: 1.05em;
-                color: $my-blue;
+      h3, h4 {
+        margin-top: 3px;
+        overflow: hidden;
+        line-height: 1.2;
+        max-height: 2.6em;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
 
-                &:hover {
-                    text-decoration: underline;
-                }
-            }
+      h3 {
+        font-weight: 600;
+        font-size: 1.05em;
+        color: $my-blue;
 
-            h4 {
-                font-size: 1em;
-                color: black;
-
-            }
+        &:hover {
+          text-decoration: underline;
         }
-        .cover-div {
+      }
 
-            width: 150px;
-            height: 240px;
-
-            img, .default-cover {
-                width: 100%;
-                max-height: 100%;
-            }
-        }
+      h4 {
+        font-size: 1em;
+        color: black;
+      }
     }
 
-    @media (max-width: $screen-sm-min) {
-        padding: 0;
-        //text-align: center;
+    .cover-div {
+      width: 150px;
+      height: 240px;
 
-        // .book {
-        //     width: 220px;
-        // }
+      @media (max-width: $screen-sm-min) {
+        max-width: 180px;
+        max-height: 270px;
+      }
 
-        // .cover-div {
-        //     width: 200px;
-        //     height: 260px;
-        // }
+      img, .default-cover {
+        width: 100%;
+        max-height: 100%;
+      }
     }
+  }
+
+  @media (max-width: $screen-sm-min) {
+    padding: 0;
+  }
 }
 
 
 .aside-col {
-    @media (max-width: 992px) {
-        padding: 0;
-        padding-bottom: 10px;
-    }
+  @media (max-width: 992px) {
+    padding: 0;
+    padding-bottom: 10px;
+  }
 }
 
 .login-div {
-    background-color: #fff;
-    padding: 20px;
-    // border-radius: 6px;
-    border: 1px solid #E3E3E3;
+  background-color: #fff;
+  padding: 20px 20px 50px 20px;
+  border: 1px solid #E3E3E3;
 
-    span {
-      font-weight: normal;
-      font-size: 14px;
-    }
+  .remember-me, span, a {
+    font-weight: normal;
+    font-size: 12px;
+  }
 
+  .btn {
+    float: right;
+  }
+
+  @media (max-width: 992px) {
     .btn {
-      // margin-bottom: 20px;
-      // margin-left: 140px;
+      margin-left: 0;
+      width: 40%;
     }
+  }
+}
 
-    @media (max-width: 992px) {
-      .btn {
-        margin-left: 0;
-        width: 40%;
-      }
-    }
+.logged-in {
+
+  a {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .btn {
+    margin: 5px 10px 0 0;
+  }
+}
+
+/* STATIC PAGES */
+
+.about {
+  padding: 40px 50px 50px 50px;
+
+  h1 {
+    text-align: left;
+  }
 }
 
 
-/* miscellaneous */
+/* Miscellaneous */
 
-.debug_dump{
+.debug_dump {
   clear: both;
   float: left;
   width: 100%;
@@ -842,15 +897,16 @@ input, textarea, select, .uneditable-input {
 
 .alert {
   ul {
-	padding-left: 20px;
-	margin: 0;
+  	padding-left: 20px;
+  	margin: 0;
   }
+
   span {
-	font-weight: bold;
+	 font-weight: bold;
   }
 }
 
-.glyphicon, .article-form-link {
-    //@include transition;
+.btn {
+  font-size: 14px;
+  font-weight: bold;
 }
-

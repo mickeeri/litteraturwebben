@@ -11,13 +11,19 @@
 	</div>
 
 	<div class="form-group portrait-upload">
+		<%= image_tag(@author.portrait.url, class: "thumbnail small-thumb") if @author.portrait? %>
 		<%= f.label :portrait, "Ladda upp författarbild" %>
 		<%= f.file_field :portrait, accept: 'image/jpeg,image/gif,image/png' %>
+		<%= f.hidden_field :portrait_cache %>
+		<div class="checkbox-group">
+		<% if @author.portrait? %>
+			<%= f.check_box :remove_portrait %>
+			<%= f.label :remove_portrait, "Ta bort författarbild" %>
+		<% end %>
+		</div>
 	</div>
-
-	<%= f.submit "Spara", class: 'btn btn-primary' %>
-	<%= link_to "Avbryt", authors_path, class: 'btn btn-danger' %>
+	<div class="button-group">
+		<%= f.submit "Spara", class: 'btn btn-primary' %>
+		<%= link_to "Avbryt", authors_path, class: 'btn btn-warning' %>
+	</div>
 <% end %>
-
-
-

@@ -7,11 +7,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # !create method raises exception for invalid user rather than returning false.
-User.create!(name: "admin",
-			email: "admin@mail.com",
-			password: "lösenord",
-			password_confirmation: "lösenord",
-			admin: true)
 
 Genre.create(genre: "Skönlitteratur")
 Genre.create(genre: "Lyrik")

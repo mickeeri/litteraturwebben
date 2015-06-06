@@ -1,29 +1,28 @@
 <% provide(:title, "Våra författare") %>
 <div class="row index">
 	<div class="col-md-8 col-md-offset-2 primary-col">
+		<% if logged_in? && current_user.admin? %>
+			<div class="new-author-link">
+				<span class="glyphicon glyphicon-plus"></span>
+				<%= link_to "Lägg till författare", newauthor_path %>
+			</div>
+		<% end %>
 		<%# Ruby on rails tutorial - Movie app  %>
 		<%= form_tag search_authors_path, method: :get, class: "form-inline search-form", role: "search" do %>
-			<div class="form-group">
+			<div class="form-group has-feedback">
 				<!-- <label for="author-search-input">Sök på författare: </label> -->
-				<%= text_field_tag :search, params[:search], class: "form-control", id: "author-search-input",
+				<%= text_field_tag :search, params[:search], class: "form-control search-field", id: "author-search-input",
 					placeholder: "Sök på författare" %>
+				<span class="glyphicon glyphicon-remove form-control-feedback remove-input" aria-hidden="true"></span>
 			</div>
 			<%= button_tag name: nil, class: "btn btn-default", type: "submit" do %>
 				<span class="glyphicon glyphicon-search"></span>
 			<% end %>
 		<% end %>
-
 		<h1 class>Våra författare</h1>
 		<ul class="media-list">
 			<%= render @authors %>
 		</ul>
-
-		<% if logged_in? && current_user.admin? %>
-		<div class="new-book-link">
-			<span class="glyphicon glyphicon-plus"></span>
-			<%= link_to "Lägg till författare", newauthor_path %>
-		</div>
-		<% end %>
 	</div>
 </div>
 <div class="row pagination-row">

@@ -150,6 +150,7 @@ sv:
       too_long: är för lång (max  %{count} tecken)
       too_short: är för kort (minst %{count} tecken)
       wrong_length: har fel längd (ska vara %{count} tecken)
+      extension_white_list_error: "Du har valt fel filformat. Tillåtet format: %{allowed_types}"
     template:
       body: 'Det var problem med följande fält:'
       header:

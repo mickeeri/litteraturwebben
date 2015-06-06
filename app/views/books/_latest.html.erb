@@ -1,7 +1,7 @@
 <div class="books">
 	<% @books.each do |book| %>
-		<%= link_to(book) do %>
-		<div class="book">
+		<%= link_to book, class: "book" do %>
+		<div>
 			<div class="cover-div">
 				<%# Display cover pic if there is one. %>
 				<% if book.cover? %>
@@ -31,17 +31,3 @@
 		<% end %>
 	<% end %>
 </div>
-
-
-<!-- <%# View for showning one book. %>
-<div class="slider books">
-	<div class="left" id="left">
-		<%#= image_tag("icons/left.png") %>
-	</div>
-	<div class="right" id="right">
-		<%#= image_tag("icons/right.png") %>
-	</div>
-	<div class="track" id="latest-books-track">
-
-	</div>
-</div> -->

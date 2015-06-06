@@ -32,6 +32,9 @@
 				<% if logged_in? && current_user.admin? %>
 					<span class="glyphicon glyphicon-trash"></span>
 					<%= link_to "Radera bok", book, method: :delete, data: { confirm: "Är du säker?"} %>
+					<span> | </span>
+					<span class="glyphicon glyphicon-edit"></span>
+					<%= link_to " Redigera bok", edit_book_path(book) %>
 				<% end %>
 			</div>
 		</div>

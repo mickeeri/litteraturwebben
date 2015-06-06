@@ -1,11 +1,18 @@
 <% provide(:title, 'Våra böcker') %>
 <div class="row index">
 	<div class="col-md-8 col-md-offset-2 primary-col">
+		<% if logged_in? && current_user.admin? %>
+			<div class="new-book-link">
+				<span class="glyphicon glyphicon-plus"></span>
+				<%= link_to "Lägg till ny bok", newbook_path %>
+			</div>
+		<% end %>
 		<%= form_tag search_books_path, method: :get, class: "form-inline search-form", role: "search" do %>
-			<div class="form-group">
+			<div class="form-group has-feedback">
 				<!-- <label for="author-search-input">Sök på författare: </label> -->
 				<%= text_field_tag :search, params[:search], class: "form-control", id: "book-search-input",
 					placeholder: "Sök på böcker" %>
+				<span class="glyphicon glyphicon-remove form-control-feedback remove-input" aria-hidden="true"></span>
 			</div>
 			<%= button_tag name: nil, class: "btn btn-default", type: "submit" do %>
 				<span class="glyphicon glyphicon-search"></span>
@@ -15,13 +22,6 @@
 		<ul class="media-list">
 			<%= render @books %>
 		</ul>
-
-		<% if logged_in? && current_user.admin? %>
-			<div class="new-book-link">
-				<span class="glyphicon glyphicon-plus"></span>
-				<%= link_to "Lägg till ny bok", newbook_path %>
-			</div>
-		<% end %>
 	</div>
 </div>
 <div class="row pagination-row">

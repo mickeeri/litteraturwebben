@@ -1,12 +1,13 @@
-<% provide(:title, "Glömt lösenord") %>
+<% provide(:title, "Lösenordsåterställning") %>
 <div class="row">
-	<div class="col-md-6 col-md-offset-3">
+	<div class="col-md-6 col-md-offset-3 main-content">
+		<h2>Lösenordsåterställning</h2>
+		<p>Ange din mailadress så skickar vi en länk för återställning av lösenord.</p>
 		<%= form_for(:password_reset, url: password_resets_path) do |f| %>
 			<div class="form-group">
 				<%= f.label :email, "E-post" %>
 				<%= f.email_field :email, class: "form-control" %>
 			</div>
-
 			<%= f.submit "Skicka", class: "btn btn-primary" %>
 		<% end %>
 	</div>

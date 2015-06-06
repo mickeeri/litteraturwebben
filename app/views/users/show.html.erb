@@ -1,19 +1,21 @@
 <% provide(:title, @user.name) %>
 <div class="row user-show-div">
 	<div class="col-md-6 col-md-offset-1">
-		<ul class="list-group">
-			<li class="list-group-item"><h3>Min sida</h3></li>
+		<ul>
+			<li class="list-group-item"><h2>Min sida</h2></li>
 			<li class="list-group-item"><strong>Namn:</strong> <%= @user.name %></li>
 			<li class="list-group-item"><strong>E-post:</strong> <%= @user.email %></li>
+			<% if current_user.admin? %>
+				<li class="list-group-item"><h3>För administratör:</h3></li>
+				<li class="list-group-item"><%= link_to "Lägg till ny bok", new_book_path %></li>
+				<li class="list-group-item"><%= link_to "Lägg till ny författare", new_author_path %></li>
+			<% end %>
 		</ul>
 	</div>
-	<div class="col-md-2">
-		<ul class="list-group">
+	<div class="col-md-3">
+		<ul>
 			<li class="list-group-item"><%= link_to "Ändra uppgifter", edit_user_path(current_user) %></li>
 			<li class="list-group-item"><%= link_to "Logga ut", logout_path, method: "delete" %></li>
 		</ul>
 	</div>
 </div>
-
-
-
