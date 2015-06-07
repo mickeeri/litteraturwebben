@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
 # Use sqlite3 as the database for Active Record
@@ -11,9 +10,6 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
-
 gem 'bootstrap-sass',       '3.2.0.0'
 
 # Use jquery as the JavaScript library
@@ -29,13 +25,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 # Faker gem to make semi-realistic names and email adresses.
 gem 'faker', '1.4.2'
 
@@ -47,16 +36,15 @@ gem 'bootstrap-will_paginate'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
-
 gem 'aws-sdk', '~> 2.0.40'
 
+# Gems for nested forms.
 gem "cocoon"
-
 gem 'slim'
 gem 'simple_form'
 
+# Search
 gem "searchkick"
-
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'
@@ -79,6 +67,3 @@ group :production do
   gem 'elasticsearch-rails'
   gem 'bonsai-elasticsearch-rails'
 end
-
-
-

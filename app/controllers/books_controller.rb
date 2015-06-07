@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :admin_user, only: [:edit, :update, :destroy]
+  before_action :admin_user, only: [:edit, :update, :destroy, :pdf]
 
   def search
     if params[:search].present?
@@ -24,6 +24,7 @@ class BooksController < ApplicationController
   end
 
   def new
+    #session[:new_book] = true
     @book = Book.new
     #@book.authorships.build
   end
@@ -69,7 +70,7 @@ class BooksController < ApplicationController
       :cover_cache, :pdf_cache, :epub_cache,
       articles_attributes: [:id, :title, :writer, :year, :source, :about, :url, :_destroy],
       authorships_attributes: [:id, :_destroy, :book_id, :author_id,
-                               author_attributes: [:id, :_destroy, :name, :about, :portrait, :remove_portrait, :portrait_cache]]
+                               author_attributes: [:id, :_destroy, :name, :about, :yearofbirth, :portrait, :remove_portrait, :portrait_cache]]
     )
   end
 

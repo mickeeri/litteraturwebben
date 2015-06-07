@@ -4,7 +4,7 @@ sv:
     models:
       user: "Användare"
       book: "Bok"
-      authorship: "Författarskap"
+      authorship: "Författarskap:"
     attributes:
       user:
         name: "Namn"
@@ -16,13 +16,19 @@ sv:
         author: "Författare"
         yearofpub: "Utgivningsår"
         authors: "Författare"
-        authorships: "Författareskap"
+        about: "Beskrivning"
+        authorships: "Författarskap:"
+        cover: "Bildfil"
+        pdf: "Pdf-fil"
+        epub: "Epub-fil"
       author:
         name: "Namn"
         about: "Beskrivning"
+        yearofbirth: "Födelseår"
+        portrait: "Bildfil"
       article:
         title: "Titel"
-        year: "År/Datum"
+        year: "Årtal/Datum"
         writer: "Upphovsman"
         about: "Beskrivning"
         source: "Källa"
@@ -128,6 +134,7 @@ sv:
       year: År
   errors:
     format: "%{attribute} %{message}"
+    #format: "%{message}"
     messages:
       accepted: måste vara accepterad
       blank: måste anges

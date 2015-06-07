@@ -2,6 +2,7 @@
 <div class="row show-row">
 	<div class="col-md-9 col-md-offset-1">
 		<div class="show-container main-content">
+			<h1 class="small-screen-h1"><%= @book.title %></h1>
 			<!-- Picture -->
 			<div class="show-pic-left">
 				<% if @book.cover? %>
@@ -24,7 +25,7 @@
 
 			<!-- Content -->
 			<div class="show-content book-show-content">
-				<h1 class="show-header"><%= @book.title %></h1>
+				<h1 class="regular-screen-h1"><%= @book.title %></h1>
 				<p class="inline"><strong>Av:</strong>
 					<ul class="book-author-list">
 					<% @book.authors.each do |author| %>
@@ -44,7 +45,7 @@
 							<% if @book.pdf? %>
 								<div class="download-field">
 									<span class="glyphicon glyphicon-download"></span>
-									<%= link_to "Öppna boken som pdf-dokument", @book.pdf.url %>
+									<%= link_to "Öppna boken som pdf-dokument", @book.pdf.url, target: "_blank" %>
 								</div>
 							<% end %>
 							<% if @book.epub? %>
@@ -55,7 +56,7 @@
 							<% end %>
 						<% else %>
 							<div class="e-book-login">
-							<%= link_to "Logga in ", login_path %><p class="inline">för att ladda ner e-boken.</p>
+								<%= link_to "Logga in ", login_path %><p class="inline">för att ladda ner e-boken.</p>
 							</div>
 						<% end %>
 					</div>
@@ -82,7 +83,7 @@
 		<%# Articles div %>
 		<% if @book.articles.count > 0 || logged_in? && current_user.admin? %>
 			<div class="main-content articles">
-				<h3>Artiklar om <%= @book.title %></h3>
+				<h3>Skrivet om <%= @book.title %></h3>
 				<ul class="list-group">
 					<% @book.articles.each do |article| %>
 						<%= render 'articles/article', :article => article %>
@@ -90,7 +91,7 @@
 				</ul>
 				<% if logged_in? && current_user.admin? %>
 					<a class="article-form-link" data-toggle="collapse" href="#book-article-form"
-						aria-expanded="false" aria-controls="book-article-form">Lägg till artikel
+						aria-expanded="false" aria-controls="book-article-form">Lägg till artikel/bok
 						<span id="article-form-arrow" class="glyphicon glyphicon-chevron-right"></span>
 					</a>
 					<div class="collapse article-form" id="book-article-form">

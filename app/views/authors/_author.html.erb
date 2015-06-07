@@ -6,15 +6,15 @@
 			<% end %>
 		</div>
 		<div class="index-body">
-			<h3><%= link_to author.name, author %></h3>
-			<p><%= truncate(author.about, length: 180) %><%= link_to " Läs mer >>", author %></p>
+			<h3><%= link_to author.name, author %><small> (<%= author.yearofbirth %>)</small></h3>
+			<p><%= truncate(author.about, length: 150) %><%= link_to " Läs mer >>", author %></p>
 
 			<% if logged_in? && current_user.admin? %>
-				<span class="glyphicon glyphicon-trash"></span>
-				<%= link_to "Ta bort författare", author, method: :delete, data: { confirm: "Är du säker?"} %>
-				<span> | </span>
 				<span class="glyphicon glyphicon-edit"></span>
 				<%= link_to " Redigera författare", edit_author_path(author) %>
+				<span> | </span>
+				<span class="glyphicon glyphicon-trash"></span>
+				<%= link_to "Ta bort författare", author, method: :delete, data: { confirm: "Är du säker?"} %>
 			<% end %>
 		</div>
 	</div>

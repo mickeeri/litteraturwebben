@@ -5,8 +5,7 @@ class UserEditTest < ActionDispatch::IntegrationTest
 		@user = users(:testexample)
 	end
 
-	# Test 3.2.1
-	test "unsuccessful edit" do
+	test "3.2.1 unsuccessful edit" do
 		# Using test helper method to log in.
 		log_in_as(@user)
 		# Get of edit form.
@@ -18,13 +17,12 @@ class UserEditTest < ActionDispatch::IntegrationTest
 		assert_template 'users/edit'
 	end
 
-	# Test 3.2.2
-	test "successful edit with friendly forwarding" do
+	test "3.2.2 successful edit with friendly forwarding" do
 		get edit_user_path(@user)
 		# Using test helper method to log in.
 		log_in_as(@user)
 		# Checks if user is redirected to edit page.
-		assert_redirected_to edit_user_path(@user)
+		assert_redirected_to @user
 		name = "Mikael Eriksson"
 		email = "mikael@mail.com"
 		patch user_path(@user), user: { name: name, email: email, password: "", password_confirmation: "" }

@@ -15,9 +15,7 @@ class SessionsController < ApplicationController
       # If user has checked remember_me checkbox (value = 1), then remember user, else forget user.
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       # Redirects to requested url or default. See sessions_helper.
-      redirect_to session.delete(:return_to) || user
-      #   redirect_back_or user
-
+      redirect_to session.delete(:return_to) || root_url
     else
       # Create error message. .now makes sure message disappear as soon as there is an additional request.
       flash.now[:danger] = "Fel kombination av e-post och lösenord."

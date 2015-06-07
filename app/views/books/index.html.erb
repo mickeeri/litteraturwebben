@@ -4,7 +4,7 @@
 		<% if logged_in? && current_user.admin? %>
 			<div class="new-book-link">
 				<span class="glyphicon glyphicon-plus"></span>
-				<%= link_to "Lägg till ny bok", newbook_path %>
+				<%= link_to "Lägg till ny bok", new_book_path %>
 			</div>
 		<% end %>
 		<%= form_tag search_books_path, method: :get, class: "form-inline search-form", role: "search" do %>

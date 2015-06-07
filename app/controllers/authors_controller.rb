@@ -5,12 +5,12 @@ class AuthorsController < ApplicationController
     if params[:search].present?
       @authors = Author.search(params[:search])
     else
-      @authors = Author.order('lower(name)').paginate(page: params[:page], per_page: 5)
+      @authors = Author.order('lower(name)').paginate(page: params[:page], per_page: 10)
     end
   end
 
   def index
-    @authors = Author.order('lower(name)').paginate(page: params[:page], per_page: 5)
+    @authors = Author.order('lower(name)').paginate(page: params[:page], per_page: 10)
   end
 
   def latest
@@ -25,6 +25,7 @@ class AuthorsController < ApplicationController
   end
 
   def new
+    session[:return_to] ||= request.referer
     @author = Author.new
     # @author.articles.build
   end
@@ -34,8 +35,8 @@ class AuthorsController < ApplicationController
     if @author.save
     	# To be able to add several authors user is redirected to same form, but
     	# link to the new authors page is displayed in success message.
-      flash[:success] = "Författaren #{view_context.link_to(@author.name, @author)} är tillagd!".html_safe
-      redirect_to new_author_path
+      flash[:success] = "Författaren #{view_context.link_to(@author.name, @author)} är tillagd!"
+      redirect_to session.delete(:return_to) || usernew_author_path
     else
       render 'new'
     end
@@ -68,7 +69,7 @@ class AuthorsController < ApplicationController
 
   private
   def author_params
-    params.require(:author).permit(:name, :about, :portrait, :portrait_cache, :remove_portrait,
+    params.require(:author).permit(:name, :about, :yearofbirth, :portrait, :portrait_cache, :remove_portrait,
                                    articles_attributes: [:id, :title, :writer, :year, :source, :about, :url, :_destroy])
   end
 

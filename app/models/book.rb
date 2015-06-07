@@ -28,12 +28,12 @@ class Book < ActiveRecord::Base
   mount_uploader :epub, EpubUploader
 
   # Validation
-  validates :title, presence: { message: "Titel måste anges."}, length: { maximum: 100, message: "Titel får inte överstiga 100 tecken." }
-  validates :yearofpub, presence: { message: "Utgivningsår måste anges."}, length: { maximum: 4, message: "Utgivningsår: max 4 siffror" },
-    numericality: { only_integer: true, greater_than: 0, less_than: 2050, message: "Utgivningsår ska vara en siffra över 0" }
-  validates :genre_id, presence: { message: "Genre saknas"}
-  validates :about, length: { maximum: 1000, message: "Beskrivning av bok får inte överstiga 1000 tecken." }
-  #validates :authorships, presence: { message: " Välj minst en författare"}
+  validates :title, presence: true, length: { maximum: 100 }
+  validates :yearofpub, presence: true, length: { maximum: 4 },
+    numericality: { only_integer: true, greater_than: 0, less_than: 2050 }
+  validates :genre_id, presence: true
+  validates :about, length: { maximum: 1000 }
+  validates :authorships, presence: { message: " Välj minst en författare." }
 
   # Custom validator for file size.
   validate :picture_size
@@ -45,19 +45,19 @@ class Book < ActiveRecord::Base
   # Uploaded files maximum size.
   def picture_size
     if cover.size > 2.megabytes
-      errors.add(:cover, "Bildfilen får inte vara större än 2MB.")
+      errors.add(:cover, "får inte vara större än 2MB.")
     end
   end
 
   def pdf_size
     if pdf.size > 15.megabytes
-      errors.add(:pdf, "Pdf-dokumentet får inte vara större än 15 Mb")
+      errors.add(:pdf, "får inte vara större än 15 Mb")
     end
   end
 
   def epub_size
     if epub.size > 5.megabytes
-      errors.add(:epub, "Epub-filen måste vara mindre än 5 Mb.")
+      errors.add(:epub, "måste vara mindre än 5 Mb.")
     end
   end
 end

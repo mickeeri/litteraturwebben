@@ -2,11 +2,13 @@
 <div class="row show-row">
 	<div class="main col-md-9 col-md-offset-1">
 		<div class="show-container main-content">
+			<!-- Only show this on small screen -->
+			<h1 class="small-screen-h1"><%= @author.name %><small> (<%= @author.yearofbirth %>)</small></h1>
 			<div class="show-pic-left">
 				<%= image_tag(@author.portrait.url) if @author.portrait?  %>
 			</div>
 			<div class="show-content">
-				<h1 class="show-header"><%= @author.name %></h1>
+				<h1 class="regular-screen-h1"><%= @author.name %> <small>(<%= @author.yearofbirth %>)</small></h1>
 				<h3>Om författaren</h3>
 				<p><%= @author.about %></p>
 				<% if logged_in? && current_user.admin? %>
@@ -18,7 +20,7 @@
 		</div>
 		<% if @author.articles.count > 0 || logged_in? && current_user.admin? %>
 			<div class="main-content articles">
-					<h3>Artiklar om <%= @author.name %></h3>
+					<h3>Skrivet om <%= @author.name %></h3>
 					<ul class="list-group">
 						<% @articles.each do |article| %>
 							<%= render 'articles/article', :article => article %>

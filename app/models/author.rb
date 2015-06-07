@@ -12,16 +12,17 @@ class Author < ActiveRecord::Base
   accepts_nested_attributes_for :articles, :reject_if => :all_blank, :allow_destroy => true
 
   # Validation
-  validates :name, presence: { message: "Författarens namn får inte vara tomt" },
-    length: { maximum: 50, message: "Författarens namn får inte överstiga 50 tecken." }
-  validates :about, length: { maximum: 1000, message: "Beskrivningen får inte överstiga 1000 tecken." }
+  # Authors can have same name but combination of name and yearofbirth must be unique.
+  validates :name, presence: true, length: { maximum: 50 }, uniqueness: { scope: :yearofbirth, case_sensitive: false }
+  validates :about, length: { maximum: 1000 }
+  validates :yearofbirth, presence: true, length: { maximum: 4 }, numericality: { greater_than: 0, less_than: 2050 }
   validate :portrait_size
 
   private
-  # Validates portrait picture size.
+  # Validation for picture file size.
   def portrait_size
     if portrait.size > 3.megabytes
-      errors.add(:portrait, "Filen får inte vara större än 3 Mb")
+      errors.add(:portrait, "får inte vara större än 3 Mb")
     end
   end
 end

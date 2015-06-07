@@ -18,9 +18,15 @@
 	<div class="col-md-9 col-md-pull-3 latest-content main-content">
 		<div class="jumbotron">
 			<% if logged_in? %>
+				<% if current_user.admin? %>
+				<h2>Välkommen <%= current_user.name %>!</h2>
+				<%= link_to "Lägg till nya böcker", new_book_path, class: "btn btn-lg btn-primary" %>
+				<%= link_to "Lägg till nya författare", new_author_path, class: "btn btn-lg btn-primary" %>
+				<% else %>
 				<h2>Se våra böcker</h2>
 				<p>Vi har flera intressanta titlar.</p>
 				<%= link_to "Klicka här", books_path, class: "btn btn-lg btn-primary" %>
+				<% end %>
 			<% else %>
 				<h2>Tycker du om att läsa böcker?</h2>
 				<p>Skapa ett konto för att ladda ner våra e-böcker</p>
@@ -31,6 +37,5 @@
 			<h2>Våra senaste titlar</h2>
 			<%= render 'books/latest' %>
 		</div>
-
 	</div>
 </div>
