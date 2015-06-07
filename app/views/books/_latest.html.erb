@@ -4,18 +4,7 @@
 		<div>
 			<div class="cover-div">
 				<%# Display cover pic if there is one. %>
-				<% if book.cover? %>
-					<%= image_tag book.cover.url %>
-				<% else %>
-					<div class="default-cover">
-						<span class="author-span">
-							<% if book.authors.count == 1 %>
-								<%= book.authors.first.name %>
-							<% end %>
-						</span>
-						<span class="title-span"><%= book.title %></span>
-					</div>
-				<% end %>
+					<%= display_cover(book) %>
 			</div>
 			<div class="caption">
 				<h3><%= book.title %></h3>

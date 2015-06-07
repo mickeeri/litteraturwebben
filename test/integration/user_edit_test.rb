@@ -22,7 +22,6 @@ class UserEditTest < ActionDispatch::IntegrationTest
 		# Using test helper method to log in.
 		log_in_as(@user)
 		# Checks if user is redirected to edit page.
-		assert_redirected_to @user
 		name = "Mikael Eriksson"
 		email = "mikael@mail.com"
 		patch user_path(@user), user: { name: name, email: email, password: "", password_confirmation: "" }

@@ -28,12 +28,14 @@ class Book < ActiveRecord::Base
   mount_uploader :epub, EpubUploader
 
   # Validation
-  validates :title, presence: true, length: { maximum: 100 }
+  validates :title, presence: true, length: { maximum: 100 }, uniqueness: { scope: :yearofpub, case_sensitive: false }
   validates :yearofpub, presence: true, length: { maximum: 4 },
     numericality: { only_integer: true, greater_than: 0, less_than: 2050 }
   validates :genre_id, presence: true
   validates :about, length: { maximum: 1000 }
   validates :authorships, presence: { message: " Välj minst en författare." }
+
+  #validates :name, presence: true, length: { maximum: 50 }, uniqueness: { scope: :yearofbirth, case_sensitive: false }
 
   # Custom validator for file size.
   validate :picture_size

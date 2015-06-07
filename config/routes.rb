@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get 'authors/edit'
   get 'authors/delete'
 
+  get 'articles/edit'
 
   get 'sessions/new'
 

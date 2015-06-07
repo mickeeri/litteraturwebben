@@ -14,4 +14,22 @@ module ApplicationHelper
 	def is_active?(link_path)
 		current_page?(link_path) ? "active" : ""
 	end
+
+	# Fallback img for CarrierWave pic uploader.
+	# http://stackoverflow.com/questions/22946123/fallback-image-with-carrierwave
+	def display_cover(book)
+		unless book.cover.nil?
+			image_tag(book.cover.url)
+		else
+			image_tag("/path/to/default_cover.png")
+		end
+	end
+
+	def display_portrait(author)
+		unless author.portrait.nil?
+			image_tag(author.portrait.url)
+		else
+			image_tag("/path/to/default_cover.png")
+		end
+	end
 end

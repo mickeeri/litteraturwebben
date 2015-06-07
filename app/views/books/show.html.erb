@@ -5,18 +5,7 @@
 			<h1 class="small-screen-h1"><%= @book.title %></h1>
 			<!-- Picture -->
 			<div class="show-pic-left">
-				<% if @book.cover? %>
-					<%= image_tag @book.cover.url %>
-				<% else %>
-					<div class="default-cover">
-						<span class="author-span">
-							<% if @book.authors.count == 1 %>
-								<%= @book.authors.first.name %>
-							<% end %>
-						</span>
-						<span class="title-span"><%= @book.title %></span>
-					</div>
-				<% end %>
+				<%= display_cover(@book) %>
 				<div class="aside-info">
 					<p><strong>Utgiven:</strong> <%= @book.yearofpub %></p>
 					<p><strong>Genre:</strong> <%= @book.genre.genre %></p>

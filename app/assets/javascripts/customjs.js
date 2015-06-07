@@ -1,51 +1,3 @@
-// $('#latest-books-track').ready(function(){
-// 	setInterval(function() {
-// 		var left = parseInt($('#latest-books-track').css('left'));
-
-// 		if(left < -600) {
-// 			// left = 10;
-// 			// $('#latest-books-track').css('left', left);
-// 		}
-// 		else {
-// 			if ($('#right').is(":hover")) {
-// 				$('#latest-books-track').css('left', left-4);
-// 			}
-// 		}
-
-// 		if(left > 10) {
-// 			// left = -750;
-// 			// $('#latest-books-track').css('left', left);
-// 		}
-// 		else {
-// 			if ($('#left').is(":hover")) {
-// 				$('#latest-books-track').css('left', left+4);
-// 			}
-// 		}
-// 	}, 10);
-// });
-
-
-
-
-// $('#latest-books-track').ready(function(){
-// 	var left = parseInt($('#latest-books-track').css('left'));
-
-// 	$('#right').click(function(){
-// 		$('#latest-books-track').css('left', left+4);
-// 	});
-
-// 	$('#right').click(function(){
-// 		$('#latest-books-track').css('left', left-4);
-// 	});
-// });
-
-// $(document).ready(function(){
-// 	console.log("hallå!");
-
-// 	$('.select optional').addClass('form-control');
-// });
-
-
 // To toggle icon in article form.
 $('.articles').ready(function(){
 	$('.article-form-link').click(function(){
@@ -61,23 +13,6 @@ $('.articles').ready(function(){
 		}
 	});
 });
-
-// For cocoon form
-// $("#authors a.add_fields").
-//   data("association-insertion-position", 'before').
-//   data("association-insertion-node", 'this');
-
-// $('#authors').on('cocoon:after-insert',
-//      function() {
-//          $(".authorship-fields a.add_fields").
-//              data("association-insertion-position", 'before').
-//              data("association-insertion-node", 'this');
-//          $('.authorship-fields').on('cocoon:after-insert',
-//               function() {
-//                 $(this).children("#author_from_list").remove();
-//                 $(this).children("a.add_fields").hide();
-//               });
-// 	});
 
 // Javascript from Cocoon gem wiki for :has_many :through forms.
 // https://github.com/nathanvda/cocoon/wiki/A-guide-to-doing-nested-model-forms
@@ -110,14 +45,6 @@ $(document).ready(function() {
             $(this).find("a.add_fields").hide();
         });
 });
-
-// $("select.author-options").change(function () {
-//     $("select.author-options option").prop('disabled', false);
-//     $("select.author-options option:selected:not([value='0'])").each(function (i) {
-//         $("select.author-options option:nth-child(" + ((+this.value) + 1) + ")").prop('disabled', true)
-//     });
-// });
-
 
 // Upload file size validation.
 $('#new_book').ready(function(){
@@ -180,6 +107,7 @@ $('#new_article').ready(function(){
     }
 });
 
+// Empty search text field.
 $('.search-form').ready(function(){
   $('.remove-input').click(function(){
     if ($('.search-field').val().length > 0) {
