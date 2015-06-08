@@ -5,7 +5,6 @@ $btn-blue: #0E76BC;
 $light-green: #B2F4D4;
 $my-orange: #D9923B;
 $dark-blue: #204056;
-//$medium-red: #EF4135;
 $medium-red: #F64B3F;
 $twitter-yellow: #FFB037;
 $lighter-blue: #0090D7;
@@ -29,7 +28,7 @@ $navbar-default-toggle-icon-bar-bg: #fff;
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-/* Mixins */
+/* MIXIN'S */
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -112,19 +111,11 @@ textarea {
   padding-bottom: 50px;
 }
 
-
-
 /* TYPOGRAPHY */
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
 }
-
-// h1 {
-//   font-size: 3em;
-//   margin-bottom: 30px;
-//   text-align: center;
-// }
 
 h3 {
   font-weight: 600;
@@ -206,8 +197,6 @@ footer ul li {
   margin-left: 15px;
 }
 
-
-
 #error_explanation {
   color: red;
   ul {
@@ -240,19 +229,34 @@ footer ul li {
 
 /* INDEX-PAGES */
 
+/* Author index */
+.authors {
+  margin-right: 40px;
+
+  li {
+    list-style: none;
+    border-bottom: 1px dotted $gray-medium-light;
+    padding-bottom: 20px;
+
+    .readmore-div {
+      text-align: right;
+    }
+  }
+}
+
+.about-text {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: block;
+}
+
 .index {
 
   h1 {
-    // letter-spacing: 0.8px;
-    // font-weight: 700;
-    // font-size: 2.5em;
     border-bottom: 1px dotted $gray-medium-light;
     text-align: left;
     margin:0 40px 40px 4%;
-
-    // @media (max-width: $screen-sm-min) {
-    //   font-size: 34px;
-    // }
   }
 
   a {
@@ -265,7 +269,6 @@ footer ul li {
 
   h3 {
     margin-top: 0;
-
     a {
       font-size: 22px;
       font-weight: 600;
@@ -344,7 +347,7 @@ footer ul li {
       font-style: italic;
     }
   }
-
+  // To seperate if there is more than one author.
   li:after {
     content: ", ";
   }
@@ -455,9 +458,6 @@ footer ul li {
 
     .regular-screen-h1 {
       //color: $medium-red;
-      // margin-bottom: 10px;
-      // font-weight: 600;
-      // letter-spacing: 0;
     }
 
     h4 {
@@ -471,14 +471,6 @@ footer ul li {
     .small-screen-h1 {
       display: inline;
       font-size: 29px;
-      // font-weight: 600;
-      // margin-top: 20px;
-      // font-size: 1.8em;
-      // max-height: 100px;
-      // max-width: 80%;
-      // position: absolute;
-      // top: 5px;
-      // display: block;
     }
 
     // Only shows if small screen.
@@ -545,11 +537,6 @@ footer ul li {
   margin-right: 20px;
   background-color: #204056;
 
-  // @media (max-width: $screen-sm-min) {
-  //     width: 200px;
-  //     height: 270px;
-  // }
-
   .title-span, .author-span {
     text-align: left;
     color: white;
@@ -569,30 +556,6 @@ footer ul li {
     margin: 40px 0 0 15px;
     padding: 0;
   }
-}
-
-/* SHOW PAGES END */
-
-/* Author index */
-.authors {
-  margin-right: 40px;
-
-  li {
-    list-style: none;
-    border-bottom: 1px dotted $gray-medium-light;
-    padding-bottom: 20px;
-
-    .readmore-div {
-      text-align: right;
-    }
-  }
-}
-
-.about-text {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  display: block;
 }
 
 /* Author show */
@@ -773,6 +736,7 @@ input, textarea, select, .uneditable-input {
 .books {
 
   @media (max-width: $screen-sm-min) {
+    min-width: 390px;
     text-align: center;
     .book {
       margin-bottom: 20px;

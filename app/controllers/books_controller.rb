@@ -5,12 +5,12 @@ class BooksController < ApplicationController
     if params[:search].present?
       @books = Book.order('lower(title)').search(params[:search])
     else
-      @books = Book.order('lower(title)').paginate(page: params[:page], per_page: 5)
+      @books = Book.order('lower(title)').paginate(page: params[:page], per_page: 10)
       # index:
     end
   end
   def index
-    @books = Book.order('lower(title)').paginate(page: params[:page], per_page: 5)
+    @books = Book.order('lower(title)').paginate(page: params[:page], per_page: 10)
   end
 
   def latest
