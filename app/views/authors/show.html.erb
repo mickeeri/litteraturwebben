@@ -43,7 +43,7 @@
 		<%# Authors books %>
 		<% if @author.books.count > 0 %>
 			<div class="main-content titles">
-				<h3>Titlar av <%= @author.name %></h3>
+				<h3 class="titles-by">Titlar av <%= @author.name %></h3>
 				<%= render 'books/latest' %>
 			</div>
 		<% end %>
