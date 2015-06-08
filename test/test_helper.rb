@@ -10,7 +10,7 @@ class ActiveSupport::TestCase
   include ApplicationHelper
 
   # Add more helper methods to be used by all tests here...
-  
+
   # Returns true if test user is logged-in.
   def is_logged_in?
   	!session[:user_id].nil?
@@ -36,6 +36,4 @@ class ActiveSupport::TestCase
   	# defined? returns true if argument is defined and post_via-redirect is only defined in integration tests.
   	defined?(post_via_redirect)
   end
-
-
 end

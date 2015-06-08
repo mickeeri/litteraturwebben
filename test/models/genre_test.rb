@@ -5,8 +5,7 @@ class GenreTest < ActiveSupport::TestCase
         @genre = Genre.new(genre: "Skönlitteratur")
     end
 
-    # TEST 1.5.1
-    test "genre should be valid" do
+    test "1.5.1 genre should be valid" do
         @genre.valid?
     end
 end
