@@ -4,8 +4,6 @@ class Author < ActiveRecord::Base
   mount_uploader :portrait, PortraitUploader
 
   # Relationships
-  # has_many :authorships, foreign_key: :author_id, dependent: :destroy
-  # has_many :books, through: :authorships, source: :book
   has_many :authorships, :class_name => 'Authorship', :dependent => :destroy
   has_many :books, through: :authorships
   has_many :articles, dependent: :destroy

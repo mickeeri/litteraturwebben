@@ -7,19 +7,13 @@ class Book < ActiveRecord::Base
 
   # Relationships
   belongs_to :genre
-  #has_many :authorships, foreign_key: :book_id, dependent: :destroy
-  #has_many :authors, through: :authorships, source: :author
 
   # Cocoon setup
   has_many :authorships, :class_name => 'Authorship', :dependent => :destroy
   has_many :authors, :through => :authorships
   accepts_nested_attributes_for :authors
   accepts_nested_attributes_for :authorships, :allow_destroy => true, :reject_if => :all_blank
-
   has_many :articles, dependent: :destroy
-  #accepts_nested_attributes_for :authors
-  #accepts_nested_attributes_for :authorships
-  # accepts_nested_attributes_for :authorships, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :articles, :reject_if => :all_blank, :allow_destroy => true
 
   # Uploaders
@@ -34,8 +28,6 @@ class Book < ActiveRecord::Base
   validates :genre_id, presence: true
   validates :about, length: { maximum: 1000 }
   validates :authorships, presence: { message: " Välj minst en författare." }
-
-  #validates :name, presence: true, length: { maximum: 50 }, uniqueness: { scope: :yearofbirth, case_sensitive: false }
 
   # Custom validator for file size.
   validate :picture_size

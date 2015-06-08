@@ -154,6 +154,9 @@ p {
   .container-fluid {
     max-width: 1200px;
     padding-right: 40px;
+    @media (max-width: $screen-sm-min) {
+      padding-right: 0;
+    }
   }
 
   a {
@@ -729,6 +732,7 @@ input, textarea, select, .uneditable-input {
 
     @media (max-width: $screen-sm-min) {
       margin: 0;
+      padding-left: none;
     }
   }
 }
@@ -736,10 +740,13 @@ input, textarea, select, .uneditable-input {
 .books {
 
   @media (max-width: $screen-sm-min) {
-    min-width: 390px;
     text-align: center;
+    padding: 0;
+
     .book {
       margin-bottom: 20px;
+      width: 150px;
+      padding: 0;
 
       .caption {
         text-align: left;
@@ -806,9 +813,9 @@ input, textarea, select, .uneditable-input {
     }
   }
 
-  @media (max-width: $screen-sm-min) {
-    padding: 0;
-  }
+  // @media (max-width: $screen-sm-min) {
+  //   padding: 0;
+  // }
 }
 
 
@@ -860,7 +867,7 @@ input, textarea, select, .uneditable-input {
 }
 
 
-/* Miscellaneous */
+/* MISC*/
 
 .debug_dump {
   clear: both;

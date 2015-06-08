@@ -3,7 +3,6 @@
 	<div class="col-md-8 col-md-offset-2 primary-col">
 		<%= form_tag search_books_path, method: :get, class: "form-inline search-form", role: "search" do %>
 			<div class="form-group">
-				<!-- <label for="author-search-input">Sök på författare: </label> -->
 				<%= text_field_tag :search, params[:search], class: "form-control", id: "book-search-input",
 					placeholder: "Sök på böcker" %>
 			</div>

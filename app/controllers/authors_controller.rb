@@ -9,6 +9,7 @@ class AuthorsController < ApplicationController
     end
   end
 
+  # Index ordered with pagination.
   def index
     @authors = Author.order('lower(name)').paginate(page: params[:page], per_page: 10)
   end
@@ -17,6 +18,7 @@ class AuthorsController < ApplicationController
     @authors = Author.last(2)
   end
 
+  # Show with authors, authors books and authors articles.
   def show
     @author = Author.find(params[:id])
     @books = @author.books
@@ -27,7 +29,6 @@ class AuthorsController < ApplicationController
   def new
     session[:return_to] ||= request.referer
     @author = Author.new
-    # @author.articles.build
   end
 
   def create

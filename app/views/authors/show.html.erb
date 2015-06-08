@@ -2,7 +2,7 @@
 <div class="row show-row">
 	<div class="main col-md-9 col-md-offset-1">
 		<div class="show-container main-content">
-			<!-- Only show this on small screen -->
+			<!-- Only show this h1 on small screen -->
 			<h1 class="small-screen-h1"><%= @author.name %><small> (<%= @author.yearofbirth %>)</small></h1>
 			<div class="show-pic-left">
 				<%= display_portrait(@author) %>
@@ -40,6 +40,7 @@
 				<% end %>
 			</div>
 		<% end %>
+		<%# Authors books %>
 		<% if @author.books.count > 0 %>
 			<div class="main-content titles">
 				<h3>Titlar av <%= @author.name %></h3>

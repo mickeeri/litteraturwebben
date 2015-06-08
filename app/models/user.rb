@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
 
 	# Method to create bcrypt password digest via has_secure_password.
 	def User.digest(string)
-	    # Uses minimum cost paramter in test and normal (high) cost parameter in production.
+	    # Uses minimum cost paramater in test and normal (high) cost parameter in production.
 	    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
 	    # Create password digest. Snippet from secure password source code.
 	    BCrypt::Password.create(string, cost: cost)
@@ -50,12 +50,14 @@ class User < ActiveRecord::Base
 		update_attribute(:remember_digest, nil)
 	end
 
+	# Reset digest.
 	def create_reset_digest
 		self.reset_token = User.new_token
 		update_attribute(:reset_digest, User.digest(reset_token))
 		update_attribute(:reset_sent_at, Time.zone.now)
 	end
 
+	# Password reset e-mail.
 	def send_password_reset_email
 		UserMailer.password_reset(self).deliver_now
 	end

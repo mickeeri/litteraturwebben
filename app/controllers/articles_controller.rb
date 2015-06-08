@@ -1,19 +1,6 @@
 class ArticlesController < ApplicationController
 
 	# Source: http://blog.8thcolor.com/en/2011/08/nested-resources-with-independent-views-in-ruby-on-rails/
-
-	# def new
-	# 	@article = Article.new
-	# end
-
-	# def destroy
-	# 	@book = Book.find(params[:id])
-	# 	@article = @book.articles.find(params[:id])
-	# 	@article.destroy
-	# 	flash[:success] = "Artikel raderad"
-	# 	redirect_to @book
-	# end
-
 	def index
 		if params.has_key?(:author_id)
 			@author = Author.find(params[:author_id])
@@ -42,14 +29,6 @@ class ArticlesController < ApplicationController
 			@book = Book.find(params[:book_id])
 			@article = @book.articles.build
 		end
-
-
-
-
-
-		# @author = Author.find(params[:author_id])
-		# @book = Book.find(params[:book_id])
-		# @article = @author.articles.build
 	end
 
 	def create
@@ -73,36 +52,7 @@ class ArticlesController < ApplicationController
 		end
 	end
 
-	# def edit
-	# 	@article = Article.find(params[:id])
-	# 	# @author = Author.find(params[:author_id])
-	# 	# @article = @author.articles.find(params[:id])
-	# end
-
-	# def update
-
-
-
-
-	# 	@article = Article.find(params[:id])
-	# 	if @article.update_attributes(article_params)
-	# 		flash[:success] = "Artikeln är uppdaterad!"
-	# 		redirect_to :back
-	# 	else
-	# 		render 'edit'
-	# 	end
-	# 	# @author = Author.find(params[:author_id])
-	# 	# @book = Book.find(params[:book_id])
-	# 	# @article = @author.articles.find(params[:id])
-	# 	# if @article.update_attributes(article_params)
-	# 	# 	flash[:success] = "Artikeln är uppdaterad!"
-	# 	# 	redirect_to :back
-	# 	# else
-	# 	# 	render 'edit'
-	# 	# end
-	# end
-
-
+	# Edit and Update method not working at the moment.
 	def edit
 		if params.has_key?(:author_id)
 			@author = Author.find(params[:author_id])
@@ -131,7 +81,7 @@ class ArticlesController < ApplicationController
 
 	def destroy
 		Article.find(params[:id]).destroy
-		flash[:success] = "Artikel raderad"
+		flash[:success] = "Artikel är raderad"
 		redirect_to :back
 	end
 

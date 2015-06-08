@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
   before_action :admin_user, only: [:edit, :update, :destroy, :pdf]
 
+  # How to make search method: https://www.youtube.com/watch?v=0DR5JLZ2Qgg
   def search
     if params[:search].present?
       @books = Book.order('lower(title)').search(params[:search])
@@ -9,12 +10,9 @@ class BooksController < ApplicationController
       # index:
     end
   end
+  # Index with books in order and pagaination.
   def index
     @books = Book.order('lower(title)').paginate(page: params[:page], per_page: 10)
-  end
-
-  def latest
-    @books = Book.last(2)
   end
 
   def show
@@ -24,14 +22,13 @@ class BooksController < ApplicationController
   end
 
   def new
-    #session[:new_book] = true
     @book = Book.new
-    #@book.authorships.build
   end
 
   def create
     @book = Book.new(book_params)
     if @book.save
+      # Flash with link to book.
       flash[:success] = "Boken #{view_context.link_to(@book.title, @book)} är tillagd!"
       redirect_to new_book_path
     else
@@ -61,7 +58,6 @@ class BooksController < ApplicationController
 
   # http://stackoverflow.com/questions/17436264/how-to-use-rails-4-strong-parameters-with-has-many-through-association
   # http://stackoverflow.com/questions/21983131/rails-4-nested-attributes-and-has-many-through-associaton-in-a-form
-  # http://stackoverflow.com/questions/18308714/nested-fields-and-strong-parameters
 
   private
   def book_params
