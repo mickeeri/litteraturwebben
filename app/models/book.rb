@@ -1,5 +1,4 @@
 class Book < ActiveRecord::Base
-
   # Make searchable
   searchkick
 
@@ -9,12 +8,16 @@ class Book < ActiveRecord::Base
   belongs_to :genre
 
   # Cocoon setup
-  has_many :authorships, :class_name => 'Authorship', :dependent => :destroy
-  has_many :authors, :through => :authorships
+  has_many :authorships, class_name: 'Authorship', dependent: :destroy
+  has_many :authors, through: :authorships
   accepts_nested_attributes_for :authors
-  accepts_nested_attributes_for :authorships, :allow_destroy => true, :reject_if => :all_blank
+  accepts_nested_attributes_for :authorships,
+                                allow_destroy: true,
+                                reject_if: :all_blank
   has_many :articles, dependent: :destroy
-  accepts_nested_attributes_for :articles, :reject_if => :all_blank, :allow_destroy => true
+  accepts_nested_attributes_for :articles,
+                                reject_if: :all_blank,
+                                allow_destroy: true
 
   # Uploaders
   mount_uploader :cover, PictureUploader
@@ -22,12 +25,20 @@ class Book < ActiveRecord::Base
   mount_uploader :epub, EpubUploader
 
   # Validation
-  validates :title, presence: true, length: { maximum: 100 }, uniqueness: { scope: :yearofpub, case_sensitive: false }
-  validates :yearofpub, presence: true, length: { maximum: 4 },
-    numericality: { only_integer: true, greater_than: 0, less_than: 2050 }
+  validates :title,
+            presence: true,
+            length: { maximum: 100 },
+            uniqueness: { scope: :yearofpub,
+                          case_sensitive: false }
+  validates :yearofpub,
+            presence: true,
+            length: { maximum: 4 },
+            numericality: { only_integer: true,
+                            greater_than: 0,
+                            less_than: 2050 }
   validates :genre_id, presence: true
   validates :about, length: { maximum: 1000 }
-  validates :authorships, presence: { message: " Välj minst en författare." }
+  validates :authorships, presence: { message: ' Välj minst en författare.' }
 
   # Custom validator for file size.
   validate :picture_size
@@ -38,20 +49,17 @@ class Book < ActiveRecord::Base
 
   # Uploaded files maximum size.
   def picture_size
-    if cover.size > 2.megabytes
-      errors.add(:cover, "får inte vara större än 2MB.")
-    end
+    errors.add(:cover, 'får inte vara större än 2MB.') if
+      cover.size > 2.megabytes
   end
 
   def pdf_size
-    if pdf.size > 15.megabytes
-      errors.add(:pdf, "får inte vara större än 15 Mb")
-    end
+    errors.add(:pdf, 'får inte vara större än 15 Mb') if
+      pdf.size > 15.megabytes
   end
 
   def epub_size
-    if epub.size > 5.megabytes
-      errors.add(:epub, "måste vara mindre än 5 Mb.")
-    end
+    errors.add(:epub, 'måste vara mindre än 5 Mb.') if
+      epub.size > 5.megabytes
   end
 end
