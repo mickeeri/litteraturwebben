@@ -14,12 +14,12 @@
 			<!-- Collect nav links and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li class="<%= is_active?(root_path) %>"><%= link_to "Hem", root_path %></li>
-					<li class="<%= is_active?(books_path) %>"><%= link_to "Böcker", books_path %></li>
-					<li class="<%= is_active?(authors_path) %>"><%= link_to "Författare", authors_path %></li>
-					<li class="<%= is_active?(about_path) %>"><%= link_to "Om", about_path %></li>
+					<li class="<%= active?(root_path) %>"><%= link_to "Hem", root_path %></li>
+					<li class="<%= active?(books_path) %>"><%= link_to "Böcker", books_path %></li>
+					<li class="<%= active?(authors_path) %>"><%= link_to "Författare", authors_path %></li>
+					<li class="<%= active?(about_path) %>"><%= link_to "Om", about_path %></li>
 						<% if logged_in? && current_user.admin? %>
-							<li class="<%= is_active?(users_path) %>"><%= link_to "Användare", users_path %></li>
+							<li class="<%= active?(users_path) %>"><%= link_to "Användare", users_path %></li>
 						<% end %>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -40,7 +40,7 @@
 							</ul>
 						</li>
 					<% else %>
-						<li class="<%= is_active?(login_path) %>"><%= link_to "Logga in", login_path %></li>
+						<li class="<%= active?(login_path) %>"><%= link_to "Logga in", login_path %></li>
 					<% end %>
 				</ul>
 			</div><!-- .navbar-collapse -->
