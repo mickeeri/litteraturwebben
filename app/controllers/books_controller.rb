@@ -4,15 +4,17 @@ class BooksController < ApplicationController
   # How to make search method: https://www.youtube.com/watch?v=0DR5JLZ2Qgg
   def search
     if params[:search].present?
-      @books = Book.order('lower(title)').search(params[:search])
+      @books = Book.search(params[:search])
     else
-      @books = Book.order('lower(title)').paginate(page: params[:page], per_page: 10)
-      # index:
+      @books = Book.order("lower(title)")
+                   .paginate(page: params[:page], per_page: 10)
     end
   end
+
   # Index with books in order and pagaination.
   def index
-    @books = Book.order('lower(title)').paginate(page: params[:page], per_page: 10)
+    @books = Book.order("lower(title)")
+                 .paginate(page: params[:page], per_page: 10)
   end
 
   def show
@@ -29,7 +31,8 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     if @book.save
       # Flash with link to book.
-      flash[:success] = "Boken #{view_context.link_to(@book.title, @book)} är tillagd!"
+      flash[:success] =
+        "Boken #{view_context.link_to(@book.title, @book)} är tillagd!"
       redirect_to new_book_path
     else
       render 'new'
@@ -43,7 +46,7 @@ class BooksController < ApplicationController
   def update
     @book = Book.find(params[:id])
     if @book.update_attributes(book_params)
-      flash[:success] = "Boken är uppdaterad!"
+      flash[:success] = 'Boken är uppdaterad!'
       redirect_to @book
     else
       render 'edit'
@@ -52,7 +55,7 @@ class BooksController < ApplicationController
 
   def destroy
     Book.find(params[:id]).destroy
-    flash[:success] = "Bok raderad!"
+    flash[:success] = 'Bok raderad!'
     redirect_to books_url
   end
 
@@ -60,13 +63,45 @@ class BooksController < ApplicationController
   # http://stackoverflow.com/questions/21983131/rails-4-nested-attributes-and-has-many-through-associaton-in-a-form
 
   private
+
   def book_params
+    author_attr = [:id,
+                   :_destroy,
+                   :name,
+                   :about,
+                   :yearofbirth,
+                   :portrait,
+                   :remove_portrait,
+                   :portrait_cache]
+    authorship_attr = [:id,
+                       :_destroy,
+                       :book_id,
+                       :author_id,
+                       author_attr]
+    articles_attr = [:id,
+                     :title,
+                     :writer,
+                     :year,
+                     :source,
+                     :about,
+                     :url,
+                     :_destroy]
     params.require(:book).permit(
-      :title, :yearofpub, :about, :genre_id, :cover, :remove_cover, :pdf, :remove_pdf, :epub, :remove_epub,
-      :cover_cache, :pdf_cache, :epub_cache,
-      articles_attributes: [:id, :title, :writer, :year, :source, :about, :url, :_destroy],
-      authorships_attributes: [:id, :_destroy, :book_id, :author_id,
-                               author_attributes: [:id, :_destroy, :name, :about, :yearofbirth, :portrait, :remove_portrait, :portrait_cache]]
+      :title,
+      :yearofpub,
+      :about,
+      :genre_id,
+      :cover,
+      :remove_cover,
+      :pdf,
+      :remove_pdf,
+      :epub,
+      :remove_epub,
+      :cover_cache,
+      :pdf_cache,
+      :epub_cache,
+      articles_attributes: articles_attr,
+      authorships_attributes: authorship_attr
     )
   end
 

@@ -5,13 +5,15 @@ class AuthorsController < ApplicationController
     if params[:search].present?
       @authors = Author.search(params[:search])
     else
-      @authors = Author.order('lower(name)').paginate(page: params[:page], per_page: 10)
+      @authors = Author.order("lower(name)")
+                       .paginate(page: params[:page], per_page: 10)
     end
   end
 
   # Index ordered with pagination.
   def index
-    @authors = Author.order('lower(name)').paginate(page: params[:page], per_page: 10)
+    @authors = Author.order("lower(name)")
+                     .paginate(page: params[:page], per_page: 10)
   end
 
   def latest
@@ -34,12 +36,13 @@ class AuthorsController < ApplicationController
   def create
     @author = Author.new(author_params)
     if @author.save
-    	# To be able to add several authors user is redirected to same form, but
-    	# link to the new authors page is displayed in success message.
-      flash[:success] = "Författaren #{view_context.link_to(@author.name, @author)} är tillagd!"
+      # To be able to add several authors user is redirected to same form, but
+      # link to the new authors page is displayed in success message.
+      flash[:success] =
+        "Författaren #{view_context.link_to(@author.name, @author)} är tillagd!"
       redirect_to session.delete(:return_to) || usernew_author_path
     else
-      render 'new'
+      render "new"
     end
   end
 
@@ -53,7 +56,7 @@ class AuthorsController < ApplicationController
       flash[:success] = "Författaren är uppdaterad!"
       redirect_to @author
     else
-      render 'edit'
+      render "edit"
     end
   end
 
@@ -69,9 +72,23 @@ class AuthorsController < ApplicationController
   end
 
   private
+
   def author_params
-    params.require(:author).permit(:name, :about, :yearofbirth, :portrait, :portrait_cache, :remove_portrait,
-                                   articles_attributes: [:id, :title, :writer, :year, :source, :about, :url, :_destroy])
+    params.require(:author)
+          .permit(:name,
+                  :about,
+                  :yearofbirth,
+                  :portrait,
+                  :portrait_cache,
+                  :remove_portrait,
+                  articles_attributes: [:id,
+                                        :title,
+                                        :writer,
+                                        :year,
+                                        :source,
+                                        :about,
+                                        :url,
+                                        :_destroy])
   end
 
   # Before filters
