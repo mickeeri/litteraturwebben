@@ -1,11 +1,12 @@
 module SessionsHelper
-
-  # Log in given user. Places temorary cookie on user's browser containining encrypted version of user's id.
+  # Log in given user. Places temorary cookie on user's browser
+  # containining encrypted version of user's id.
   def log_in(user)
     session[:user_id] = user.id
   end
 
-  # Calls user.remember, generating remember token and saving its digest to database.
+  # Calls user.remember, generating remember token
+  # and saving its digest to database.
   def remember(user)
     user.remember
     # Uses cookies create permanent cookies for user id.
@@ -17,7 +18,8 @@ module SessionsHelper
     user == current_user
   end
 
-  # Returns the current logged-in user. Retrieve user from temprary session if session[:user_id] exists, otherwise look for it in
+  # Returns the current logged-in user. Retrieve user from temprary
+  # session if session[:user_id] exists, otherwise look for it in
   # cookies[:user_id] to retrieve user from persistent session.
   def current_user
     if (user_id = session[:user_id])
@@ -53,7 +55,8 @@ module SessionsHelper
     @current_user = nil
   end
 
-  # Redirects to stored requested url if it exists, otherwise to default url in Sessions controller create method.
+  # Redirects to stored requested url if it exists,
+  # otherwise to default url in Sessions controller create method.
   def redirect_back_or(default)
     redirect_to(session[:forwarding_url] || default)
     session.delete(:forwarding_url)
@@ -61,7 +64,8 @@ module SessionsHelper
 
   # Stores the URL trying to be acessed.
   def store_location
-    # request.url = get url of requested page. Puts requested url in session variable under key :forwarding_url, but only if request is GET.
+    # request.url = get url of requested page. Puts requested url in session
+    # variable under key :forwarding_url, but only if request is GET.
     session[:forwarding_url] = request.url if request.get?
   end
 end
