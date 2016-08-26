@@ -1,6 +1,4 @@
 class Author < ActiveRecord::Base
-  # Misc
-  searchkick
   mount_uploader :portrait, PortraitUploader
 
   # Relationships
@@ -24,6 +22,10 @@ class Author < ActiveRecord::Base
             length: { maximum: 4 },
             numericality: { greater_than: 0, less_than: 2050 }
   validate :portrait_size
+
+  def self.search(query)
+    Author.where('lower(name) LIKE ?', "%#{query.downcase}%")
+  end
 
   private
 

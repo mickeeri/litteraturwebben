@@ -1,7 +1,4 @@
 class Book < ActiveRecord::Base
-  # Make searchable
-  searchkick
-
   validates_associated :authorships
 
   # Relationships
@@ -10,7 +7,10 @@ class Book < ActiveRecord::Base
   # Cocoon setup
   has_many :authorships, class_name: 'Authorship', dependent: :destroy
   has_many :authors, through: :authorships
-  accepts_nested_attributes_for :authors
+  accepts_nested_attributes_for :authors,
+                                reject_if: :all_blank,
+                                allow_destroy: true
+
   accepts_nested_attributes_for :authorships,
                                 allow_destroy: true,
                                 reject_if: :all_blank
@@ -38,12 +38,16 @@ class Book < ActiveRecord::Base
                             less_than: 2050 }
   validates :genre_id, presence: true
   validates :about, length: { maximum: 1000 }
-  validates :authorships, presence: { message: ' Välj minst en författare.' }
+  # validates :authorships, presence: { message: 'Välj minst en författare.' }
 
   # Custom validator for file size.
   validate :picture_size
   validate :pdf_size
   validate :epub_size
+
+  def self.search(query)
+    Book.where('lower(title) LIKE ?', "%#{query.downcase}%")
+  end
 
   private
 
