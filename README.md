@@ -2,4 +2,8 @@
 
 Application for organizing books and authors. Created with Ruby on Rails and Bootstrap. 
 
-May not work at the moment because of canceled AWS subscription. 
+Problems with pictures at the moment because of expired AWS S3. 
+
+[Documentation](https://github.com/me222wm/Litteraturprojekt/wiki)
+
+[Published application](https://litteraturwebben.herokuapp.com/)
